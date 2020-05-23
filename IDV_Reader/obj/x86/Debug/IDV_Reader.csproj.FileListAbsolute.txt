@@ -1,0 +1,14 @@
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\IDV_Reader.exe.config
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\IDV_Reader.exe
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\IDV_Reader.pdb
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.Properties.Resources.resources
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.GenerateResource.cache
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.CoreCompileInputs.cache
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.exe
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.pdb
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.Main.resources
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\MMMReaderDotNet40.dll
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.CopyComplete
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\RestSharp.dll
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\RestSharp.xml
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csprojAssemblyReference.cache
