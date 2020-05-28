@@ -32,17 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanB1 = new System.Windows.Forms.Panel();
             this.PanBObj1 = new System.Windows.Forms.PictureBox();
-            this.PanBObj2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -160,9 +150,18 @@
             this.label14 = new System.Windows.Forms.Label();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.PL_NOIN = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.PL_Succ = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.PL_Error = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.PanB1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanBObj1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -195,116 +194,40 @@
             this.PL_Password.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PL_Config.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.PL_Succ.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.PL_Error.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // PanB1
             // 
             this.PanB1.BackColor = System.Drawing.Color.Transparent;
             this.PanB1.Controls.Add(this.PanBObj1);
-            this.PanB1.Controls.Add(this.PanBObj2);
             this.PanB1.Location = new System.Drawing.Point(0, 0);
             this.PanB1.Name = "PanB1";
-            this.PanB1.Size = new System.Drawing.Size(201, 104);
+            this.PanB1.Size = new System.Drawing.Size(212, 89);
             this.PanB1.TabIndex = 1;
             // 
             // PanBObj1
             // 
             this.PanBObj1.Image = ((System.Drawing.Image)(resources.GetObject("PanBObj1.Image")));
-            this.PanBObj1.Location = new System.Drawing.Point(5, 5);
+            this.PanBObj1.Location = new System.Drawing.Point(-1, 11);
             this.PanBObj1.Name = "PanBObj1";
-            this.PanBObj1.Size = new System.Drawing.Size(189, 62);
-            this.PanBObj1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PanBObj1.Size = new System.Drawing.Size(196, 69);
+            this.PanBObj1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PanBObj1.TabIndex = 0;
             this.PanBObj1.TabStop = false;
-            // 
-            // PanBObj2
-            // 
-            this.PanBObj2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.PanBObj2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.PanBObj2.Location = new System.Drawing.Point(5, 70);
-            this.PanBObj2.Name = "PanBObj2";
-            this.PanBObj2.Size = new System.Drawing.Size(189, 30);
-            this.PanBObj2.TabIndex = 1;
-            this.PanBObj2.Text = "Documents Validation Scanner\r\nVersion : 1.0.0";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(598, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(205, 98);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
-            // toolStripStatusLabel8
-            // 
-            this.toolStripStatusLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(81)))), ((int)(((byte)(139)))));
-            this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(26, 30);
-            this.toolStripStatusLabel8.Text = " |   ";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.Color.Transparent;
             this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(137, 30);
-            this.toolStripStatusLabel1.Text = "www.IDVpacific.com.au";
-            // 
-            // toolStripStatusLabel7
-            // 
-            this.toolStripStatusLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(81)))), ((int)(((byte)(139)))));
-            this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
-            this.toolStripStatusLabel7.Size = new System.Drawing.Size(32, 30);
-            this.toolStripStatusLabel7.Text = "   |   ";
-            // 
-            // toolStripStatusLabel4
-            // 
-            this.toolStripStatusLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripStatusLabel4.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(263, 30);
-            this.toolStripStatusLabel4.Spring = true;
-            this.toolStripStatusLabel4.Text = "All right reserved for IDV Pacific Co © 2020";
-            // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(81)))), ((int)(((byte)(139)))));
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(32, 30);
-            this.toolStripStatusLabel5.Text = "   |   ";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripStatusLabel2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(102, 30);
-            this.toolStripStatusLabel2.Text = "+61 2 8823 3108";
-            // 
-            // toolStripStatusLabel9
-            // 
-            this.toolStripStatusLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(81)))), ((int)(((byte)(139)))));
-            this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
-            this.toolStripStatusLabel9.Size = new System.Drawing.Size(12, 30);
-            this.toolStripStatusLabel9.Text = "-";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripStatusLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(158, 30);
-            this.toolStripStatusLabel3.Text = "Contact@idvpacific.com.au";
-            // 
-            // toolStripStatusLabel6
-            // 
-            this.toolStripStatusLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(81)))), ((int)(((byte)(139)))));
-            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(26, 30);
-            this.toolStripStatusLabel6.Text = "   | ";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(184, 30);
+            this.toolStripStatusLabel1.Text = "  Powered by IDV Pacific Pty Ltd";
             // 
             // statusStrip1
             // 
@@ -312,15 +235,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
             this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel8,
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel7,
-            this.toolStripStatusLabel4,
-            this.toolStripStatusLabel5,
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel9,
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel6});
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 494);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(803, 35);
@@ -342,7 +257,7 @@
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(522, 5);
+            this.pictureBox5.Location = new System.Drawing.Point(575, 5);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(32, 32);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -357,21 +272,24 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(560, 5);
+            this.pictureBox4.Location = new System.Drawing.Point(613, 5);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox4.TabIndex = 14;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Visible = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // Lbl_ErrorPublic
             // 
+            this.Lbl_ErrorPublic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_ErrorPublic.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Lbl_ErrorPublic.ForeColor = System.Drawing.Color.Maroon;
-            this.Lbl_ErrorPublic.Location = new System.Drawing.Point(207, 5);
+            this.Lbl_ErrorPublic.Location = new System.Drawing.Point(218, 5);
             this.Lbl_ErrorPublic.Name = "Lbl_ErrorPublic";
-            this.Lbl_ErrorPublic.Size = new System.Drawing.Size(309, 29);
+            this.Lbl_ErrorPublic.Size = new System.Drawing.Size(351, 29);
             this.Lbl_ErrorPublic.TabIndex = 13;
             this.Lbl_ErrorPublic.Text = "...";
             this.Lbl_ErrorPublic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -650,7 +568,7 @@
             // 
             this.Splash_Lbl_2.BackColor = System.Drawing.Color.White;
             this.Splash_Lbl_2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.Splash_Lbl_2.Location = new System.Drawing.Point(47, 300);
+            this.Splash_Lbl_2.Location = new System.Drawing.Point(47, 298);
             this.Splash_Lbl_2.Name = "Splash_Lbl_2";
             this.Splash_Lbl_2.Size = new System.Drawing.Size(400, 40);
             this.Splash_Lbl_2.TabIndex = 2;
@@ -661,7 +579,7 @@
             // 
             this.Splash_Lbl_1.BackColor = System.Drawing.Color.White;
             this.Splash_Lbl_1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.Splash_Lbl_1.Location = new System.Drawing.Point(47, 272);
+            this.Splash_Lbl_1.Location = new System.Drawing.Point(47, 270);
             this.Splash_Lbl_1.Name = "Splash_Lbl_1";
             this.Splash_Lbl_1.Size = new System.Drawing.Size(400, 23);
             this.Splash_Lbl_1.TabIndex = 1;
@@ -673,7 +591,7 @@
             this.Splash_PB_1.BackColor = System.Drawing.Color.Transparent;
             this.Splash_PB_1.Image = ((System.Drawing.Image)(resources.GetObject("Splash_PB_1.Image")));
             this.Splash_PB_1.InitialImage = null;
-            this.Splash_PB_1.Location = new System.Drawing.Point(47, 42);
+            this.Splash_PB_1.Location = new System.Drawing.Point(47, 40);
             this.Splash_PB_1.Name = "Splash_PB_1";
             this.Splash_PB_1.Size = new System.Drawing.Size(400, 220);
             this.Splash_PB_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -701,7 +619,7 @@
             this.PLD_Data.Controls.Add(this.groupBox1);
             this.PLD_Data.Location = new System.Drawing.Point(527, 50);
             this.PLD_Data.Name = "PLD_Data";
-            this.PLD_Data.Size = new System.Drawing.Size(43, 20);
+            this.PLD_Data.Size = new System.Drawing.Size(29, 20);
             this.PLD_Data.TabIndex = 21;
             this.PLD_Data.Visible = false;
             // 
@@ -1535,11 +1453,126 @@
             // 
             this.PL_NOIN.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PL_NOIN.BackgroundImage")));
             this.PL_NOIN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.PL_NOIN.Location = new System.Drawing.Point(8, 462);
+            this.PL_NOIN.Location = new System.Drawing.Point(8, 475);
             this.PL_NOIN.Name = "PL_NOIN";
             this.PL_NOIN.Size = new System.Drawing.Size(791, 445);
             this.PL_NOIN.TabIndex = 30;
             this.PL_NOIN.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Location = new System.Drawing.Point(651, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(152, 89);
+            this.panel1.TabIndex = 31;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(7, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(135, 69);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // PL_Succ
+            // 
+            this.PL_Succ.Controls.Add(this.label28);
+            this.PL_Succ.Controls.Add(this.label29);
+            this.PL_Succ.Controls.Add(this.pictureBox6);
+            this.PL_Succ.Location = new System.Drawing.Point(179, 222);
+            this.PL_Succ.Name = "PL_Succ";
+            this.PL_Succ.Size = new System.Drawing.Size(495, 343);
+            this.PL_Succ.TabIndex = 32;
+            this.PL_Succ.Visible = false;
+            // 
+            // label28
+            // 
+            this.label28.BackColor = System.Drawing.Color.White;
+            this.label28.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label28.Location = new System.Drawing.Point(47, 298);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(400, 40);
+            this.label28.TabIndex = 2;
+            this.label28.Text = "You can take your Driving Licence now.";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label28.Visible = false;
+            // 
+            // label29
+            // 
+            this.label29.BackColor = System.Drawing.Color.White;
+            this.label29.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label29.ForeColor = System.Drawing.Color.Green;
+            this.label29.Location = new System.Drawing.Point(47, 270);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(400, 23);
+            this.label29.TabIndex = 1;
+            this.label29.Text = "Thank You!";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.InitialImage = null;
+            this.pictureBox6.Location = new System.Drawing.Point(47, 40);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(400, 220);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+            // 
+            // PL_Error
+            // 
+            this.PL_Error.Controls.Add(this.label30);
+            this.PL_Error.Controls.Add(this.label32);
+            this.PL_Error.Controls.Add(this.pictureBox7);
+            this.PL_Error.Location = new System.Drawing.Point(196, 210);
+            this.PL_Error.Name = "PL_Error";
+            this.PL_Error.Size = new System.Drawing.Size(495, 343);
+            this.PL_Error.TabIndex = 33;
+            this.PL_Error.Visible = false;
+            // 
+            // label30
+            // 
+            this.label30.BackColor = System.Drawing.Color.White;
+            this.label30.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(47, 298);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(400, 40);
+            this.label30.TabIndex = 2;
+            this.label30.Text = "You can take your Driving Licence now.";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label30.Visible = false;
+            // 
+            // label32
+            // 
+            this.label32.BackColor = System.Drawing.Color.White;
+            this.label32.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label32.ForeColor = System.Drawing.Color.Maroon;
+            this.label32.Location = new System.Drawing.Point(47, 270);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(400, 23);
+            this.label32.TabIndex = 1;
+            this.label32.Text = "Oops! Something went wrong ...";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.InitialImage = null;
+            this.pictureBox7.Location = new System.Drawing.Point(47, 40);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(400, 220);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 0;
+            this.pictureBox7.TabStop = false;
             // 
             // Main
             // 
@@ -1548,25 +1581,27 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(803, 529);
             this.ControlBox = false;
-            this.Controls.Add(this.PL_Config);
+            this.Controls.Add(this.PLD_Data);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PanB1);
             this.Controls.Add(this.C2_PRO);
             this.Controls.Add(this.C2_INS);
             this.Controls.Add(this.C1_PRO);
             this.Controls.Add(this.C1_INS);
-            this.Controls.Add(this.PLD_Data);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.Lbl_ErrorPublic);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.PanB1);
-            this.Controls.Add(this.PL_04_Splash);
             this.Controls.Add(this.PL_NOIN);
             this.Controls.Add(this.PL_01_Splash);
             this.Controls.Add(this.PL_02_Splash);
             this.Controls.Add(this.PL_03_Splash);
+            this.Controls.Add(this.PL_04_Splash);
             this.Controls.Add(this.PL_Password);
+            this.Controls.Add(this.PL_Config);
+            this.Controls.Add(this.PL_Error);
+            this.Controls.Add(this.PL_Succ);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1578,7 +1613,6 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.PanB1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PanBObj1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -1614,6 +1648,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PL_Config.ResumeLayout(false);
             this.PL_Config.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.PL_Succ.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.PL_Error.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1623,17 +1663,7 @@
 
         private System.Windows.Forms.Panel PanB1;
         private System.Windows.Forms.PictureBox PanBObj1;
-        private System.Windows.Forms.Label PanBObj2;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel8;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
@@ -1751,6 +1781,16 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Panel PL_NOIN;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel PL_Succ;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Panel PL_Error;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }
 

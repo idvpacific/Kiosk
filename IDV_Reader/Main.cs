@@ -20,6 +20,7 @@ using Microsoft.VisualBasic;
 using System.Net;
 using System.Net.Sockets;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace IDV_Reader
 {
@@ -39,6 +40,7 @@ namespace IDV_Reader
         string IPAddress = "";
         bool SystemPause = false;
         string IDVBS = "";
+        bool Doc_In = false;
         //--------------------------------------------------------
         bool ReConfig = true;
         int Reconfig_Click = 0;
@@ -86,9 +88,6 @@ namespace IDV_Reader
                 IDVBS = ConfigurationSettings.AppSettings["IDV_BaseAddress"].ToString().Trim();
                 if (System.IO.Directory.Exists(Application.StartupPath + @"\Logs") == false) { System.IO.Directory.CreateDirectory(Application.StartupPath + @"\Logs"); }
                 FileLog = Application.StartupPath + @"\Logs\" + DateTime.Now.ToString("ddMMyyyy-HHmm") + ".txt";
-                AddLog("-------------------------------------------------------------------------" + "\r\n");
-                AddLog("- Run Software -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                AddLog("-------------------------------------------------------------------------" + "\r\n");
                 // Load Config File :
                 ReConfig = true;
                 try
@@ -142,6 +141,10 @@ namespace IDV_Reader
                         Proc_Text.Text = "Processing your driving license information";
                     }
                 }
+                try { IPAddress = GetUser_IP(); } catch (Exception) { }
+                AddLog("-------------------------------------------------------------------------" + "\r\n");
+                AddLog("- Run Software -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                AddLog("-------------------------------------------------------------------------" + "\r\n");
                 timer1.Interval = 1000;
                 timer1.Enabled = true;
                 timer1.Start();
@@ -289,6 +292,21 @@ namespace IDV_Reader
             { }
         }
 
+        private void ClearAll2()
+        {
+            try
+            {
+                foreach (var PNL in Controls.OfType<Panel>())
+                {
+                    if (PNL.Name.Substring(0, 3) == "PL_")
+                    {
+                        PNL.Visible = false;
+                    }
+                }
+            }
+            catch (Exception)
+            { }
+        }
         public string Get_Date()
         {
             try
@@ -844,6 +862,7 @@ namespace IDV_Reader
             {
                 if (PL_NOIN.Visible == true)
                 {
+                    SystemPause = false;
                     PL_NOIN.Visible = false;
                     Activity_Now = 1;
                 }
@@ -967,10 +986,10 @@ namespace IDV_Reader
                     }
                     if (Directory.Exists(Application.StartupPath + @"\Photos") == true) { Directory.Delete(Application.StartupPath + @"\Photos", true); }
                 }
-                else { AddLog("- Scan Log : "  + "Send To Server - Error - BaseID"  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n"); }
+                else { AddLog("- Scan Log : " + "Send To Server - Error - BaseID" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n"); }
             }
-            catch (Exception) { AddLog("- Scan Log : " + "Send To Server - Error" + " -> "  + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n"); }
-            AddLog("- Scan Log : " + "Send To Server - End"  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+            catch (Exception) { AddLog("- Scan Log : " + "Send To Server - Error" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n"); }
+            AddLog("- Scan Log : " + "Send To Server - End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
         }
 
         public string Scanner_HttpPost(string API, string DValue)
@@ -1000,7 +1019,7 @@ namespace IDV_Reader
                 var request = new RestRequest(Method.POST);
                 client.Execute(request);
             }
-            catch (Exception) {}
+            catch (Exception) { }
         }
         //-------------------------------------------------------------------------------------\\
         //-------------------------------------------------------------------------------------//
@@ -1011,8 +1030,20 @@ namespace IDV_Reader
             {
                 ExitLoop = false;
                 Centerlizer();
-                pictureBox5.Visible = true;
-                pictureBox5.Enabled = true;
+                if (DeviceID == 1)
+                {
+                    pictureBox4.Visible = true;
+                    pictureBox4.Enabled = true;
+                    pictureBox5.Visible = true;
+                    pictureBox5.Enabled = true;
+                }
+                else
+                {
+                    pictureBox4.Visible = false;
+                    pictureBox4.Enabled = false;
+                    pictureBox5.Visible = false;
+                    pictureBox5.Enabled = false;
+                }
                 //----------------------------------------------------------------
                 Activity_Now = 1;
                 // 1 : Show First Page And Wait For Insert Document .
@@ -1030,13 +1061,16 @@ namespace IDV_Reader
                         {
                             case 1:
                                 {
+                                    ClearAll2();
                                     MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_DISABLED, true);
                                     PL_01_Splash.Visible = false;
                                     PL_02_Splash.Visible = true;
                                     PL_03_Splash.Visible = false;
                                     PL_04_Splash.Visible = false;
+                                    PL_Error.Visible = false;
+                                    PL_Succ.Visible = false;
                                     Application.DoEvents();
-                                    AddLog("- Scan Log : " + "Wait For Document" + " -> "  + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n");
+                                    AddLog("- Scan Log : " + "Wait For Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                     Wait(1000);
                                     Activity_Now = 5;
                                     MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_ENABLED, true);
@@ -1049,7 +1083,9 @@ namespace IDV_Reader
                                     PL_02_Splash.Visible = false;
                                     PL_03_Splash.Visible = true;
                                     PL_04_Splash.Visible = false;
-                                    AddLog("- Scan Log : "+ "Proccess Document"  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n");
+                                    PL_Error.Visible = false;
+                                    PL_Succ.Visible = false;
+                                    AddLog("- Scan Log : " + "Proccess Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                     Activity_Now = 5;
                                     break;
                                 }
@@ -1057,113 +1093,360 @@ namespace IDV_Reader
                             case 3:
                                 {
                                     int StatusCode = 0;
-                                    AddLog("- Scan Log : " + "Proccess End"  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                    pictureBox3.Image = null;
-                                    LBLD_1.Text = "";
-                                    LBLD_2.Text = "";
-                                    LBLD_3.Text = "";
-                                    LBLD_4.Text = "";
-                                    LBLD_5.Text = "";
-                                    T_OK.Visible = false;
-                                    T_Error.Visible = false;
-                                    try
-                                    { if (rfImage.Image != null) { pictureBox3.Image = rfImage.Image; } else { if (photoImage.Image != null) { pictureBox3.Image = photoImage.Image; } } }
-                                    catch (Exception) { }
-                                    try
+                                    AddLog("- Scan Log : " + "Proccess End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                    if (DeviceID == 1)
                                     {
-                                        if ((lblRFForenames.Text != null) && (lblRFForenames.Text != "")) { LBLD_1.Text = lblRFForenames.Text.Trim().ToUpper(); }
-                                        if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = lblForenames.Text.Trim().ToUpper(); }
-                                    }
-                                    catch (Exception) { }
-                                    try
-                                    {
-                                        if ((lblRFSurname.Text != null) && (lblRFSurname.Text != "")) { LBLD_2.Text = lblRFSurname.Text.Trim().ToUpper(); }
-                                        if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = lblSurname.Text.Trim().ToUpper(); }
-                                    }
-                                    catch (Exception) { }
-                                    try
-                                    {
-                                        if ((lblRFNationality.Text != null) && (lblRFNationality.Text != "")) { LBLD_3.Text = lblRFNationality.Text.Trim().ToUpper(); }
-                                        if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = lblNationality.Text.Trim().ToUpper(); }
-                                    }
-                                    catch (Exception) { }
-                                    try
-                                    {
-                                        if ((lblRFSex.Text != null) && (lblRFSex.Text != "")) { LBLD_4.Text = lblRFSex.Text.Trim().ToUpper(); }
-                                        if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = lblSex.Text.Trim().ToUpper(); }
-                                    }
-                                    catch (Exception) { }
-                                    try
-                                    {
-                                        if ((lblRFDocNumber.Text != null) && (lblRFDocNumber.Text != "")) { LBLD_5.Text = lblRFDocNumber.Text.Trim().ToUpper(); }
-                                        if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = lblDocumentNumber.Text.Trim().ToUpper(); }
-                                    }
-                                    catch (Exception) { }
-                                    int WIDEROK = 0;
-                                    try
-                                    {
-                                        if (lblRFSurname.Text.Trim().ToUpper() != lblSurname.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                        if (lblRFForenames.Text.Trim().ToUpper() != lblForenames.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                        if (lblRFNationality.Text.Trim().ToUpper() != lblNationality.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                        if (lblRFSex.Text.Trim().ToUpper() != lblSex.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                        if (lblRFDateOfBirth.Text.Trim().ToUpper() != lblDateOfBirth.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                        if (lblRFDocNumber.Text.Trim().ToUpper() != lblDocumentNumber.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                        if (lblBACStatus.Text.Trim().ToUpper() != "TS_SUCCESS") { WIDEROK = 1; }
-                                    }
-                                    catch (Exception)
-                                    {
-                                        WIDEROK = 1;
-                                    }
-                                    if (WIDEROK == 1) { T_Error.Visible = true; StatusCode = 2; } else { T_OK.Visible = true; StatusCode = 1; }
-                                    try
-                                    {
-                                        if (WIDEROK == 1)
+                                        pictureBox3.Image = null;
+                                        LBLD_1.Text = "";
+                                        LBLD_2.Text = "";
+                                        LBLD_3.Text = "";
+                                        LBLD_4.Text = "";
+                                        LBLD_5.Text = "";
+                                        T_OK.Visible = false;
+                                        T_Error.Visible = false;
+                                        try
+                                        { if (rfImage.Image != null) { pictureBox3.Image = rfImage.Image; } else { if (photoImage.Image != null) { pictureBox3.Image = photoImage.Image; } } }
+                                        catch (Exception) { }
+                                        try
                                         {
-                                            if ((lblRFSurname.Text.Trim() == "") && (lblSurname.Text.Trim() != "")) { StatusCode = 3; }
-                                            if ((lblRFForenames.Text.Trim() == "") && (lblForenames.Text.Trim() != "")) { StatusCode = 3; }
-                                            if ((lblRFNationality.Text.Trim() == "") && (lblNationality.Text.Trim() != "")) { StatusCode = 3; }
-                                            if ((lblRFSex.Text.Trim() == "") && (lblSex.Text.Trim() != "")) { StatusCode = 3; }
-                                            if ((lblRFDateOfBirth.Text.Trim() == "") && (lblDateOfBirth.Text.Trim() != "")) { StatusCode = 3; }
-                                            if ((lblRFDocNumber.Text.Trim() == "") && (lblDocumentNumber.Text.Trim() != "")) { StatusCode = 3; }
+                                            if ((lblRFForenames.Text != null) && (lblRFForenames.Text != "")) { LBLD_1.Text = lblRFForenames.Text.Trim().ToUpper(); }
+                                            if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = lblForenames.Text.Trim().ToUpper(); }
                                         }
-                                    }
-                                    catch (Exception) { }
-                                    string EXODATE = "";
-                                    try
-                                    {
-                                        if (lblRF_ExpireDate.Text.Trim() != "") { EXODATE = lblRF_ExpireDate.Text.Trim(); }
-                                        if (EXODATE == "")
+                                        catch (Exception) { }
+                                        try
                                         {
-                                            if (lblMRZ_ExpireDate.Text.Trim() != "") { EXODATE = lblMRZ_ExpireDate.Text.Trim(); }
+                                            if ((lblRFSurname.Text != null) && (lblRFSurname.Text != "")) { LBLD_2.Text = lblRFSurname.Text.Trim().ToUpper(); }
+                                            if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = lblSurname.Text.Trim().ToUpper(); }
                                         }
-                                    }
-                                    catch (Exception) { EXODATE = ""; }
-                                    if (StatusCode == 1)
-                                    {
-                                        if (EXODATE.Trim() != "")
+                                        catch (Exception) { }
+                                        try
                                         {
-                                            // Hamid Said When Expires SHoulbe be in Refered .
-                                            if (ExpiredDateCheck(EXODATE, Get_Date()) == false) { StatusCode = 3; WIDEROK = 1; }
+                                            if ((lblRFNationality.Text != null) && (lblRFNationality.Text != "")) { LBLD_3.Text = lblRFNationality.Text.Trim().ToUpper(); }
+                                            if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = lblNationality.Text.Trim().ToUpper(); }
+                                        }
+                                        catch (Exception) { }
+                                        try
+                                        {
+                                            if ((lblRFSex.Text != null) && (lblRFSex.Text != "")) { LBLD_4.Text = lblRFSex.Text.Trim().ToUpper(); }
+                                            if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = lblSex.Text.Trim().ToUpper(); }
+                                        }
+                                        catch (Exception) { }
+                                        try
+                                        {
+                                            if ((lblRFDocNumber.Text != null) && (lblRFDocNumber.Text != "")) { LBLD_5.Text = lblRFDocNumber.Text.Trim().ToUpper(); }
+                                            if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = lblDocumentNumber.Text.Trim().ToUpper(); }
+                                        }
+                                        catch (Exception) { }
+                                        int WIDEROK = 0;
+                                        try
+                                        {
+                                            if (lblRFSurname.Text.Trim().ToUpper() != lblSurname.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                            if (lblRFForenames.Text.Trim().ToUpper() != lblForenames.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                            if (lblRFNationality.Text.Trim().ToUpper() != lblNationality.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                            if (lblRFSex.Text.Trim().ToUpper() != lblSex.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                            if (lblRFDateOfBirth.Text.Trim().ToUpper() != lblDateOfBirth.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                            if (lblRFDocNumber.Text.Trim().ToUpper() != lblDocumentNumber.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                            if (lblBACStatus.Text.Trim().ToUpper() != "TS_SUCCESS") { WIDEROK = 1; }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            WIDEROK = 1;
+                                        }
+                                        if (WIDEROK == 1) { T_Error.Visible = true; StatusCode = 2; } else { T_OK.Visible = true; StatusCode = 1; }
+                                        try
+                                        {
+                                            if (WIDEROK == 1)
+                                            {
+                                                if ((lblRFSurname.Text.Trim() == "") && (lblSurname.Text.Trim() != "")) { StatusCode = 3; }
+                                                if ((lblRFForenames.Text.Trim() == "") && (lblForenames.Text.Trim() != "")) { StatusCode = 3; }
+                                                if ((lblRFNationality.Text.Trim() == "") && (lblNationality.Text.Trim() != "")) { StatusCode = 3; }
+                                                if ((lblRFSex.Text.Trim() == "") && (lblSex.Text.Trim() != "")) { StatusCode = 3; }
+                                                if ((lblRFDateOfBirth.Text.Trim() == "") && (lblDateOfBirth.Text.Trim() != "")) { StatusCode = 3; }
+                                                if ((lblRFDocNumber.Text.Trim() == "") && (lblDocumentNumber.Text.Trim() != "")) { StatusCode = 3; }
+                                            }
+                                        }
+                                        catch (Exception) { }
+                                        string EXODATE = "";
+                                        try
+                                        {
+                                            if (lblRF_ExpireDate.Text.Trim() != "") { EXODATE = lblRF_ExpireDate.Text.Trim(); }
+                                            if (EXODATE == "")
+                                            {
+                                                if (lblMRZ_ExpireDate.Text.Trim() != "") { EXODATE = lblMRZ_ExpireDate.Text.Trim(); }
+                                            }
+                                        }
+                                        catch (Exception) { EXODATE = ""; }
+                                        if (StatusCode == 1)
+                                        {
+                                            if (EXODATE.Trim() != "")
+                                            {
+                                                // Hamid Said When Expires SHoulbe be in Refered .
+                                                if (ExpiredDateCheck(EXODATE, Get_Date()) == false) { StatusCode = 3; WIDEROK = 1; }
+                                            }
+                                            else
+                                            {
+                                                StatusCode = 3; // No Expire Date => Reffered
+                                                WIDEROK = 1;
+                                            }
+                                        }
+                                        if (WIDEROK == 1) { T_Error.Visible = true; } else { T_OK.Visible = true; }
+                                        if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = "NA"; }
+                                        if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = "NA"; }
+                                        if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = "NA"; }
+                                        if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = "NA"; }
+                                        if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = "NA"; }
+                                        if (lblDocumentType.Text.Trim().ToLower() == "unknown document") { lblDocumentType.Text = "Passport"; }
+                                        SendToServer(StatusCode);
+                                        PL_01_Splash.Visible = false;
+                                        PL_02_Splash.Visible = false;
+                                        PL_03_Splash.Visible = false;
+                                        PL_04_Splash.Visible = true;
+                                        Activity_Now = 5;
+                                    }
+                                    else
+                                    {
+                                        Application.DoEvents();
+                                        SystemPause = true;
+                                        AddLog("- Scan Log : " + "Proccess End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                        // Create Application :
+                                        AddLog("- Scan Log : " + "Create New Application" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                        string APPID = "";
+                                        APPID = Scanner_HttpPost("DL_01_CreateApplication", "CID=" + CompanyID + "&DID=" + DealerID + "&UID=" + UserID + "&IP=" + IPAddress + "&UNM=" + Auth_Username + "&PAS=" + Auth_Password);
+                                        Application.DoEvents();
+                                        APPID = APPID.Replace("\"", "").Trim();
+                                        if (APPID.IndexOf("RR_") < 0)
+                                        {
+                                            AddLog("- Scan Log : " + "Application Created - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            // Send Image To Server :
+                                            for (int i = 1; i <= 7; i++)
+                                            {
+                                                Application.DoEvents();
+                                                string ImageNameLog = "";
+                                                PictureBox PBL = new PictureBox();
+                                                switch (i)
+                                                {
+                                                    case 1: { PBL = photoImage; ImageNameLog = "FacePhoto"; break; }
+                                                    case 2: { PBL = irImage; ImageNameLog = "IR Front"; break; }
+                                                    case 3: { PBL = irImageRear; ImageNameLog = "IR Back"; break; }
+                                                    case 4: { PBL = visibleImage; ImageNameLog = "Normal Front"; break; }
+                                                    case 5: { PBL = visibleImageRear; ImageNameLog = "Normal Back"; break; }
+                                                    case 6: { PBL = uvImage; ImageNameLog = "UV Front"; break; }
+                                                    case 7: { PBL = uvImageRear; ImageNameLog = "UV Back"; break; }
+                                                }
+                                                if (PBL.Image != null)
+                                                {
+                                                    try
+                                                    {
+                                                        AddLog("- Scan Log : Starting Upload " + " - " + ImageNameLog + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+                                                        if (Directory.Exists(Application.StartupPath + @"\Photos") == false) { Directory.CreateDirectory(Application.StartupPath + @"\Photos"); }
+                                                        PBL.Image.Save(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                                                        var client = new RestClient(ServerAddress + "/api/DL_02_UploadImage?AppID=" + APPID + "&ImageCode=" + i.ToString());
+                                                        client.Timeout = -1;
+                                                        var request = new RestRequest(Method.POST);
+                                                        request.AddHeader("Content-Type", "multipart/form-data");
+                                                        request.AddFile("files[testfile1.pot]", Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg");
+                                                        IRestResponse IRRES = client.Execute(request);
+                                                        if (File.Exists(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg") == true) { File.Delete(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg"); }
+                                                        Application.DoEvents();
+                                                        if (IRRES.ToString().Replace("\"", "").Trim().ToUpper() == "OK")
+                                                        {
+                                                            AddLog("- Scan Log : Image [ " + ImageNameLog + " ] Uploaded Successful" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        }
+                                                        else
+                                                        {
+                                                            AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : " + IRRES.ToString().Replace("\"", "").Trim() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        }
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+                                                        AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : " + e.Message.Trim() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : Not Founded" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                }
+                                                Application.DoEvents();
+                                            }
+                                            Application.DoEvents();
+                                            // Clear Image Temp :
+                                            if (Directory.Exists(Application.StartupPath + @"\Photos") == true)
+                                            {
+                                                try
+                                                {
+                                                    Directory.Delete(Application.StartupPath + @"\Photos", true);
+                                                    AddLog("- Scan Log : Local Image Temp Folder Removed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    AddLog("- Scan Log : Local Image Temp Folder Removing Error" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                }
+                                            }
+                                            Application.DoEvents();
+                                            // Publish Application :
+                                            AddLog("- Scan Log : " + "Publish Application - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            Application.DoEvents();
+                                            string ResPublish = "";
+                                            ResPublish = Scanner_HttpPost("DL_03_Publish", "CID=" + CompanyID + "&DID=" + DealerID + "&UID=" + UserID + "&APPID=" + APPID + "&UNM=" + Auth_Username + "&PAS=" + Auth_Password);
+                                            Application.DoEvents();
+                                            ResPublish = ResPublish.Replace("\"", "").Trim();
+                                            if (ResPublish.IndexOf("RR_") < 0)
+                                            {
+                                                AddLog("- Scan Log : " + "Get Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                Application.DoEvents();
+                                                // Wait for Response :
+                                                bool ErroPageShow = false;
+                                                bool EditPageShow = false;
+                                                bool WaitForRes = true;
+                                                int WaitMin = 0;
+                                                string AppStatusCode = "0";
+                                                while (WaitForRes == true)
+                                                {
+                                                    Wait(5000);
+                                                    AppStatusCode = Scanner_HttpPost("DL_04_ApplicationStatus", "APPID=" + APPID);
+                                                    AppStatusCode.Replace("\"", "").Trim();
+                                                    if ((AppStatusCode != "0") && (AppStatusCode != "1") && (AppStatusCode != "2"))
+                                                    {
+                                                        WaitForRes = false;
+                                                        ErroPageShow = false;
+                                                        if (AppStatusCode == "8") { EditPageShow = true; }
+                                                    }
+                                                    else
+                                                    {
+                                                        WaitMin++;
+                                                        if (WaitMin >= 20) { WaitForRes = false; ErroPageShow = true; EditPageShow = false; }
+                                                    }
+                                                }
+                                                AddLog("- Scan Log : " + "Application Last Status : " + AppStatusCode + " - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                Application.DoEvents();
+                                                if (ErroPageShow == false)
+                                                {
+                                                    if (EditPageShow == true)
+                                                    {
+                                                        // Get Response :
+                                                        AddLog("- Scan Log : " + "Get Application Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+                                                        string FieldResult = "";
+                                                        FieldResult = Scanner_HttpPost("DL_05_Result", "APPID=" + APPID);
+                                                        FieldResult = FieldResult.Trim();
+                                                        if (FieldResult.Substring(0, 1) == "\"") { FieldResult = FieldResult.Substring(1, FieldResult.Length - 1); }
+                                                        FieldResult = FieldResult.Trim();
+                                                        if (FieldResult.Substring(FieldResult.Length - 1, 1) == "\"") { FieldResult = FieldResult.Substring(0, FieldResult.Length - 1); }
+                                                        FieldResult = FieldResult.Trim();
+                                                        List<ResultItems> ResITM = JsonConvert.DeserializeObject<List<ResultItems>>(FieldResult);
+                                                        AddLog("- Scan Log : " + "Create Dynamic Object For Edit - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+                                                        foreach (ResultItems RW in ResITM)
+                                                        {
+                                                            
+
+                                                        }
+                                                        // Show Result Page :
+                                                        AddLog("- Scan Log : " + "Show Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+
+
+
+
+                                                        // Wait For Accept Response :
+
+
+                                                        AddLog("- Scan Log : " + "Accept Application Result By User - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+                                                        // Send Last Changes :
+                                                        AddLog("- Scan Log : " + "Save Application Last Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+
+
+
+                                                        // Send Call Back URl :
+                                                        CallBackURL_Post(APPID);
+                                                        Application.DoEvents();
+                                                        // Show Thanks Page :
+                                                        AddLog("- Scan Log : " + "End Application With Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+                                                        label28.Visible = false;
+                                                        label30.Visible = false;
+                                                        PL_01_Splash.Visible = false;
+                                                        PL_02_Splash.Visible = false;
+                                                        PL_03_Splash.Visible = false;
+                                                        PL_04_Splash.Visible = false;
+                                                        PL_Error.Visible = false;
+                                                        PL_Succ.Visible = true;
+                                                    }
+                                                    else
+                                                    {
+                                                        CallBackURL_Post(APPID);
+                                                        Application.DoEvents();
+                                                        AddLog("- Scan Log : " + "End Application Without Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        Application.DoEvents();
+                                                        label28.Visible = false;
+                                                        label30.Visible = false;
+                                                        PL_01_Splash.Visible = false;
+                                                        PL_02_Splash.Visible = false;
+                                                        PL_03_Splash.Visible = false;
+                                                        PL_04_Splash.Visible = false;
+                                                        PL_Error.Visible = false;
+                                                        PL_Succ.Visible = true;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    AddLog("- Scan Log : " + "Application Validate Failed - ID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    // Show Error Page :
+                                                    CallBackURL_Post(APPID);
+                                                    Application.DoEvents();
+                                                    label32.Text = "The server was not responsive, please try again";
+                                                    PL_01_Splash.Visible = false;
+                                                    PL_02_Splash.Visible = false;
+                                                    PL_03_Splash.Visible = false;
+                                                    PL_04_Splash.Visible = false;
+                                                    PL_Succ.Visible = false;
+                                                    PL_Error.Visible = true;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                AddLog("- Scan Log : " + "Publish Application Failed - ID : " + APPID + " - Code : " + ResPublish + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                // Show Error Page :
+                                                CallBackURL_Post(APPID);
+                                                Application.DoEvents();
+                                                label32.Text = "Oops! Something went wrong ...";
+                                                PL_01_Splash.Visible = false;
+                                                PL_02_Splash.Visible = false;
+                                                PL_03_Splash.Visible = false;
+                                                PL_04_Splash.Visible = false;
+                                                PL_Succ.Visible = false;
+                                                PL_Error.Visible = true;
+                                            }
                                         }
                                         else
                                         {
-                                            StatusCode = 3; // No Expire Date => Reffered
-                                            WIDEROK = 1;
+                                            AddLog("- Scan Log : " + "Create New Application Failed - Code : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            // Show Error Page :
+                                            label32.Text = "Oops! Something went wrong ...";
+                                            PL_01_Splash.Visible = false;
+                                            PL_02_Splash.Visible = false;
+                                            PL_03_Splash.Visible = false;
+                                            PL_04_Splash.Visible = false;
+                                            PL_Succ.Visible = false;
+                                            PL_Error.Visible = true;
+                                        }
+                                        SystemPause = false;
+                                        if (Doc_In == true)
+                                        {
+                                            label28.Visible = true;
+                                            label30.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            label28.Visible = false;
+                                            label30.Visible = false;
+                                            Wait(3000);
+                                            Activity_Now = 1;
                                         }
                                     }
-                                    if (WIDEROK == 1) { T_Error.Visible = true; } else { T_OK.Visible = true; }
-                                    if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = "NA"; }
-                                    if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = "NA"; }
-                                    if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = "NA"; }
-                                    if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = "NA"; }
-                                    if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = "NA"; }
-                                    if (lblDocumentType.Text.Trim().ToLower() == "unknown document") { lblDocumentType.Text = "Passport"; }
-                                    SendToServer(StatusCode);
-                                    PL_01_Splash.Visible = false;
-                                    PL_02_Splash.Visible = false;
-                                    PL_03_Splash.Visible = false;
-                                    PL_04_Splash.Visible = true;
-                                    Activity_Now = 5;
                                     break;
                                 }
                             //-------------------------------------------------------------------------------------------------------
@@ -1171,7 +1454,7 @@ namespace IDV_Reader
                                 {
                                     Wait(1000);
                                     Activity_Now = 1;
-                                    AddLog("- Scan Log : " + "Doc Removed"  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                    AddLog("- Scan Log : " + "Doc Removed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                     break;
                                 }
                                 //-------------------------------------------------------------------------------------------------------
@@ -1182,6 +1465,20 @@ namespace IDV_Reader
             }
             catch (Exception)
             { }
+        }
+        //-------------------------------------------------------------------------------------\\
+        //-------------------------------------------------------------------------------------//
+        private void CallBackURL_Post(string APPID)
+        {
+            try
+            {
+                AddLog("- Scan Log : " + "Sending Callback URL - ID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                string AppStatusCode = Scanner_HttpPost("DL_07_CallBackURL", "APPID=" + APPID);
+            }
+            catch (Exception)
+            {
+                AddLog("- Scan Log : " + "Callback URL Send Failed - ID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+            }
         }
         //-------------------------------------------------------------------------------------\\
         //-------------------------------------------------------------------------------------//
@@ -1492,6 +1789,7 @@ namespace IDV_Reader
             RFIDAvailDataItems.Items.Clear();
             RFIDSelectDataItems.Items.Clear();
         }
+
         void DataCallbackThreadHelper(MMM.Readers.FullPage.DataType aDataType, object aData)
         {
             if (THC.InvokeRequired)
@@ -1975,6 +2273,7 @@ namespace IDV_Reader
                                 }
                                 Activity_Now = 4;
                             }
+                            Doc_In = false;
                             break;
                         }
                     case MMM.Readers.FullPage.EventCode.DOC_ON_WINDOW:
@@ -1991,6 +2290,7 @@ namespace IDV_Reader
                             {
                                 Activity_Now = 2;
                             }
+                            Doc_In = true;
                             Clear();
                             break;
                         }
@@ -2188,25 +2488,25 @@ namespace IDV_Reader
 
         void LogDataItem(string aDataType, object aData)
         {
-            AddLog("- LogDataItem : " + aData.ToString()  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n");
+            AddLog("- LogDataItem : " + aData.ToString() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
             textBox1.Text += "- LogDataItem : " + aData.ToString() + "\r\n";
         }
 
         void LogWarning(MMM.Readers.WarningCode aWarningCode, string aWarningMessage)
         {
-            AddLog("- LogWarning : " + aWarningMessage.ToString()  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+            AddLog("- LogWarning : " + aWarningMessage.ToString() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
             textBox1.Text += "- LogWarning : " + aWarningMessage.ToString() + "\r\n";
         }
 
         void LogError(MMM.Readers.ErrorCode aErrorCode, string aErrorMessage)
         {
-            AddLog("- LogError : "  + aErrorMessage.ToString()  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n");
+            AddLog("- LogError : " + aErrorMessage.ToString() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
             textBox1.Text += "- LogError : " + aErrorMessage.ToString() + "\r\n";
         }
 
         void LogEvent(MMM.Readers.FullPage.EventCode aEventType)
         {
-            AddLog("- LogEvent : " + aEventType.ToString()  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n");
+            AddLog("- LogEvent : " + aEventType.ToString() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
             textBox1.Text += "- LogEvent : " + aEventType.ToString() + "\r\n";
         }
 
@@ -2217,13 +2517,14 @@ namespace IDV_Reader
         }
 
         private MMM.Readers.FullPage.ReaderState prPreviousState = MMM.Readers.FullPage.ReaderState.READER_DISABLED;
+
         private void OnPowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
         {
             switch (e.Mode)
             {
                 case Microsoft.Win32.PowerModes.Resume:
                     {
-                        AddLog("- PowerModeChanged : " + "Resume" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm")  + "\r\n");
+                        AddLog("- PowerModeChanged : " + "Resume" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                         System.Threading.Thread.Sleep(5000);
                         MMM.Readers.FullPage.Reader.SetState(prPreviousState, true);
                         UpdateState(prPreviousState);
@@ -2231,7 +2532,7 @@ namespace IDV_Reader
                     }
                 case Microsoft.Win32.PowerModes.Suspend:
                     {
-                        AddLog("- PowerModeChanged : " + "Suspend"  + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                        AddLog("- PowerModeChanged : " + "Suspend" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                         MMM.Readers.FullPage.ReaderState lCurrentState = MMM.Readers.FullPage.Reader.GetState();
                         prPreviousState = lCurrentState;
                         if ((lCurrentState != MMM.Readers.FullPage.ReaderState.READER_NOT_INITIALISED) && (lCurrentState != MMM.Readers.FullPage.ReaderState.READER_ERRORED) && (lCurrentState != MMM.Readers.FullPage.ReaderState.READER_TERMINATED) && (lCurrentState != MMM.Readers.FullPage.ReaderState.READER_SUSPENDED))
