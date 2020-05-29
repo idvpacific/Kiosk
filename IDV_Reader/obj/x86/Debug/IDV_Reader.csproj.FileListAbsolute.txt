@@ -11,4 +11,5 @@ E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\MMMReaderDo
 E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.CopyComplete
 E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\RestSharp.dll
 E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\RestSharp.xml
-E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csprojAssemblyReference.cache
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\Newtonsoft.Json.dll
+E:\Project\12- IDV Reader\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\Newtonsoft.Json.xml

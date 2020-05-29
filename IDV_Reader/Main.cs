@@ -41,6 +41,8 @@ namespace IDV_Reader
         bool SystemPause = false;
         string IDVBS = "";
         bool Doc_In = false;
+        bool Info_Confirm = false;
+        bool Finish_Confirm = false;
         //--------------------------------------------------------
         bool ReConfig = true;
         int Reconfig_Click = 0;
@@ -1063,12 +1065,18 @@ namespace IDV_Reader
                                 {
                                     ClearAll2();
                                     MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_DISABLED, true);
+                                    label28.Visible = false;
+                                    label30.Visible = false;
                                     PL_01_Splash.Visible = false;
-                                    PL_02_Splash.Visible = true;
+                                    PL_02_Splash.Visible = false;
                                     PL_03_Splash.Visible = false;
                                     PL_04_Splash.Visible = false;
                                     PL_Error.Visible = false;
+                                    PL_Show_Info.Visible = false;
                                     PL_Succ.Visible = false;
+                                    PL_Submit.Visible = false;
+                                    PL_02_Splash.Enabled = true;
+                                    PL_02_Splash.Visible = true;
                                     Application.DoEvents();
                                     AddLog("- Scan Log : " + "Wait For Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                     Wait(1000);
@@ -1079,12 +1087,18 @@ namespace IDV_Reader
                             //-------------------------------------------------------------------------------------------------------
                             case 2:
                                 {
+                                    label28.Visible = false;
+                                    label30.Visible = false;
                                     PL_01_Splash.Visible = false;
                                     PL_02_Splash.Visible = false;
-                                    PL_03_Splash.Visible = true;
+                                    PL_03_Splash.Visible = false;
                                     PL_04_Splash.Visible = false;
+                                    PL_Submit.Visible = false;
                                     PL_Error.Visible = false;
+                                    PL_Show_Info.Visible = false;
                                     PL_Succ.Visible = false;
+                                    PL_03_Splash.Enabled = true;
+                                    PL_03_Splash.Visible = true;
                                     AddLog("- Scan Log : " + "Proccess Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                     Activity_Now = 5;
                                     break;
@@ -1226,10 +1240,10 @@ namespace IDV_Reader
                                                 switch (i)
                                                 {
                                                     case 1: { PBL = photoImage; ImageNameLog = "FacePhoto"; break; }
-                                                    case 2: { PBL = irImage; ImageNameLog = "IR Front"; break; }
-                                                    case 3: { PBL = irImageRear; ImageNameLog = "IR Back"; break; }
-                                                    case 4: { PBL = visibleImage; ImageNameLog = "Normal Front"; break; }
-                                                    case 5: { PBL = visibleImageRear; ImageNameLog = "Normal Back"; break; }
+                                                    case 2: { PBL = visibleImage; ImageNameLog = "IR Front"; break; }
+                                                    case 3: { PBL = visibleImageRear; ImageNameLog = "IR Back"; break; }
+                                                    case 4: { PBL = irImage; ImageNameLog = "Normal Front"; break; }
+                                                    case 5: { PBL = irImageRear; ImageNameLog = "Normal Back"; break; }
                                                     case 6: { PBL = uvImage; ImageNameLog = "UV Front"; break; }
                                                     case 7: { PBL = uvImageRear; ImageNameLog = "UV Back"; break; }
                                                 }
@@ -1305,8 +1319,8 @@ namespace IDV_Reader
                                                 {
                                                     Wait(5000);
                                                     AppStatusCode = Scanner_HttpPost("DL_04_ApplicationStatus", "APPID=" + APPID);
-                                                    AppStatusCode.Replace("\"", "").Trim();
-                                                    if ((AppStatusCode != "0") && (AppStatusCode != "1") && (AppStatusCode != "2"))
+                                                    AppStatusCode = AppStatusCode.Replace("\"", "").Trim().ToString();
+                                                    if ((AppStatusCode != "") && (AppStatusCode != "0") && (AppStatusCode != "1") && (AppStatusCode != "2"))
                                                     {
                                                         WaitForRes = false;
                                                         ErroPageShow = false;
@@ -1328,38 +1342,154 @@ namespace IDV_Reader
                                                         AddLog("- Scan Log : " + "Get Application Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
                                                         string FieldResult = "";
-                                                        FieldResult = Scanner_HttpPost("DL_05_Result", "APPID=" + APPID);
-                                                        FieldResult = FieldResult.Trim();
-                                                        if (FieldResult.Substring(0, 1) == "\"") { FieldResult = FieldResult.Substring(1, FieldResult.Length - 1); }
-                                                        FieldResult = FieldResult.Trim();
-                                                        if (FieldResult.Substring(FieldResult.Length - 1, 1) == "\"") { FieldResult = FieldResult.Substring(0, FieldResult.Length - 1); }
-                                                        FieldResult = FieldResult.Trim();
-                                                        List<ResultItems> ResITM = JsonConvert.DeserializeObject<List<ResultItems>>(FieldResult);
+                                                        List<ResultItems> ResITM = new List<ResultItems>();
+                                                        try
+                                                        {
+                                                            FieldResult = Scanner_HttpPost("DL_05_Result", "APPID=" + APPID);
+                                                            FieldResult = FieldResult.Trim();
+                                                            if (FieldResult.Substring(0, 1) == "\"") { FieldResult = FieldResult.Substring(1, FieldResult.Length - 1); }
+                                                            FieldResult = FieldResult.Trim();
+                                                            if (FieldResult.Substring(FieldResult.Length - 1, 1) == "\"") { FieldResult = FieldResult.Substring(0, FieldResult.Length - 1); }
+                                                            FieldResult = FieldResult.Replace("\\", "");
+                                                            FieldResult = FieldResult.Trim();
+                                                            ResITM = JsonConvert.DeserializeObject<List<ResultItems>>(FieldResult);
+                                                        }
+                                                        catch (Exception) { }
                                                         AddLog("- Scan Log : " + "Create Dynamic Object For Edit - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
+                                                        LBL_1.Text = ""; LBL_1.Visible = false;
+                                                        LBL_2.Text = ""; LBL_2.Visible = false;
+                                                        LBL_3.Text = ""; LBL_3.Visible = false;
+                                                        LBL_4.Text = ""; LBL_4.Visible = false;
+                                                        LBL_5.Text = ""; LBL_5.Visible = false;
+                                                        LBL_6.Text = ""; LBL_6.Visible = false;
+                                                        LBL_7.Text = ""; LBL_7.Visible = false;
+                                                        LBL_8.Text = ""; LBL_8.Visible = false;
+                                                        LBL_9.Text = ""; LBL_9.Visible = false;
+                                                        LBL_10.Text = ""; LBL_10.Visible = false;
+                                                        LBL_11.Text = ""; LBL_11.Visible = false;
+                                                        LBL_12.Text = ""; LBL_12.Visible = false;
+                                                        LBL_13.Text = ""; LBL_13.Visible = false;
+                                                        LBL_14.Text = ""; LBL_14.Visible = false;
+                                                        LBL_15.Text = ""; LBL_15.Visible = false;
+                                                        LBL_16.Text = ""; LBL_16.Visible = false;
+                                                        LBL_17.Text = ""; LBL_17.Visible = false;
+                                                        LBL_18.Text = ""; LBL_18.Visible = false;
+                                                        TXT_1.Text = ""; TXT_1.Visible = false;
+                                                        TXT_2.Text = ""; TXT_2.Visible = false;
+                                                        TXT_3.Text = ""; TXT_3.Visible = false;
+                                                        TXT_4.Text = ""; TXT_4.Visible = false;
+                                                        TXT_5.Text = ""; TXT_5.Visible = false;
+                                                        TXT_6.Text = ""; TXT_6.Visible = false;
+                                                        TXT_7.Text = ""; TXT_7.Visible = false;
+                                                        TXT_8.Text = ""; TXT_8.Visible = false;
+                                                        TXT_9.Text = ""; TXT_9.Visible = false;
+                                                        TXT_10.Text = ""; TXT_10.Visible = false;
+                                                        TXT_11.Text = ""; TXT_11.Visible = false;
+                                                        TXT_12.Text = ""; TXT_12.Visible = false;
+                                                        TXT_13.Text = ""; TXT_13.Visible = false;
+                                                        TXT_14.Text = ""; TXT_14.Visible = false;
+                                                        TXT_15.Text = ""; TXT_15.Visible = false;
+                                                        TXT_16.Text = ""; TXT_16.Visible = false;
+                                                        TXT_17.Text = ""; TXT_17.Visible = false;
+                                                        TXT_18.Text = ""; TXT_18.Visible = false;
                                                         foreach (ResultItems RW in ResITM)
                                                         {
-                                                            
-
+                                                            switch (RW.ID.ToString().Trim())
+                                                            {
+                                                                case "1": { LBL_1.Text = RW.Key.Trim() + " :"; LBL_1.Visible = true; TXT_1.Text = RW.Value.Trim(); TXT_1.Visible = true; break; }
+                                                                case "2": { LBL_2.Text = RW.Key.Trim() + " :"; LBL_2.Visible = true; TXT_2.Text = RW.Value.Trim(); TXT_2.Visible = true; break; }
+                                                                case "3": { LBL_3.Text = RW.Key.Trim() + " :"; LBL_3.Visible = true; TXT_3.Text = RW.Value.Trim(); TXT_3.Visible = true; break; }
+                                                                case "4": { LBL_4.Text = RW.Key.Trim() + " :"; LBL_4.Visible = true; TXT_4.Text = RW.Value.Trim(); TXT_4.Visible = true; break; }
+                                                                case "5": { LBL_5.Text = RW.Key.Trim() + " :"; LBL_5.Visible = true; TXT_5.Text = RW.Value.Trim(); TXT_5.Visible = true; break; }
+                                                                case "6": { LBL_6.Text = RW.Key.Trim() + " :"; LBL_6.Visible = true; TXT_6.Text = RW.Value.Trim(); TXT_6.Visible = true; break; }
+                                                                case "7": { LBL_7.Text = RW.Key.Trim() + " :"; LBL_7.Visible = true; TXT_7.Text = RW.Value.Trim(); TXT_7.Visible = true; break; }
+                                                                case "8": { LBL_8.Text = RW.Key.Trim() + " :"; LBL_8.Visible = true; TXT_8.Text = RW.Value.Trim(); TXT_8.Visible = true; break; }
+                                                                case "9": { LBL_9.Text = RW.Key.Trim() + " :"; LBL_9.Visible = true; TXT_9.Text = RW.Value.Trim(); TXT_9.Visible = true; break; }
+                                                                case "10": { LBL_10.Text = RW.Key.Trim() + " :"; LBL_10.Visible = true; TXT_10.Text = RW.Value.Trim(); TXT_10.Visible = true; break; }
+                                                                case "11": { LBL_11.Text = RW.Key.Trim() + " :"; LBL_11.Visible = true; TXT_11.Text = RW.Value.Trim(); TXT_11.Visible = true; break; }
+                                                                case "12": { LBL_12.Text = RW.Key.Trim() + " :"; LBL_12.Visible = true; TXT_12.Text = RW.Value.Trim(); TXT_12.Visible = true; break; }
+                                                                case "13": { LBL_13.Text = RW.Key.Trim() + " :"; LBL_13.Visible = true; TXT_13.Text = RW.Value.Trim(); TXT_13.Visible = true; break; }
+                                                                case "14": { LBL_14.Text = RW.Key.Trim() + " :"; LBL_14.Visible = true; TXT_14.Text = RW.Value.Trim(); TXT_14.Visible = true; break; }
+                                                                case "15": { LBL_15.Text = RW.Key.Trim() + " :"; LBL_15.Visible = true; TXT_15.Text = RW.Value.Trim(); TXT_15.Visible = true; break; }
+                                                                case "16": { LBL_16.Text = RW.Key.Trim() + " :"; LBL_16.Visible = true; TXT_16.Text = RW.Value.Trim(); TXT_16.Visible = true; break; }
+                                                                case "17": { LBL_17.Text = RW.Key.Trim() + " :"; LBL_17.Visible = true; TXT_17.Text = RW.Value.Trim(); TXT_17.Visible = true; break; }
+                                                                case "18": { LBL_18.Text = RW.Key.Trim() + " :"; LBL_18.Visible = true; TXT_18.Text = RW.Value.Trim(); TXT_18.Visible = true; break; }
+                                                            }
                                                         }
                                                         // Show Result Page :
                                                         AddLog("- Scan Log : " + "Show Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
-
-
-
-
+                                                        button7.Enabled = true;
+                                                        label28.Visible = false;
+                                                        label30.Visible = false;
+                                                        PL_01_Splash.Visible = false;
+                                                        PL_02_Splash.Visible = false;
+                                                        PL_03_Splash.Visible = false;
+                                                        PL_04_Splash.Visible = false;
+                                                        PL_Error.Visible = false;
+                                                        PL_Succ.Visible = false;
+                                                        PL_Show_Info.Enabled = true;
+                                                        PL_Show_Info.Visible = true;
                                                         // Wait For Accept Response :
-
-
+                                                        Info_Confirm = false;
+                                                        while (Info_Confirm == false) { Application.DoEvents(); }
+                                                        button7.Enabled = false;
+                                                        PL_Show_Info.Enabled = false;
                                                         AddLog("- Scan Log : " + "Accept Application Result By User - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
                                                         // Send Last Changes :
                                                         AddLog("- Scan Log : " + "Save Application Last Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
-
-
-
+                                                        if (TXT_1.Visible == true) { var T1 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=1&Key=" + LBL_1.Text.Replace(":", "").Trim() + "&Value=" + TXT_1.Text.Trim()); }
+                                                        if (TXT_2.Visible == true) { var T2 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=2&Key=" + LBL_2.Text.Replace(":", "").Trim() + "&Value=" + TXT_2.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_3.Visible == true) { var T3 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=3&Key=" + LBL_3.Text.Replace(":", "").Trim() + "&Value=" + TXT_3.Text.Trim()); }
+                                                        if (TXT_4.Visible == true) { var T4 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=4&Key=" + LBL_4.Text.Replace(":", "").Trim() + "&Value=" + TXT_4.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_5.Visible == true) { var T5 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=5&Key=" + LBL_5.Text.Replace(":", "").Trim() + "&Value=" + TXT_5.Text.Trim()); }
+                                                        if (TXT_6.Visible == true) { var T6 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=6&Key=" + LBL_6.Text.Replace(":", "").Trim() + "&Value=" + TXT_6.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_7.Visible == true) { var T7 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=7&Key=" + LBL_7.Text.Replace(":", "").Trim() + "&Value=" + TXT_7.Text.Trim()); }
+                                                        if (TXT_8.Visible == true) { var T8 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=8&Key=" + LBL_8.Text.Replace(":", "").Trim() + "&Value=" + TXT_8.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_9.Visible == true) { var T9 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=9&Key=" + LBL_9.Text.Replace(":", "").Trim() + "&Value=" + TXT_9.Text.Trim()); }
+                                                        if (TXT_10.Visible == true) { var T10 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=10&Key=" + LBL_10.Text.Replace(":", "").Trim() + "&Value=" + TXT_10.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_11.Visible == true) { var T11 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=11&Key=" + LBL_11.Text.Replace(":", "").Trim() + "&Value=" + TXT_11.Text.Trim()); }
+                                                        if (TXT_12.Visible == true) { var T12 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=12&Key=" + LBL_12.Text.Replace(":", "").Trim() + "&Value=" + TXT_12.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_13.Visible == true) { var T13 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=13&Key=" + LBL_13.Text.Replace(":", "").Trim() + "&Value=" + TXT_13.Text.Trim()); }
+                                                        if (TXT_14.Visible == true) { var T14 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=14&Key=" + LBL_14.Text.Replace(":", "").Trim() + "&Value=" + TXT_14.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_15.Visible == true) { var T15 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=15&Key=" + LBL_15.Text.Replace(":", "").Trim() + "&Value=" + TXT_15.Text.Trim()); }
+                                                        if (TXT_16.Visible == true) { var T16 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=16&Key=" + LBL_16.Text.Replace(":", "").Trim() + "&Value=" + TXT_16.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        if (TXT_17.Visible == true) { var T17 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=17&Key=" + LBL_17.Text.Replace(":", "").Trim() + "&Value=" + TXT_17.Text.Trim()); }
+                                                        if (TXT_18.Visible == true) { var T18 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=18&Key=" + LBL_18.Text.Replace(":", "").Trim() + "&Value=" + TXT_18.Text.Trim()); }
+                                                        Application.DoEvents();
+                                                        // Show Phone And Email Page :
+                                                        TXT_Email.Text = "";
+                                                        TXT_Phone.Text = "";
+                                                        Btn_Finished.Enabled = true;
+                                                        label28.Visible = false;
+                                                        label30.Visible = false;
+                                                        PL_01_Splash.Visible = false;
+                                                        PL_02_Splash.Visible = false;
+                                                        PL_03_Splash.Visible = false;
+                                                        PL_04_Splash.Visible = false;
+                                                        PL_Error.Visible = false;
+                                                        PL_Show_Info.Visible = false;
+                                                        PL_Succ.Visible = false;
+                                                        PL_Submit.Visible = false;
+                                                        PL_Submit.Enabled = true;
+                                                        PL_Submit.Visible = true;
+                                                        Finish_Confirm = false;
+                                                        while (Finish_Confirm == false) { Application.DoEvents(); }
+                                                        Btn_Finished.Enabled = false;
+                                                        PL_Submit.Enabled = false;
+                                                        // Send Email And Phone To Server :
+                                                        var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
                                                         // Send Call Back URl :
                                                         CallBackURL_Post(APPID);
                                                         Application.DoEvents();
@@ -1373,12 +1503,38 @@ namespace IDV_Reader
                                                         PL_03_Splash.Visible = false;
                                                         PL_04_Splash.Visible = false;
                                                         PL_Error.Visible = false;
+                                                        PL_Show_Info.Visible = false;
+                                                        PL_Submit.Visible = false;
+                                                        PL_Succ.Enabled = true;
                                                         PL_Succ.Visible = true;
                                                     }
                                                     else
                                                     {
+                                                        // Show Phone And Email Page :
+                                                        TXT_Email.Text = "";
+                                                        TXT_Phone.Text = "";
+                                                        Btn_Finished.Enabled = true;
+                                                        label28.Visible = false;
+                                                        label30.Visible = false;
+                                                        PL_01_Splash.Visible = false;
+                                                        PL_02_Splash.Visible = false;
+                                                        PL_03_Splash.Visible = false;
+                                                        PL_04_Splash.Visible = false;
+                                                        PL_Error.Visible = false;
+                                                        PL_Show_Info.Visible = false;
+                                                        PL_Succ.Visible = false;
+                                                        PL_Submit.Visible = false;
+                                                        PL_Submit.Enabled = true;
+                                                        PL_Submit.Visible = true;
+                                                        Finish_Confirm = false;
+                                                        while (Finish_Confirm == false) { Application.DoEvents(); }
+                                                        Btn_Finished.Enabled = false;
+                                                        // Send Email And Phone To Server :
+                                                        var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
+                                                        // Send Call Back URl :
                                                         CallBackURL_Post(APPID);
                                                         Application.DoEvents();
+                                                        // Show Thanks Page :
                                                         AddLog("- Scan Log : " + "End Application Without Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
                                                         label28.Visible = false;
@@ -1388,6 +1544,9 @@ namespace IDV_Reader
                                                         PL_03_Splash.Visible = false;
                                                         PL_04_Splash.Visible = false;
                                                         PL_Error.Visible = false;
+                                                        PL_Show_Info.Visible = false;
+                                                        PL_Submit.Visible = false;
+                                                        PL_Succ.Enabled = true;
                                                         PL_Succ.Visible = true;
                                                     }
                                                 }
@@ -1398,11 +1557,17 @@ namespace IDV_Reader
                                                     CallBackURL_Post(APPID);
                                                     Application.DoEvents();
                                                     label32.Text = "The server was not responsive, please try again";
+                                                    label28.Visible = false;
+                                                    label30.Visible = false;
                                                     PL_01_Splash.Visible = false;
                                                     PL_02_Splash.Visible = false;
                                                     PL_03_Splash.Visible = false;
                                                     PL_04_Splash.Visible = false;
+                                                    PL_Error.Visible = false;
+                                                    PL_Show_Info.Visible = false;
                                                     PL_Succ.Visible = false;
+                                                    PL_Submit.Visible = false;
+                                                    PL_Error.Enabled = true;
                                                     PL_Error.Visible = true;
                                                 }
                                             }
@@ -1413,11 +1578,17 @@ namespace IDV_Reader
                                                 CallBackURL_Post(APPID);
                                                 Application.DoEvents();
                                                 label32.Text = "Oops! Something went wrong ...";
+                                                label28.Visible = false;
+                                                label30.Visible = false;
                                                 PL_01_Splash.Visible = false;
                                                 PL_02_Splash.Visible = false;
                                                 PL_03_Splash.Visible = false;
                                                 PL_04_Splash.Visible = false;
+                                                PL_Error.Visible = false;
+                                                PL_Show_Info.Visible = false;
                                                 PL_Succ.Visible = false;
+                                                PL_Submit.Visible = false;
+                                                PL_Error.Enabled = true;
                                                 PL_Error.Visible = true;
                                             }
                                         }
@@ -1426,18 +1597,25 @@ namespace IDV_Reader
                                             AddLog("- Scan Log : " + "Create New Application Failed - Code : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                             // Show Error Page :
                                             label32.Text = "Oops! Something went wrong ...";
+                                            label28.Visible = false;
+                                            label30.Visible = false;
                                             PL_01_Splash.Visible = false;
                                             PL_02_Splash.Visible = false;
                                             PL_03_Splash.Visible = false;
                                             PL_04_Splash.Visible = false;
+                                            PL_Error.Visible = false;
+                                            PL_Show_Info.Visible = false;
                                             PL_Succ.Visible = false;
+                                            PL_Submit.Visible = false;
+                                            PL_Error.Enabled = true;
                                             PL_Error.Visible = true;
                                         }
-                                        SystemPause = false;
+                                        Activity_Now = 5;
                                         if (Doc_In == true)
                                         {
                                             label28.Visible = true;
                                             label30.Visible = true;
+                                            Activity_Now = 5;
                                         }
                                         else
                                         {
@@ -1446,6 +1624,7 @@ namespace IDV_Reader
                                             Wait(3000);
                                             Activity_Now = 1;
                                         }
+                                        SystemPause = false;
                                     }
                                     break;
                                 }
@@ -1464,7 +1643,20 @@ namespace IDV_Reader
                 }
             }
             catch (Exception)
-            { }
+            {
+                label28.Visible = false;
+                label30.Visible = false;
+                PL_01_Splash.Visible = false;
+                PL_02_Splash.Visible = false;
+                PL_03_Splash.Visible = false;
+                PL_04_Splash.Visible = false;
+                PL_Error.Visible = false;
+                PL_Succ.Visible = false;
+                PL_Show_Info.Visible = false;
+                PL_Submit.Visible = false;
+                PL_Error.Visible = true;
+                PL_Error.Enabled = true;
+            }
         }
         //-------------------------------------------------------------------------------------\\
         //-------------------------------------------------------------------------------------//
@@ -1473,7 +1665,7 @@ namespace IDV_Reader
             try
             {
                 AddLog("- Scan Log : " + "Sending Callback URL - ID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                string AppStatusCode = Scanner_HttpPost("DL_07_CallBackURL", "APPID=" + APPID);
+                var CBU = Scanner_HttpPost("DL_07_CallBackURL", "APPID=" + APPID);
             }
             catch (Exception)
             {
@@ -2704,8 +2896,6 @@ namespace IDV_Reader
         {
             try
             {
-                textBox3.Text = "1";
-
                 textBox3.Text = textBox3.Text.Trim();
                 textBox4.Text = textBox4.Text.Trim();
                 textBox5.Text = textBox5.Text.Trim();
@@ -2878,6 +3068,29 @@ namespace IDV_Reader
             {
                 MessageBox.Show("Dear User ...\r\nAn error occurred when login administrator", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Info_Confirm = true;
+            }
+            catch (Exception) { }
+        }
+
+        private void Btn_Finished_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TXT_Email.Text = TXT_Email.Text.Trim();
+                TXT_Phone.Text = TXT_Phone.Text.Trim();
+                if((TXT_Email.Text !="") && (TXT_Phone.Text !=""))
+                {
+                    Finish_Confirm = true;
+                }
+            }
+            catch (Exception) { }
         }
         //-------------------------------------------------------------------------------------\\
         //-------------------------------------------------------------------------------------//

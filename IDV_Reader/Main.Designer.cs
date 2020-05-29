@@ -160,6 +160,55 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.PL_Show_Info = new System.Windows.Forms.Panel();
+            this.TXT_18 = new System.Windows.Forms.TextBox();
+            this.LBL_18 = new System.Windows.Forms.Label();
+            this.TXT_17 = new System.Windows.Forms.TextBox();
+            this.LBL_17 = new System.Windows.Forms.Label();
+            this.TXT_16 = new System.Windows.Forms.TextBox();
+            this.LBL_16 = new System.Windows.Forms.Label();
+            this.TXT_15 = new System.Windows.Forms.TextBox();
+            this.LBL_15 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.TXT_14 = new System.Windows.Forms.TextBox();
+            this.LBL_14 = new System.Windows.Forms.Label();
+            this.TXT_13 = new System.Windows.Forms.TextBox();
+            this.LBL_13 = new System.Windows.Forms.Label();
+            this.TXT_12 = new System.Windows.Forms.TextBox();
+            this.LBL_12 = new System.Windows.Forms.Label();
+            this.TXT_11 = new System.Windows.Forms.TextBox();
+            this.LBL_11 = new System.Windows.Forms.Label();
+            this.TXT_10 = new System.Windows.Forms.TextBox();
+            this.LBL_10 = new System.Windows.Forms.Label();
+            this.TXT_9 = new System.Windows.Forms.TextBox();
+            this.LBL_9 = new System.Windows.Forms.Label();
+            this.TXT_8 = new System.Windows.Forms.TextBox();
+            this.LBL_8 = new System.Windows.Forms.Label();
+            this.TXT_7 = new System.Windows.Forms.TextBox();
+            this.LBL_7 = new System.Windows.Forms.Label();
+            this.TXT_6 = new System.Windows.Forms.TextBox();
+            this.LBL_6 = new System.Windows.Forms.Label();
+            this.TXT_5 = new System.Windows.Forms.TextBox();
+            this.LBL_5 = new System.Windows.Forms.Label();
+            this.TXT_4 = new System.Windows.Forms.TextBox();
+            this.LBL_4 = new System.Windows.Forms.Label();
+            this.TXT_3 = new System.Windows.Forms.TextBox();
+            this.LBL_3 = new System.Windows.Forms.Label();
+            this.TXT_2 = new System.Windows.Forms.TextBox();
+            this.LBL_2 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.TXT_1 = new System.Windows.Forms.TextBox();
+            this.LBL_1 = new System.Windows.Forms.Label();
+            this.PL_Submit = new System.Windows.Forms.Panel();
+            this.Btn_Finished = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.TXT_Phone = new System.Windows.Forms.TextBox();
+            this.TXT_Email = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.PanB1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanBObj1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -200,6 +249,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.PL_Error.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.PL_Show_Info.SuspendLayout();
+            this.PL_Submit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // PanB1
@@ -214,12 +266,13 @@
             // PanBObj1
             // 
             this.PanBObj1.Image = ((System.Drawing.Image)(resources.GetObject("PanBObj1.Image")));
-            this.PanBObj1.Location = new System.Drawing.Point(-1, 11);
+            this.PanBObj1.Location = new System.Drawing.Point(3, 11);
             this.PanBObj1.Name = "PanBObj1";
             this.PanBObj1.Size = new System.Drawing.Size(196, 69);
             this.PanBObj1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PanBObj1.TabIndex = 0;
             this.PanBObj1.TabStop = false;
+            this.PanBObj1.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // toolStripStatusLabel1
             // 
@@ -1472,7 +1525,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(7, 10);
+            this.pictureBox2.Location = new System.Drawing.Point(4, 10);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(135, 69);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1574,6 +1627,491 @@
             this.pictureBox7.TabIndex = 0;
             this.pictureBox7.TabStop = false;
             // 
+            // PL_Show_Info
+            // 
+            this.PL_Show_Info.Controls.Add(this.TXT_18);
+            this.PL_Show_Info.Controls.Add(this.LBL_18);
+            this.PL_Show_Info.Controls.Add(this.TXT_17);
+            this.PL_Show_Info.Controls.Add(this.LBL_17);
+            this.PL_Show_Info.Controls.Add(this.TXT_16);
+            this.PL_Show_Info.Controls.Add(this.LBL_16);
+            this.PL_Show_Info.Controls.Add(this.TXT_15);
+            this.PL_Show_Info.Controls.Add(this.LBL_15);
+            this.PL_Show_Info.Controls.Add(this.label34);
+            this.PL_Show_Info.Controls.Add(this.label33);
+            this.PL_Show_Info.Controls.Add(this.TXT_14);
+            this.PL_Show_Info.Controls.Add(this.LBL_14);
+            this.PL_Show_Info.Controls.Add(this.TXT_13);
+            this.PL_Show_Info.Controls.Add(this.LBL_13);
+            this.PL_Show_Info.Controls.Add(this.TXT_12);
+            this.PL_Show_Info.Controls.Add(this.LBL_12);
+            this.PL_Show_Info.Controls.Add(this.TXT_11);
+            this.PL_Show_Info.Controls.Add(this.LBL_11);
+            this.PL_Show_Info.Controls.Add(this.TXT_10);
+            this.PL_Show_Info.Controls.Add(this.LBL_10);
+            this.PL_Show_Info.Controls.Add(this.TXT_9);
+            this.PL_Show_Info.Controls.Add(this.LBL_9);
+            this.PL_Show_Info.Controls.Add(this.TXT_8);
+            this.PL_Show_Info.Controls.Add(this.LBL_8);
+            this.PL_Show_Info.Controls.Add(this.TXT_7);
+            this.PL_Show_Info.Controls.Add(this.LBL_7);
+            this.PL_Show_Info.Controls.Add(this.TXT_6);
+            this.PL_Show_Info.Controls.Add(this.LBL_6);
+            this.PL_Show_Info.Controls.Add(this.TXT_5);
+            this.PL_Show_Info.Controls.Add(this.LBL_5);
+            this.PL_Show_Info.Controls.Add(this.TXT_4);
+            this.PL_Show_Info.Controls.Add(this.LBL_4);
+            this.PL_Show_Info.Controls.Add(this.TXT_3);
+            this.PL_Show_Info.Controls.Add(this.LBL_3);
+            this.PL_Show_Info.Controls.Add(this.TXT_2);
+            this.PL_Show_Info.Controls.Add(this.LBL_2);
+            this.PL_Show_Info.Controls.Add(this.button7);
+            this.PL_Show_Info.Controls.Add(this.TXT_1);
+            this.PL_Show_Info.Controls.Add(this.LBL_1);
+            this.PL_Show_Info.Location = new System.Drawing.Point(158, 243);
+            this.PL_Show_Info.Name = "PL_Show_Info";
+            this.PL_Show_Info.Size = new System.Drawing.Size(779, 482);
+            this.PL_Show_Info.TabIndex = 34;
+            this.PL_Show_Info.Visible = false;
+            // 
+            // TXT_18
+            // 
+            this.TXT_18.Location = new System.Drawing.Point(404, 400);
+            this.TXT_18.Name = "TXT_18";
+            this.TXT_18.Size = new System.Drawing.Size(360, 21);
+            this.TXT_18.TabIndex = 39;
+            // 
+            // LBL_18
+            // 
+            this.LBL_18.AutoSize = true;
+            this.LBL_18.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_18.Location = new System.Drawing.Point(401, 382);
+            this.LBL_18.Name = "LBL_18";
+            this.LBL_18.Size = new System.Drawing.Size(10, 13);
+            this.LBL_18.TabIndex = 38;
+            this.LBL_18.Text = ".";
+            // 
+            // TXT_17
+            // 
+            this.TXT_17.Location = new System.Drawing.Point(17, 400);
+            this.TXT_17.Name = "TXT_17";
+            this.TXT_17.Size = new System.Drawing.Size(360, 21);
+            this.TXT_17.TabIndex = 37;
+            // 
+            // LBL_17
+            // 
+            this.LBL_17.AutoSize = true;
+            this.LBL_17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_17.Location = new System.Drawing.Point(14, 382);
+            this.LBL_17.Name = "LBL_17";
+            this.LBL_17.Size = new System.Drawing.Size(10, 13);
+            this.LBL_17.TabIndex = 36;
+            this.LBL_17.Text = ".";
+            // 
+            // TXT_16
+            // 
+            this.TXT_16.Location = new System.Drawing.Point(404, 354);
+            this.TXT_16.Name = "TXT_16";
+            this.TXT_16.Size = new System.Drawing.Size(360, 21);
+            this.TXT_16.TabIndex = 35;
+            // 
+            // LBL_16
+            // 
+            this.LBL_16.AutoSize = true;
+            this.LBL_16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_16.Location = new System.Drawing.Point(401, 336);
+            this.LBL_16.Name = "LBL_16";
+            this.LBL_16.Size = new System.Drawing.Size(10, 13);
+            this.LBL_16.TabIndex = 34;
+            this.LBL_16.Text = ".";
+            // 
+            // TXT_15
+            // 
+            this.TXT_15.Location = new System.Drawing.Point(17, 354);
+            this.TXT_15.Name = "TXT_15";
+            this.TXT_15.Size = new System.Drawing.Size(360, 21);
+            this.TXT_15.TabIndex = 33;
+            // 
+            // LBL_15
+            // 
+            this.LBL_15.AutoSize = true;
+            this.LBL_15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_15.Location = new System.Drawing.Point(14, 336);
+            this.LBL_15.Name = "LBL_15";
+            this.LBL_15.Size = new System.Drawing.Size(10, 13);
+            this.LBL_15.TabIndex = 32;
+            this.LBL_15.Text = ".";
+            // 
+            // label34
+            // 
+            this.label34.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label34.Location = new System.Drawing.Point(19, 448);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(358, 27);
+            this.label34.TabIndex = 31;
+            this.label34.Text = "Please check the above information and correct if necessary, finally click the co" +
+    "nfirm button.";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label33.ForeColor = System.Drawing.Color.Maroon;
+            this.label33.Location = new System.Drawing.Point(14, 432);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(68, 13);
+            this.label33.TabIndex = 30;
+            this.label33.Text = "Dear user :";
+            // 
+            // TXT_14
+            // 
+            this.TXT_14.Location = new System.Drawing.Point(404, 307);
+            this.TXT_14.Name = "TXT_14";
+            this.TXT_14.Size = new System.Drawing.Size(360, 21);
+            this.TXT_14.TabIndex = 29;
+            // 
+            // LBL_14
+            // 
+            this.LBL_14.AutoSize = true;
+            this.LBL_14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_14.Location = new System.Drawing.Point(401, 289);
+            this.LBL_14.Name = "LBL_14";
+            this.LBL_14.Size = new System.Drawing.Size(10, 13);
+            this.LBL_14.TabIndex = 28;
+            this.LBL_14.Text = ".";
+            // 
+            // TXT_13
+            // 
+            this.TXT_13.Location = new System.Drawing.Point(17, 307);
+            this.TXT_13.Name = "TXT_13";
+            this.TXT_13.Size = new System.Drawing.Size(360, 21);
+            this.TXT_13.TabIndex = 27;
+            // 
+            // LBL_13
+            // 
+            this.LBL_13.AutoSize = true;
+            this.LBL_13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_13.Location = new System.Drawing.Point(14, 289);
+            this.LBL_13.Name = "LBL_13";
+            this.LBL_13.Size = new System.Drawing.Size(10, 13);
+            this.LBL_13.TabIndex = 26;
+            this.LBL_13.Text = ".";
+            // 
+            // TXT_12
+            // 
+            this.TXT_12.Location = new System.Drawing.Point(404, 261);
+            this.TXT_12.Name = "TXT_12";
+            this.TXT_12.Size = new System.Drawing.Size(360, 21);
+            this.TXT_12.TabIndex = 25;
+            // 
+            // LBL_12
+            // 
+            this.LBL_12.AutoSize = true;
+            this.LBL_12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_12.Location = new System.Drawing.Point(401, 243);
+            this.LBL_12.Name = "LBL_12";
+            this.LBL_12.Size = new System.Drawing.Size(10, 13);
+            this.LBL_12.TabIndex = 24;
+            this.LBL_12.Text = ".";
+            // 
+            // TXT_11
+            // 
+            this.TXT_11.Location = new System.Drawing.Point(17, 261);
+            this.TXT_11.Name = "TXT_11";
+            this.TXT_11.Size = new System.Drawing.Size(360, 21);
+            this.TXT_11.TabIndex = 23;
+            // 
+            // LBL_11
+            // 
+            this.LBL_11.AutoSize = true;
+            this.LBL_11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_11.Location = new System.Drawing.Point(14, 243);
+            this.LBL_11.Name = "LBL_11";
+            this.LBL_11.Size = new System.Drawing.Size(10, 13);
+            this.LBL_11.TabIndex = 22;
+            this.LBL_11.Text = ".";
+            // 
+            // TXT_10
+            // 
+            this.TXT_10.Location = new System.Drawing.Point(404, 214);
+            this.TXT_10.Name = "TXT_10";
+            this.TXT_10.Size = new System.Drawing.Size(360, 21);
+            this.TXT_10.TabIndex = 21;
+            // 
+            // LBL_10
+            // 
+            this.LBL_10.AutoSize = true;
+            this.LBL_10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_10.Location = new System.Drawing.Point(401, 196);
+            this.LBL_10.Name = "LBL_10";
+            this.LBL_10.Size = new System.Drawing.Size(10, 13);
+            this.LBL_10.TabIndex = 20;
+            this.LBL_10.Text = ".";
+            // 
+            // TXT_9
+            // 
+            this.TXT_9.Location = new System.Drawing.Point(17, 214);
+            this.TXT_9.Name = "TXT_9";
+            this.TXT_9.Size = new System.Drawing.Size(360, 21);
+            this.TXT_9.TabIndex = 19;
+            // 
+            // LBL_9
+            // 
+            this.LBL_9.AutoSize = true;
+            this.LBL_9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_9.Location = new System.Drawing.Point(14, 196);
+            this.LBL_9.Name = "LBL_9";
+            this.LBL_9.Size = new System.Drawing.Size(10, 13);
+            this.LBL_9.TabIndex = 18;
+            this.LBL_9.Text = ".";
+            // 
+            // TXT_8
+            // 
+            this.TXT_8.Location = new System.Drawing.Point(404, 167);
+            this.TXT_8.Name = "TXT_8";
+            this.TXT_8.Size = new System.Drawing.Size(360, 21);
+            this.TXT_8.TabIndex = 17;
+            // 
+            // LBL_8
+            // 
+            this.LBL_8.AutoSize = true;
+            this.LBL_8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_8.Location = new System.Drawing.Point(401, 149);
+            this.LBL_8.Name = "LBL_8";
+            this.LBL_8.Size = new System.Drawing.Size(10, 13);
+            this.LBL_8.TabIndex = 16;
+            this.LBL_8.Text = ".";
+            // 
+            // TXT_7
+            // 
+            this.TXT_7.Location = new System.Drawing.Point(17, 167);
+            this.TXT_7.Name = "TXT_7";
+            this.TXT_7.Size = new System.Drawing.Size(360, 21);
+            this.TXT_7.TabIndex = 15;
+            // 
+            // LBL_7
+            // 
+            this.LBL_7.AutoSize = true;
+            this.LBL_7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_7.Location = new System.Drawing.Point(14, 149);
+            this.LBL_7.Name = "LBL_7";
+            this.LBL_7.Size = new System.Drawing.Size(10, 13);
+            this.LBL_7.TabIndex = 14;
+            this.LBL_7.Text = ".";
+            // 
+            // TXT_6
+            // 
+            this.TXT_6.Location = new System.Drawing.Point(404, 120);
+            this.TXT_6.Name = "TXT_6";
+            this.TXT_6.Size = new System.Drawing.Size(360, 21);
+            this.TXT_6.TabIndex = 13;
+            // 
+            // LBL_6
+            // 
+            this.LBL_6.AutoSize = true;
+            this.LBL_6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_6.Location = new System.Drawing.Point(401, 102);
+            this.LBL_6.Name = "LBL_6";
+            this.LBL_6.Size = new System.Drawing.Size(10, 13);
+            this.LBL_6.TabIndex = 12;
+            this.LBL_6.Text = ".";
+            // 
+            // TXT_5
+            // 
+            this.TXT_5.Location = new System.Drawing.Point(17, 120);
+            this.TXT_5.Name = "TXT_5";
+            this.TXT_5.Size = new System.Drawing.Size(360, 21);
+            this.TXT_5.TabIndex = 11;
+            // 
+            // LBL_5
+            // 
+            this.LBL_5.AutoSize = true;
+            this.LBL_5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_5.Location = new System.Drawing.Point(14, 102);
+            this.LBL_5.Name = "LBL_5";
+            this.LBL_5.Size = new System.Drawing.Size(10, 13);
+            this.LBL_5.TabIndex = 10;
+            this.LBL_5.Text = ".";
+            // 
+            // TXT_4
+            // 
+            this.TXT_4.Location = new System.Drawing.Point(404, 73);
+            this.TXT_4.Name = "TXT_4";
+            this.TXT_4.Size = new System.Drawing.Size(360, 21);
+            this.TXT_4.TabIndex = 9;
+            // 
+            // LBL_4
+            // 
+            this.LBL_4.AutoSize = true;
+            this.LBL_4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_4.Location = new System.Drawing.Point(401, 55);
+            this.LBL_4.Name = "LBL_4";
+            this.LBL_4.Size = new System.Drawing.Size(10, 13);
+            this.LBL_4.TabIndex = 8;
+            this.LBL_4.Text = ".";
+            // 
+            // TXT_3
+            // 
+            this.TXT_3.Location = new System.Drawing.Point(17, 73);
+            this.TXT_3.Name = "TXT_3";
+            this.TXT_3.Size = new System.Drawing.Size(360, 21);
+            this.TXT_3.TabIndex = 7;
+            // 
+            // LBL_3
+            // 
+            this.LBL_3.AutoSize = true;
+            this.LBL_3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_3.Location = new System.Drawing.Point(14, 55);
+            this.LBL_3.Name = "LBL_3";
+            this.LBL_3.Size = new System.Drawing.Size(10, 13);
+            this.LBL_3.TabIndex = 6;
+            this.LBL_3.Text = ".";
+            // 
+            // TXT_2
+            // 
+            this.TXT_2.Location = new System.Drawing.Point(404, 26);
+            this.TXT_2.Name = "TXT_2";
+            this.TXT_2.Size = new System.Drawing.Size(360, 21);
+            this.TXT_2.TabIndex = 5;
+            // 
+            // LBL_2
+            // 
+            this.LBL_2.AutoSize = true;
+            this.LBL_2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_2.Location = new System.Drawing.Point(401, 8);
+            this.LBL_2.Name = "LBL_2";
+            this.LBL_2.Size = new System.Drawing.Size(10, 13);
+            this.LBL_2.TabIndex = 4;
+            this.LBL_2.Text = ".";
+            // 
+            // button7
+            // 
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(405, 432);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(359, 48);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "            I fully confirm the accuracy of the above information";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // TXT_1
+            // 
+            this.TXT_1.Location = new System.Drawing.Point(17, 26);
+            this.TXT_1.Name = "TXT_1";
+            this.TXT_1.Size = new System.Drawing.Size(360, 21);
+            this.TXT_1.TabIndex = 1;
+            // 
+            // LBL_1
+            // 
+            this.LBL_1.AutoSize = true;
+            this.LBL_1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.LBL_1.Location = new System.Drawing.Point(14, 8);
+            this.LBL_1.Name = "LBL_1";
+            this.LBL_1.Size = new System.Drawing.Size(10, 13);
+            this.LBL_1.TabIndex = 0;
+            this.LBL_1.Text = ".";
+            // 
+            // PL_Submit
+            // 
+            this.PL_Submit.Controls.Add(this.Btn_Finished);
+            this.PL_Submit.Controls.Add(this.label38);
+            this.PL_Submit.Controls.Add(this.label37);
+            this.PL_Submit.Controls.Add(this.TXT_Phone);
+            this.PL_Submit.Controls.Add(this.TXT_Email);
+            this.PL_Submit.Controls.Add(this.label36);
+            this.PL_Submit.Controls.Add(this.label35);
+            this.PL_Submit.Controls.Add(this.pictureBox9);
+            this.PL_Submit.Location = new System.Drawing.Point(131, 263);
+            this.PL_Submit.Name = "PL_Submit";
+            this.PL_Submit.Size = new System.Drawing.Size(495, 375);
+            this.PL_Submit.TabIndex = 35;
+            this.PL_Submit.Visible = false;
+            // 
+            // Btn_Finished
+            // 
+            this.Btn_Finished.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Finished.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.Btn_Finished.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Finished.Image")));
+            this.Btn_Finished.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Finished.Location = new System.Drawing.Point(185, 308);
+            this.Btn_Finished.Name = "Btn_Finished";
+            this.Btn_Finished.Size = new System.Drawing.Size(241, 48);
+            this.Btn_Finished.TabIndex = 10;
+            this.Btn_Finished.Text = "            Completion of application steps";
+            this.Btn_Finished.UseVisualStyleBackColor = true;
+            this.Btn_Finished.Click += new System.EventHandler(this.Btn_Finished_Click);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label38.Location = new System.Drawing.Point(38, 279);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(95, 13);
+            this.label38.TabIndex = 9;
+            this.label38.Text = "Phone Number :";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label37.Location = new System.Drawing.Point(90, 248);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(43, 13);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "Email :";
+            // 
+            // TXT_Phone
+            // 
+            this.TXT_Phone.Location = new System.Drawing.Point(139, 276);
+            this.TXT_Phone.Name = "TXT_Phone";
+            this.TXT_Phone.Size = new System.Drawing.Size(287, 21);
+            this.TXT_Phone.TabIndex = 7;
+            // 
+            // TXT_Email
+            // 
+            this.TXT_Email.Location = new System.Drawing.Point(139, 245);
+            this.TXT_Email.Name = "TXT_Email";
+            this.TXT_Email.Size = new System.Drawing.Size(287, 21);
+            this.TXT_Email.TabIndex = 6;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label36.Location = new System.Drawing.Point(61, 212);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(367, 13);
+            this.label36.TabIndex = 2;
+            this.label36.Text = "To complete the process, please fill the fields below and submit the request";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label35.ForeColor = System.Drawing.Color.Green;
+            this.label35.Location = new System.Drawing.Point(60, 195);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(69, 13);
+            this.label35.TabIndex = 1;
+            this.label35.Text = "Dear User :";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.InitialImage = null;
+            this.pictureBox9.Location = new System.Drawing.Point(139, 14);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(217, 216);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 0;
+            this.pictureBox9.TabStop = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1595,16 +2133,19 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.PL_NOIN);
             this.Controls.Add(this.PL_01_Splash);
-            this.Controls.Add(this.PL_02_Splash);
-            this.Controls.Add(this.PL_03_Splash);
-            this.Controls.Add(this.PL_04_Splash);
-            this.Controls.Add(this.PL_Password);
-            this.Controls.Add(this.PL_Config);
-            this.Controls.Add(this.PL_Error);
+            this.Controls.Add(this.PL_Show_Info);
             this.Controls.Add(this.PL_Succ);
+            this.Controls.Add(this.PL_Error);
+            this.Controls.Add(this.PL_Config);
+            this.Controls.Add(this.PL_Password);
+            this.Controls.Add(this.PL_04_Splash);
+            this.Controls.Add(this.PL_03_Splash);
+            this.Controls.Add(this.PL_02_Splash);
+            this.Controls.Add(this.PL_Submit);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IDV Pacific - Document Reader";
@@ -1654,6 +2195,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.PL_Error.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.PL_Show_Info.ResumeLayout(false);
+            this.PL_Show_Info.PerformLayout();
+            this.PL_Submit.ResumeLayout(false);
+            this.PL_Submit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1791,6 +2337,55 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel PL_Show_Info;
+        private System.Windows.Forms.TextBox TXT_1;
+        private System.Windows.Forms.Label LBL_1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox TXT_12;
+        private System.Windows.Forms.Label LBL_12;
+        private System.Windows.Forms.TextBox TXT_11;
+        private System.Windows.Forms.Label LBL_11;
+        private System.Windows.Forms.TextBox TXT_10;
+        private System.Windows.Forms.Label LBL_10;
+        private System.Windows.Forms.TextBox TXT_9;
+        private System.Windows.Forms.Label LBL_9;
+        private System.Windows.Forms.TextBox TXT_8;
+        private System.Windows.Forms.Label LBL_8;
+        private System.Windows.Forms.TextBox TXT_7;
+        private System.Windows.Forms.Label LBL_7;
+        private System.Windows.Forms.TextBox TXT_6;
+        private System.Windows.Forms.Label LBL_6;
+        private System.Windows.Forms.TextBox TXT_5;
+        private System.Windows.Forms.Label LBL_5;
+        private System.Windows.Forms.TextBox TXT_4;
+        private System.Windows.Forms.Label LBL_4;
+        private System.Windows.Forms.TextBox TXT_3;
+        private System.Windows.Forms.Label LBL_3;
+        private System.Windows.Forms.TextBox TXT_2;
+        private System.Windows.Forms.Label LBL_2;
+        private System.Windows.Forms.TextBox TXT_14;
+        private System.Windows.Forms.Label LBL_14;
+        private System.Windows.Forms.TextBox TXT_13;
+        private System.Windows.Forms.Label LBL_13;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox TXT_18;
+        private System.Windows.Forms.Label LBL_18;
+        private System.Windows.Forms.TextBox TXT_17;
+        private System.Windows.Forms.Label LBL_17;
+        private System.Windows.Forms.TextBox TXT_16;
+        private System.Windows.Forms.Label LBL_16;
+        private System.Windows.Forms.TextBox TXT_15;
+        private System.Windows.Forms.Label LBL_15;
+        private System.Windows.Forms.Panel PL_Submit;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox TXT_Phone;
+        private System.Windows.Forms.TextBox TXT_Email;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Button Btn_Finished;
     }
 }
 
