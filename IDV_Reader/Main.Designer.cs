@@ -2025,7 +2025,7 @@
             this.PL_Submit.Controls.Add(this.label36);
             this.PL_Submit.Controls.Add(this.label35);
             this.PL_Submit.Controls.Add(this.pictureBox9);
-            this.PL_Submit.Location = new System.Drawing.Point(131, 263);
+            this.PL_Submit.Location = new System.Drawing.Point(133, 251);
             this.PL_Submit.Name = "PL_Submit";
             this.PL_Submit.Size = new System.Drawing.Size(495, 375);
             this.PL_Submit.TabIndex = 35;
@@ -2083,7 +2083,7 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label36.Location = new System.Drawing.Point(61, 212);
+            this.label36.Location = new System.Drawing.Point(61, 220);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(367, 13);
             this.label36.TabIndex = 2;
@@ -2094,7 +2094,7 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label35.ForeColor = System.Drawing.Color.Green;
-            this.label35.Location = new System.Drawing.Point(60, 195);
+            this.label35.Location = new System.Drawing.Point(60, 203);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(69, 13);
             this.label35.TabIndex = 1;
@@ -2105,7 +2105,7 @@
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.InitialImage = null;
-            this.pictureBox9.Location = new System.Drawing.Point(139, 14);
+            this.pictureBox9.Location = new System.Drawing.Point(147, 5);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(217, 216);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2133,14 +2133,14 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.PL_NOIN);
             this.Controls.Add(this.PL_01_Splash);
-            this.Controls.Add(this.PL_Show_Info);
-            this.Controls.Add(this.PL_Succ);
-            this.Controls.Add(this.PL_Error);
-            this.Controls.Add(this.PL_Config);
-            this.Controls.Add(this.PL_Password);
-            this.Controls.Add(this.PL_04_Splash);
-            this.Controls.Add(this.PL_03_Splash);
             this.Controls.Add(this.PL_02_Splash);
+            this.Controls.Add(this.PL_03_Splash);
+            this.Controls.Add(this.PL_04_Splash);
+            this.Controls.Add(this.PL_Password);
+            this.Controls.Add(this.PL_Config);
+            this.Controls.Add(this.PL_Error);
+            this.Controls.Add(this.PL_Succ);
+            this.Controls.Add(this.PL_Show_Info);
             this.Controls.Add(this.PL_Submit);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
