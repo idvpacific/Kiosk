@@ -43,6 +43,7 @@ namespace IDV_Reader
         bool Doc_In = false;
         bool Info_Confirm = false;
         bool Finish_Confirm = false;
+        bool PageProcc_Show = false;
         //--------------------------------------------------------
         bool ReConfig = true;
         int Reconfig_Click = 0;
@@ -138,9 +139,9 @@ namespace IDV_Reader
                     if (DeviceID == 2)
                     {
                         Ins_Pic.Image = C2_INS.Image;
-                        Ins_Text.Text = "Please insert your driving license in scanner";
+                        Ins_Text.Text = "Please insert your driving licence in scanner";
                         Proc_Pic.Image = C2_PRO.Image;
-                        Proc_Text.Text = "Processing your driving license information";
+                        Proc_Text.Text = "Processing your driving licence information";
                     }
                 }
                 try { IPAddress = GetUser_IP(); } catch (Exception) { }
@@ -1087,18 +1088,41 @@ namespace IDV_Reader
                             //-------------------------------------------------------------------------------------------------------
                             case 2:
                                 {
-                                    label28.Visible = false;
-                                    label30.Visible = false;
-                                    PL_01_Splash.Visible = false;
-                                    PL_02_Splash.Visible = false;
-                                    PL_03_Splash.Visible = false;
-                                    PL_04_Splash.Visible = false;
-                                    PL_Submit.Visible = false;
-                                    PL_Error.Visible = false;
-                                    PL_Show_Info.Visible = false;
-                                    PL_Succ.Visible = false;
-                                    PL_03_Splash.Enabled = true;
-                                    PL_03_Splash.Visible = true;
+                                    if (DeviceID == 1)
+                                    {
+                                        label28.Visible = false;
+                                        label30.Visible = false;
+                                        PL_01_Splash.Visible = false;
+                                        PL_02_Splash.Visible = false;
+                                        PL_03_Splash.Visible = false;
+                                        PL_04_Splash.Visible = false;
+                                        PL_Error.Visible = false;
+                                        PL_Show_Info.Visible = false;
+                                        PL_Succ.Visible = false;
+                                        PL_Submit.Visible = false;
+                                        PL_03_Splash.Enabled = true;
+                                        PL_03_Splash.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        Finish_Confirm = false;
+                                        PageProcc_Show = true;
+                                        TXT_Email.Text = "";
+                                        TXT_Phone.Text = "";
+                                        Btn_Finished.Enabled = true;
+                                        label28.Visible = false;
+                                        label30.Visible = false;
+                                        PL_01_Splash.Visible = false;
+                                        PL_02_Splash.Visible = false;
+                                        PL_03_Splash.Visible = false;
+                                        PL_04_Splash.Visible = false;
+                                        PL_Error.Visible = false;
+                                        PL_Show_Info.Visible = false;
+                                        PL_Succ.Visible = false;
+                                        PL_Submit.Visible = false;
+                                        PL_Submit.Enabled = true;
+                                        PL_Submit.Visible = true;
+                                    }
                                     AddLog("- Scan Log : " + "Proccess Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                     Activity_Now = 5;
                                     break;
@@ -1324,7 +1348,8 @@ namespace IDV_Reader
                                                     {
                                                         WaitForRes = false;
                                                         ErroPageShow = false;
-                                                        if (AppStatusCode == "8") { EditPageShow = true; }
+                                                        //if (AppStatusCode == "8") { EditPageShow = true; }
+                                                        EditPageShow = true;
                                                     }
                                                     else
                                                     {
@@ -1393,33 +1418,45 @@ namespace IDV_Reader
                                                         TXT_16.Text = ""; TXT_16.Visible = false;
                                                         TXT_17.Text = ""; TXT_17.Visible = false;
                                                         TXT_18.Text = ""; TXT_18.Visible = false;
+                                                        int DTIT = 0;
                                                         foreach (ResultItems RW in ResITM)
                                                         {
                                                             switch (RW.ID.ToString().Trim())
                                                             {
-                                                                case "1": { LBL_1.Text = RW.Key.Trim() + " :"; LBL_1.Visible = true; TXT_1.Text = RW.Value.Trim(); TXT_1.Visible = true; break; }
-                                                                case "2": { LBL_2.Text = RW.Key.Trim() + " :"; LBL_2.Visible = true; TXT_2.Text = RW.Value.Trim(); TXT_2.Visible = true; break; }
-                                                                case "3": { LBL_3.Text = RW.Key.Trim() + " :"; LBL_3.Visible = true; TXT_3.Text = RW.Value.Trim(); TXT_3.Visible = true; break; }
-                                                                case "4": { LBL_4.Text = RW.Key.Trim() + " :"; LBL_4.Visible = true; TXT_4.Text = RW.Value.Trim(); TXT_4.Visible = true; break; }
-                                                                case "5": { LBL_5.Text = RW.Key.Trim() + " :"; LBL_5.Visible = true; TXT_5.Text = RW.Value.Trim(); TXT_5.Visible = true; break; }
-                                                                case "6": { LBL_6.Text = RW.Key.Trim() + " :"; LBL_6.Visible = true; TXT_6.Text = RW.Value.Trim(); TXT_6.Visible = true; break; }
-                                                                case "7": { LBL_7.Text = RW.Key.Trim() + " :"; LBL_7.Visible = true; TXT_7.Text = RW.Value.Trim(); TXT_7.Visible = true; break; }
-                                                                case "8": { LBL_8.Text = RW.Key.Trim() + " :"; LBL_8.Visible = true; TXT_8.Text = RW.Value.Trim(); TXT_8.Visible = true; break; }
-                                                                case "9": { LBL_9.Text = RW.Key.Trim() + " :"; LBL_9.Visible = true; TXT_9.Text = RW.Value.Trim(); TXT_9.Visible = true; break; }
-                                                                case "10": { LBL_10.Text = RW.Key.Trim() + " :"; LBL_10.Visible = true; TXT_10.Text = RW.Value.Trim(); TXT_10.Visible = true; break; }
-                                                                case "11": { LBL_11.Text = RW.Key.Trim() + " :"; LBL_11.Visible = true; TXT_11.Text = RW.Value.Trim(); TXT_11.Visible = true; break; }
-                                                                case "12": { LBL_12.Text = RW.Key.Trim() + " :"; LBL_12.Visible = true; TXT_12.Text = RW.Value.Trim(); TXT_12.Visible = true; break; }
-                                                                case "13": { LBL_13.Text = RW.Key.Trim() + " :"; LBL_13.Visible = true; TXT_13.Text = RW.Value.Trim(); TXT_13.Visible = true; break; }
-                                                                case "14": { LBL_14.Text = RW.Key.Trim() + " :"; LBL_14.Visible = true; TXT_14.Text = RW.Value.Trim(); TXT_14.Visible = true; break; }
-                                                                case "15": { LBL_15.Text = RW.Key.Trim() + " :"; LBL_15.Visible = true; TXT_15.Text = RW.Value.Trim(); TXT_15.Visible = true; break; }
-                                                                case "16": { LBL_16.Text = RW.Key.Trim() + " :"; LBL_16.Visible = true; TXT_16.Text = RW.Value.Trim(); TXT_16.Visible = true; break; }
-                                                                case "17": { LBL_17.Text = RW.Key.Trim() + " :"; LBL_17.Visible = true; TXT_17.Text = RW.Value.Trim(); TXT_17.Visible = true; break; }
-                                                                case "18": { LBL_18.Text = RW.Key.Trim() + " :"; LBL_18.Visible = true; TXT_18.Text = RW.Value.Trim(); TXT_18.Visible = true; break; }
+                                                                case "1": { LBL_1.Text = RW.Key.Trim() + " :"; LBL_1.Visible = true; TXT_1.Text = RW.Value.Trim(); TXT_1.Visible = true; DTIT = 1; break; }
+                                                                case "2": { LBL_2.Text = RW.Key.Trim() + " :"; LBL_2.Visible = true; TXT_2.Text = RW.Value.Trim(); TXT_2.Visible = true; DTIT = 1; break; }
+                                                                case "3": { LBL_3.Text = RW.Key.Trim() + " :"; LBL_3.Visible = true; TXT_3.Text = RW.Value.Trim(); TXT_3.Visible = true; DTIT = 1; break; }
+                                                                case "4": { LBL_4.Text = RW.Key.Trim() + " :"; LBL_4.Visible = true; TXT_4.Text = RW.Value.Trim(); TXT_4.Visible = true; DTIT = 1; break; }
+                                                                case "5": { LBL_5.Text = RW.Key.Trim() + " :"; LBL_5.Visible = true; TXT_5.Text = RW.Value.Trim(); TXT_5.Visible = true; DTIT = 1; break; }
+                                                                case "6": { LBL_6.Text = RW.Key.Trim() + " :"; LBL_6.Visible = true; TXT_6.Text = RW.Value.Trim(); TXT_6.Visible = true; DTIT = 1; break; }
+                                                                case "7": { LBL_7.Text = RW.Key.Trim() + " :"; LBL_7.Visible = true; TXT_7.Text = RW.Value.Trim(); TXT_7.Visible = true; DTIT = 1; break; }
+                                                                case "8": { LBL_8.Text = RW.Key.Trim() + " :"; LBL_8.Visible = true; TXT_8.Text = RW.Value.Trim(); TXT_8.Visible = true; DTIT = 1; break; }
+                                                                case "9": { LBL_9.Text = RW.Key.Trim() + " :"; LBL_9.Visible = true; TXT_9.Text = RW.Value.Trim(); TXT_9.Visible = true; DTIT = 1; break; }
+                                                                case "10": { LBL_10.Text = RW.Key.Trim() + " :"; LBL_10.Visible = true; TXT_10.Text = RW.Value.Trim(); TXT_10.Visible = true; DTIT = 1; break; }
+                                                                case "11": { LBL_11.Text = RW.Key.Trim() + " :"; LBL_11.Visible = true; TXT_11.Text = RW.Value.Trim(); TXT_11.Visible = true; DTIT = 1; break; }
+                                                                case "12": { LBL_12.Text = RW.Key.Trim() + " :"; LBL_12.Visible = true; TXT_12.Text = RW.Value.Trim(); TXT_12.Visible = true; DTIT = 1; break; }
+                                                                case "13": { LBL_13.Text = RW.Key.Trim() + " :"; LBL_13.Visible = true; TXT_13.Text = RW.Value.Trim(); TXT_13.Visible = true; DTIT = 1; break; }
+                                                                case "14": { LBL_14.Text = RW.Key.Trim() + " :"; LBL_14.Visible = true; TXT_14.Text = RW.Value.Trim(); TXT_14.Visible = true; DTIT = 1; break; }
+                                                                case "15": { LBL_15.Text = RW.Key.Trim() + " :"; LBL_15.Visible = true; TXT_15.Text = RW.Value.Trim(); TXT_15.Visible = true; DTIT = 1; break; }
+                                                                case "16": { LBL_16.Text = RW.Key.Trim() + " :"; LBL_16.Visible = true; TXT_16.Text = RW.Value.Trim(); TXT_16.Visible = true; DTIT = 1; break; }
+                                                                case "17": { LBL_17.Text = RW.Key.Trim() + " :"; LBL_17.Visible = true; TXT_17.Text = RW.Value.Trim(); TXT_17.Visible = true; DTIT = 1; break; }
+                                                                case "18": { LBL_18.Text = RW.Key.Trim() + " :"; LBL_18.Visible = true; TXT_18.Text = RW.Value.Trim(); TXT_18.Visible = true; DTIT = 1; break; }
                                                             }
+                                                        }
+                                                        if (DTIT == 0)
+                                                        {
+                                                            LBL_1.Text = "First Name" + " :"; LBL_1.Visible = true; TXT_1.Text = ""; TXT_1.Visible = true; DTIT = 1;
+                                                            LBL_2.Text = "Last Name" + " :"; LBL_2.Visible = true; TXT_2.Text = ""; TXT_2.Visible = true; DTIT = 1;
+                                                            LBL_3.Text = "Address" + " :"; LBL_3.Visible = true; TXT_3.Text = ""; TXT_3.Visible = true; DTIT = 1;
+                                                            LBL_4.Text = "Date Of Birth" + " :"; LBL_4.Visible = true; TXT_4.Text = ""; TXT_4.Visible = true; DTIT = 1;
+                                                            LBL_5.Text = "Licence No." + " :"; LBL_5.Visible = true; TXT_5.Text = ""; TXT_5.Visible = true; DTIT = 1;
+                                                            LBL_6.Text = "Licence Expiry" + " :"; LBL_6.Visible = true; TXT_6.Text = ""; TXT_6.Visible = true; DTIT = 1;
                                                         }
                                                         // Show Result Page :
                                                         AddLog("- Scan Log : " + "Show Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
+                                                        PageProcc_Show = false;
+                                                        while (Finish_Confirm == false) { Application.DoEvents(); }
                                                         button7.Enabled = true;
                                                         label28.Visible = false;
                                                         label30.Visible = false;
@@ -1428,7 +1465,9 @@ namespace IDV_Reader
                                                         PL_03_Splash.Visible = false;
                                                         PL_04_Splash.Visible = false;
                                                         PL_Error.Visible = false;
+                                                        PL_Show_Info.Visible = false;
                                                         PL_Succ.Visible = false;
+                                                        PL_Submit.Visible = false;
                                                         PL_Show_Info.Enabled = true;
                                                         PL_Show_Info.Visible = true;
                                                         // Wait For Accept Response :
@@ -1469,25 +1508,25 @@ namespace IDV_Reader
                                                         if (TXT_18.Visible == true) { var T18 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=18&Key=" + LBL_18.Text.Replace(":", "").Trim() + "&Value=" + TXT_18.Text.Trim()); }
                                                         Application.DoEvents();
                                                         // Show Phone And Email Page :
-                                                        TXT_Email.Text = "";
-                                                        TXT_Phone.Text = "";
-                                                        Btn_Finished.Enabled = true;
-                                                        label28.Visible = false;
-                                                        label30.Visible = false;
-                                                        PL_01_Splash.Visible = false;
-                                                        PL_02_Splash.Visible = false;
-                                                        PL_03_Splash.Visible = false;
-                                                        PL_04_Splash.Visible = false;
-                                                        PL_Error.Visible = false;
-                                                        PL_Show_Info.Visible = false;
-                                                        PL_Succ.Visible = false;
-                                                        PL_Submit.Visible = false;
-                                                        PL_Submit.Enabled = true;
-                                                        PL_Submit.Visible = true;
-                                                        Finish_Confirm = false;
-                                                        while (Finish_Confirm == false) { Application.DoEvents(); }
-                                                        Btn_Finished.Enabled = false;
-                                                        PL_Submit.Enabled = false;
+                                                        //TXT_Email.Text = "";
+                                                        //TXT_Phone.Text = "";
+                                                        //Btn_Finished.Enabled = true;
+                                                        //label28.Visible = false;
+                                                        //label30.Visible = false;
+                                                        //PL_01_Splash.Visible = false;
+                                                        //PL_02_Splash.Visible = false;
+                                                        //PL_03_Splash.Visible = false;
+                                                        //PL_04_Splash.Visible = false;
+                                                        //PL_Error.Visible = false;
+                                                        //PL_Show_Info.Visible = false;
+                                                        //PL_Succ.Visible = false;
+                                                        //PL_Submit.Visible = false;
+                                                        //PL_Submit.Enabled = true;
+                                                        //PL_Submit.Visible = true;
+                                                        //Finish_Confirm = false;
+                                                        //while (Finish_Confirm == false) { Application.DoEvents(); }
+                                                        //Btn_Finished.Enabled = false;
+                                                        //PL_Submit.Enabled = false;
                                                         // Send Email And Phone To Server :
                                                         var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
                                                         // Send Call Back URl :
@@ -1511,24 +1550,24 @@ namespace IDV_Reader
                                                     else
                                                     {
                                                         // Show Phone And Email Page :
-                                                        TXT_Email.Text = "";
-                                                        TXT_Phone.Text = "";
-                                                        Btn_Finished.Enabled = true;
-                                                        label28.Visible = false;
-                                                        label30.Visible = false;
-                                                        PL_01_Splash.Visible = false;
-                                                        PL_02_Splash.Visible = false;
-                                                        PL_03_Splash.Visible = false;
-                                                        PL_04_Splash.Visible = false;
-                                                        PL_Error.Visible = false;
-                                                        PL_Show_Info.Visible = false;
-                                                        PL_Succ.Visible = false;
-                                                        PL_Submit.Visible = false;
-                                                        PL_Submit.Enabled = true;
-                                                        PL_Submit.Visible = true;
-                                                        Finish_Confirm = false;
+                                                        //TXT_Email.Text = "";
+                                                        //TXT_Phone.Text = "";
+                                                        //Btn_Finished.Enabled = true;
+                                                        //label28.Visible = false;
+                                                        //label30.Visible = false;
+                                                        //PL_01_Splash.Visible = false;
+                                                        //PL_02_Splash.Visible = false;
+                                                        //PL_03_Splash.Visible = false;
+                                                        //PL_04_Splash.Visible = false;
+                                                        //PL_Error.Visible = false;
+                                                        //PL_Show_Info.Visible = false;
+                                                        //PL_Succ.Visible = false;
+                                                        //PL_Submit.Visible = false;
+                                                        //PL_Submit.Enabled = true;
+                                                        //PL_Submit.Visible = true;
+                                                        //Finish_Confirm = false;
                                                         while (Finish_Confirm == false) { Application.DoEvents(); }
-                                                        Btn_Finished.Enabled = false;
+                                                        //Btn_Finished.Enabled = false;
                                                         // Send Email And Phone To Server :
                                                         var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
                                                         // Send Call Back URl :
@@ -2824,7 +2863,7 @@ namespace IDV_Reader
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to reset the system settings? In case of reset, it is not possible to recover the settings", "Configuration Reset ...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to reset the system settings? If so it is not possible to recover the settings", "Configuration Reset ...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Interaction.SaveSetting("IDV_Pacific", "Document_Reader", "SA", "");
                     Interaction.SaveSetting("IDV_Pacific", "Document_Reader", "CI", "");
@@ -2951,48 +2990,48 @@ namespace IDV_Reader
                                             {
                                                 Interaction.SaveSetting("IDV_Pacific", "Document_Reader", "DVI", "2");
                                             }
-                                            MessageBox.Show("Dear User ...\r\nApplication settings were successful. The configuration file for " + Config_Sep[2].ToString().Trim() + " was successfully uploaded.\r\nYou need to restart the application to make the changes, The software will now close automatically.", "Congratulations ...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            MessageBox.Show("Dear User ...\r\nApplication is configured were successfully. The configuration file for " + Config_Sep[2].ToString().Trim() + " was successfully installed.\r\nYou need to restart the application to apply the changes, The software will now close automatically.", "Congratulations ...", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             MMM.Readers.FullPage.Reader.Shutdown();
                                             Close();
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Dear User ...\r\nIDV config file not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            MessageBox.Show("Dear User ...\r\nIDV config file is not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Dear User ...\r\nIDV config file not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        MessageBox.Show("Dear User ...\r\nIDV config file is not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Dear User ...\r\nIDV config file not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Dear User ...\r\nIDV config file is not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Dear User ...\r\nIDV config file not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Dear User ...\r\nIDV config file is not valid", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Dear User ...\r\nPlease before saving config, Enter user id for your counter", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Dear User ...\r\nPlease before saving the config, Enter user id for your scanner", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Dear User ...\r\nPlease before saving config, Enter dealer id for your branch", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Dear User ...\r\nPlease before saving the config, Enter dealer id for your branch", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Dear User ...\r\nPlease before saving config, Select IDV config file from your system", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Dear User ...\r\nPlease before saving the config, Select IDV config file from your system. If you don't have the file contact support.", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Dear User ...\r\nError when configuration your application settings", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Dear User ...\r\nError when configuring your application settings", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -3085,8 +3124,24 @@ namespace IDV_Reader
             {
                 TXT_Email.Text = TXT_Email.Text.Trim();
                 TXT_Phone.Text = TXT_Phone.Text.Trim();
-                if((TXT_Email.Text !="") && (TXT_Phone.Text !=""))
+                if ((TXT_Email.Text != "") && (TXT_Phone.Text != ""))
                 {
+                    button7.Enabled = false;
+                    if (PageProcc_Show == true)
+                    {
+                        label28.Visible = false;
+                        label30.Visible = false;
+                        PL_01_Splash.Visible = false;
+                        PL_02_Splash.Visible = false;
+                        PL_03_Splash.Visible = false;
+                        PL_04_Splash.Visible = false;
+                        PL_Error.Visible = false;
+                        PL_Show_Info.Visible = false;
+                        PL_Succ.Visible = false;
+                        PL_Submit.Visible = false;
+                        PL_03_Splash.Enabled = true;
+                        PL_03_Splash.Visible = true;
+                    }
                     Finish_Confirm = true;
                 }
             }

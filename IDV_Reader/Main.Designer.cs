@@ -289,9 +289,9 @@
             this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 494);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 465);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(803, 35);
+            this.statusStrip1.Size = new System.Drawing.Size(863, 35);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
@@ -310,7 +310,7 @@
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(575, 5);
+            this.pictureBox5.Location = new System.Drawing.Point(635, 5);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(32, 32);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -325,7 +325,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(613, 5);
+            this.pictureBox4.Location = new System.Drawing.Point(673, 5);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -342,7 +342,7 @@
             this.Lbl_ErrorPublic.ForeColor = System.Drawing.Color.Maroon;
             this.Lbl_ErrorPublic.Location = new System.Drawing.Point(218, 5);
             this.Lbl_ErrorPublic.Name = "Lbl_ErrorPublic";
-            this.Lbl_ErrorPublic.Size = new System.Drawing.Size(351, 29);
+            this.Lbl_ErrorPublic.Size = new System.Drawing.Size(411, 29);
             this.Lbl_ErrorPublic.TabIndex = 13;
             this.Lbl_ErrorPublic.Text = "...";
             this.Lbl_ErrorPublic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -670,7 +670,7 @@
             this.PLD_Data.Controls.Add(this.uvImage);
             this.PLD_Data.Controls.Add(this.label2);
             this.PLD_Data.Controls.Add(this.groupBox1);
-            this.PLD_Data.Location = new System.Drawing.Point(527, 50);
+            this.PLD_Data.Location = new System.Drawing.Point(587, 50);
             this.PLD_Data.Name = "PLD_Data";
             this.PLD_Data.Size = new System.Drawing.Size(29, 20);
             this.PLD_Data.TabIndex = 21;
@@ -1298,7 +1298,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(98, 27);
             this.button3.TabIndex = 35;
-            this.button3.Text = "Reset Config";
+            this.button3.Text = "Clear Config";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -1318,7 +1318,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 27);
             this.button1.TabIndex = 33;
-            this.button1.Text = "Configuration Login";
+            this.button1.Text = "Login to Configuration";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -1353,7 +1353,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(336, 23);
             this.label15.TabIndex = 1;
-            this.label15.Text = "Please Enter Administrator Security Password";
+            this.label15.Text = "Please Enter Administrator Password";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PL_Config
@@ -1506,7 +1506,7 @@
             // 
             this.PL_NOIN.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PL_NOIN.BackgroundImage")));
             this.PL_NOIN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.PL_NOIN.Location = new System.Drawing.Point(8, 475);
+            this.PL_NOIN.Location = new System.Drawing.Point(72, 437);
             this.PL_NOIN.Name = "PL_NOIN";
             this.PL_NOIN.Size = new System.Drawing.Size(791, 445);
             this.PL_NOIN.TabIndex = 30;
@@ -1517,7 +1517,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Location = new System.Drawing.Point(651, 0);
+            this.panel1.Location = new System.Drawing.Point(711, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(152, 89);
             this.panel1.TabIndex = 31;
@@ -1668,7 +1668,7 @@
             this.PL_Show_Info.Controls.Add(this.button7);
             this.PL_Show_Info.Controls.Add(this.TXT_1);
             this.PL_Show_Info.Controls.Add(this.LBL_1);
-            this.PL_Show_Info.Location = new System.Drawing.Point(158, 243);
+            this.PL_Show_Info.Location = new System.Drawing.Point(154, 243);
             this.PL_Show_Info.Name = "PL_Show_Info";
             this.PL_Show_Info.Size = new System.Drawing.Size(779, 482);
             this.PL_Show_Info.TabIndex = 34;
@@ -1749,8 +1749,8 @@
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(358, 27);
             this.label34.TabIndex = 31;
-            this.label34.Text = "Please check the above information and correct if necessary, finally click the co" +
-    "nfirm button.";
+            this.label34.Text = "Please check the above information and correct if necessary and click the confirm" +
+    " button.";
             // 
             // label33
             // 
@@ -1994,7 +1994,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(359, 48);
             this.button7.TabIndex = 3;
-            this.button7.Text = "            I fully confirm the accuracy of the above information";
+            this.button7.Text = "            I confirm the accuracy of the above information";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -2025,7 +2025,7 @@
             this.PL_Submit.Controls.Add(this.label36);
             this.PL_Submit.Controls.Add(this.label35);
             this.PL_Submit.Controls.Add(this.pictureBox9);
-            this.PL_Submit.Location = new System.Drawing.Point(133, 251);
+            this.PL_Submit.Location = new System.Drawing.Point(121, 262);
             this.PL_Submit.Name = "PL_Submit";
             this.PL_Submit.Size = new System.Drawing.Size(495, 375);
             this.PL_Submit.TabIndex = 35;
@@ -2037,11 +2037,11 @@
             this.Btn_Finished.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Btn_Finished.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Finished.Image")));
             this.Btn_Finished.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Finished.Location = new System.Drawing.Point(185, 308);
+            this.Btn_Finished.Location = new System.Drawing.Point(298, 308);
             this.Btn_Finished.Name = "Btn_Finished";
-            this.Btn_Finished.Size = new System.Drawing.Size(241, 48);
+            this.Btn_Finished.Size = new System.Drawing.Size(128, 48);
             this.Btn_Finished.TabIndex = 10;
-            this.Btn_Finished.Text = "            Completion of application steps";
+            this.Btn_Finished.Text = "            Continue";
             this.Btn_Finished.UseVisualStyleBackColor = true;
             this.Btn_Finished.Click += new System.EventHandler(this.Btn_Finished_Click);
             // 
@@ -2083,18 +2083,18 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label36.Location = new System.Drawing.Point(61, 220);
+            this.label36.Location = new System.Drawing.Point(66, 223);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(367, 13);
+            this.label36.Size = new System.Drawing.Size(390, 13);
             this.label36.TabIndex = 2;
-            this.label36.Text = "To complete the process, please fill the fields below and submit the request";
+            this.label36.Text = "Please enter your email address and phone number, then press continue button";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label35.ForeColor = System.Drawing.Color.Green;
-            this.label35.Location = new System.Drawing.Point(60, 203);
+            this.label35.Location = new System.Drawing.Point(64, 206);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(69, 13);
             this.label35.TabIndex = 1;
@@ -2105,7 +2105,7 @@
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.InitialImage = null;
-            this.pictureBox9.Location = new System.Drawing.Point(147, 5);
+            this.pictureBox9.Location = new System.Drawing.Point(149, 5);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(217, 216);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2117,8 +2117,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(803, 529);
+            this.ClientSize = new System.Drawing.Size(863, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.PL_NOIN);
             this.Controls.Add(this.PLD_Data);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PanB1);
@@ -2131,7 +2132,6 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.Lbl_ErrorPublic);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.PL_NOIN);
             this.Controls.Add(this.PL_01_Splash);
             this.Controls.Add(this.PL_02_Splash);
             this.Controls.Add(this.PL_03_Splash);
