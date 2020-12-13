@@ -55,6 +55,15 @@ namespace IDV_Reader
         string Auth_Username = "";
         string Auth_Password = "";
         int DeviceID = 0; // 1 : Passport | 2 : Driving Lic
+        int DVLA_En = 0;
+        int VirtualKeyboad = 0;
+        bool KeyboardActived = false;
+        public string LastResKeyB = "";
+        public bool WaitForKB = false;
+        int SBtnSelect = 0;
+        int WBSiteAdd = 0;
+        bool UserCancel = false;
+        bool DontShowKeyboard = false;
         //--------------------------------------------------------
         ListBox SelectedPluginList = new ListBox();
         ListBox AvailablePluginList = new ListBox();
@@ -90,6 +99,12 @@ namespace IDV_Reader
                 Lbl_ErrorPublic.Text = "";
                 SystemRunNew = false;
                 IDVBS = ConfigurationSettings.AppSettings["IDV_BaseAddress"].ToString().Trim();
+                if (ConfigurationSettings.AppSettings["CNG_Logo_IDDRIVER"].ToString().Trim() == "1") { PanBObj1.Visible = true; } else { PanBObj1.Visible = false; }
+                if (ConfigurationSettings.AppSettings["CNG_Logo_Kia"].ToString().Trim() == "1") { PIC_LG.Image = LG_KIA.Image; }
+                if (ConfigurationSettings.AppSettings["CNG_Logo_Toyota"].ToString().Trim() == "1") { PIC_LG.Image = LG_TOYOTA.Image; }
+                if (ConfigurationSettings.AppSettings["CNG_Logo_BENZ"].ToString().Trim() == "1") { PIC_LG.Image = LG_BENZ.Image; }
+                if (ConfigurationSettings.AppSettings["CNG_DVLA"].ToString().Trim() == "1") { DVLA_En = 1; }
+                if (ConfigurationSettings.AppSettings["CNG_Keyboard"].ToString().Trim() == "1") { VirtualKeyboad = 1; }
                 if (System.IO.Directory.Exists(Application.StartupPath + @"\Logs") == false) { System.IO.Directory.CreateDirectory(Application.StartupPath + @"\Logs"); }
                 FileLog = Application.StartupPath + @"\Logs\" + DateTime.Now.ToString("ddMMyyyy-HHmm") + ".txt";
                 // Load Config File :
@@ -149,6 +164,50 @@ namespace IDV_Reader
                 AddLog("-------------------------------------------------------------------------" + "\r\n");
                 AddLog("- Run Software -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                 AddLog("-------------------------------------------------------------------------" + "\r\n");
+                Btn_BTD.Visible = false;
+                Btn_CC.Visible = false;
+                Btn_CF.Visible = false;
+                Btn_BTD.Top = 13;
+                Btn_CC.Top = 13;
+                Btn_CF.Top = 13;
+                int Btn_Count = 0;
+                string BtnSC = ConfigurationSettings.AppSettings["SYS_Btn_Scanner"].ToString().Trim();
+                string BtnCC = ConfigurationSettings.AppSettings["SYS_Btn_CarConfig"].ToString().Trim();
+                string BtnCF = ConfigurationSettings.AppSettings["SYS_Btn_Finance"].ToString().Trim();
+                if ((BtnSC != "0") && (BtnSC != "1")) { BtnSC = "0"; }
+                if ((BtnCC != "0") && (BtnCC != "1")) { BtnCC = "0"; }
+                if ((BtnCF != "0") && (BtnCF != "1")) { BtnCF = "0"; }
+                if (BtnSC == "1") { Btn_BTD.Visible = true; Btn_Count++; }
+                if (BtnCC == "1") { Btn_CC.Visible = true; Btn_Count++; }
+                if (BtnCF == "1") { Btn_CF.Visible = true; Btn_Count++; }
+                int BtnNL = 0;
+                if (Btn_Count > 0)
+                {
+                    int WidthDiff = Btn_Count * 570;
+                    int widthSpace = (int)((Pnl_Btn.Width - WidthDiff) / (Btn_Count + 1));
+                    BtnNL = widthSpace;
+                    if (BtnCF == "1")
+                    {
+                        Btn_CF.Left = BtnNL;
+                        BtnNL = BtnNL + Btn_CF.Width + widthSpace;
+                    }
+                    if (BtnCC == "1")
+                    {
+                        Btn_CC.Left = BtnNL;
+                        BtnNL = BtnNL + Btn_CC.Width + widthSpace;
+                    }
+                    if (BtnSC == "1")
+                    {
+                        Btn_BTD.Left = BtnNL;
+                        BtnNL = BtnNL + Btn_BTD.Width + widthSpace;
+                    }
+                }
+                button11.Visible = false;
+                button12.Visible = false;
+                button13.Visible = false;
+                if (ConfigurationSettings.AppSettings["Btn_Cancel_WaitForDoc"].ToString().Trim() == "1") { button11.Visible = true; }
+                if (ConfigurationSettings.AppSettings["Btn_Cancel_EmailPhone"].ToString().Trim() == "1") { button12.Visible = true; }
+                if (ConfigurationSettings.AppSettings["Btn_Cancel_Confirm"].ToString().Trim() == "1") { button13.Visible = true; }
                 timer1.Interval = 1000;
                 timer1.Enabled = true;
                 timer1.Start();
@@ -202,6 +261,7 @@ namespace IDV_Reader
             try
             {
                 Activity_Now = 1;
+                SBtnSelect = 0;
             }
             catch (Exception) { }
         }
@@ -609,7 +669,7 @@ namespace IDV_Reader
                 lResult = MMM.Readers.FullPage.Reader.Initialise(new MMM.Readers.FullPage.DataDelegate(DataCallbackThreadHelper), new MMM.Readers.FullPage.EventDelegate(EventCallbackThreadHelper), new MMM.Readers.ErrorDelegate(ErrorCallbackThreadHelper), new MMM.Readers.FullPage.CertificateDelegate(CertificateCallbackThreadHelper), true, false);
                 if (lResult != MMM.Readers.ErrorCode.NO_ERROR_OCCURRED)
                 {
-                    Splash_Lbl_1.Text = "Error! Initialise Failed - [Err1]";
+                    Splash_Lbl_1.Text = "Error! Initialisation Failed";
                     Splash_Lbl_2.Text = lResult.ToString();
                     ReloadInit = 1;
                     AddLog("- System Log : " + "Initialise Failed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
@@ -618,7 +678,7 @@ namespace IDV_Reader
             }
             catch (System.DllNotFoundException except)
             {
-                Splash_Lbl_1.Text = "Error! Initialise Failed - [Err2]";
+                Splash_Lbl_1.Text = "Error! Initialisation Failed";
                 AddLog("- System Log : " + "Initialise Failed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                 Splash_Lbl_2.Text = except.Message;
                 ReloadInit = 1;
@@ -633,7 +693,7 @@ namespace IDV_Reader
                 if ((Cam_Init_1 == true) && (Cam_Init_2 == true) && (Cam_Init_3 == true))
                 {
                     MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_DISABLED, true);
-                    Splash_Lbl_1.Text = "Congratulations! Initialise Successfully";
+                    Splash_Lbl_1.Text = "Congratulations! Initialised Successfully";
                     AddLog("- System Log : " + "Congratulations! Initialise Successfully" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                     if (DeviceID == 1)
                     {
@@ -742,15 +802,16 @@ namespace IDV_Reader
                                 lSettings.puCameraSettings.vis.puUseSequentialImaging = false;
                                 lSettings.puCameraSettings.flap = 0;
                                 lSettings.puCameraSettings.flap |= 0x20;
-                                lSettings.puCameraSettings.ir.puAmbientRemoval = MMM.Readers.Modules.Camera.AmbientRemovalMethod.MRAS_NO_AMBIENT_REMOVAL;
-                                lSettings.puCameraSettings.vis.puAmbientRemoval = MMM.Readers.Modules.Camera.AmbientRemovalMethod.MRAS_NO_AMBIENT_REMOVAL;
-                                lSettings.puCameraSettings.uv.puAmbientRemoval = MMM.Readers.Modules.Camera.AmbientRemovalMethod.MRAS_NO_AMBIENT_REMOVAL;
+                                lSettings.puCameraSettings.ir.puAmbientRemoval = MMM.Readers.Modules.Camera.AmbientRemovalMethod.MRAS_HARDWARE_AMBIENT_REMOVAL;
+                                lSettings.puCameraSettings.vis.puAmbientRemoval = MMM.Readers.Modules.Camera.AmbientRemovalMethod.MRAS_HARDWARE_AMBIENT_REMOVAL;
+                                lSettings.puCameraSettings.uv.puAmbientRemoval = MMM.Readers.Modules.Camera.AmbientRemovalMethod.MRAS_HARDWARE_AMBIENT_REMOVAL;
+                                lSettings.puDataToSend.compression = 90;
                                 lSettings.puImageSettings.useVisibleForBarcode = 0;
                                 lSettings.puDataToSend.send &= ~MMM.Readers.FullPage.DataSendSet.Flags.BARCODEIMAGE;
                                 lSettings.puDataToSend.send &= ~MMM.Readers.FullPage.DataSendSet.Flags.UHF;
                                 lSettings.puDataToSend.progress = 0;
                                 lSettings.puDataToSend.imageFormat = MMM.Readers.FullPage.ImageFormats.RTE_JPEG;
-                                lSettings.puCameraSettings.scaleFactor = 100;
+                                lSettings.puCameraSettings.scaleFactor = 75;
                                 lSettings.puRFIDSettings.puRFProcessSettings.puRFApplicationMode &= ~(int)MMM.Readers.Modules.RF.RF_APPLICATION_MODE.EPASSPORT;
                                 lSettings.puRFIDSettings.puRFProcessSettings.puRFApplicationMode &= ~(int)MMM.Readers.Modules.RF.RF_APPLICATION_MODE.EID;
                                 lSettings.puRFIDSettings.puRFProcessSettings.puRFApplicationMode &= ~(int)MMM.Readers.Modules.RF.RF_APPLICATION_MODE.EDL;
@@ -855,6 +916,7 @@ namespace IDV_Reader
                 if (PL_NOIN.Visible == false)
                 {
                     Activity_Now = 1;
+                    SBtnSelect = 0;
                     SystemPause = true;
                     PL_NOIN.Left = (this.Width / 2) - (PL_NOIN.Width / 2);
                     PL_NOIN.Top = (this.Height / 2) - (PL_NOIN.Height / 2);
@@ -869,6 +931,7 @@ namespace IDV_Reader
                     SystemPause = false;
                     PL_NOIN.Visible = false;
                     Activity_Now = 1;
+                    SBtnSelect = 0;
                 }
             }
         }
@@ -1033,6 +1096,7 @@ namespace IDV_Reader
             try
             {
                 ExitLoop = false;
+                SBtnSelect = 0;
                 Centerlizer();
                 if (DeviceID == 1)
                 {
@@ -1043,13 +1107,16 @@ namespace IDV_Reader
                 }
                 else
                 {
-                    pictureBox4.Visible = true;
-                    pictureBox4.Enabled = true;
+                    pictureBox4.Visible = false;
+                    pictureBox4.Enabled = false;
                     pictureBox5.Visible = false;
                     pictureBox5.Enabled = false;
                 }
                 //----------------------------------------------------------------
                 Activity_Now = 1;
+                SBtnSelect = 0;
+                WBSiteAdd = 0;
+                UserCancel = false;
                 // 1 : Show First Page And Wait For Insert Document .
                 // 2 : Readding Data And Send to Webservice .
                 // 3 : Show Result Tick .
@@ -1059,587 +1126,777 @@ namespace IDV_Reader
                 SystemRunNew = true;
                 while (ExitLoop == false)
                 {
-                    if (SystemPause == false)
+                    if (SBtnSelect == 0)
                     {
-                        switch (Activity_Now)
+                        if (Pnl_Btn.Visible == false)
                         {
-                            case 1:
+                            Activity_Now = 1;
+                            SBtnSelect = 0;
+                            UserCancel = false;
+                            SystemPause = false;
+                            Finish_Confirm = false;
+                            KeyboardActived = false;
+                            label28.Visible = false;
+                            label30.Visible = false;
+                            PL_01_Splash.Visible = false;
+                            PL_02_Splash.Visible = false;
+                            PL_03_Splash.Visible = false;
+                            PL_04_Splash.Visible = false;
+                            PL_Error.Visible = false;
+                            PL_Show_Info.Visible = false;
+                            PL_Succ.Visible = false;
+                            PL_Submit.Visible = false;
+                            PL_DVLA.Visible = false;
+                            PL_DVLA_WT.Visible = false;
+                            PL_DVLA_OK.Visible = false;
+                            PL_02_Splash.Visible = false;
+                            PnlWeb.Visible = false;
+                            Pnl_Btn.Left = (this.Width / 2) - (Pnl_Btn.Width / 2);
+                            Pnl_Btn.Top = (this.Height / 2) - (Pnl_Btn.Height / 2) + 37;
+                            Pnl_Btn.Enabled = true;
+                            Pnl_Btn.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        if (SBtnSelect == 1)
+                        {
+                            if (PnlWeb.Visible == false)
+                            {
+                                label28.Visible = false;
+                                label30.Visible = false;
+                                PL_01_Splash.Visible = false;
+                                PL_02_Splash.Visible = false;
+                                PL_03_Splash.Visible = false;
+                                PL_04_Splash.Visible = false;
+                                PL_Error.Visible = false;
+                                PL_Show_Info.Visible = false;
+                                PL_Succ.Visible = false;
+                                PL_Submit.Visible = false;
+                                PL_DVLA.Visible = false;
+                                PL_DVLA_WT.Visible = false;
+                                PL_DVLA_OK.Visible = false;
+                                PL_02_Splash.Visible = false;
+                                Pnl_Btn.Visible = false;
+                                WB.Top = 10;
+                                WB.Left = 10;
+                                WB.Width = 1838;
+                                WB.Height = 852;
+                                WBL.Top = (PnlWeb.Height / 2) - (WBL.Height / 2);
+                                WBL.Left = (PnlWeb.Width / 2) - (WBL.Width / 2);
+                                WB.Visible = false;
+                                WBL.Visible = false;
+                                LoadWebPage(WBSiteAdd);
+                                PnlWeb.Width = 1858;
+                                PnlWeb.Height = 872;
+                                PnlWeb.Left = (this.Width / 2) - (PnlWeb.Width / 2);
+                                PnlWeb.Top = (this.Height / 2) - (PnlWeb.Height / 2) + 37;
+                                WBL.Top = (PnlWeb.Height / 2) - (WBL.Height / 2);
+                                WBL.Left = (PnlWeb.Width / 2) - (WBL.Width / 2);
+                                PnlWeb.Enabled = true;
+                                PnlWeb.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            if (SystemPause == false)
+                            {
+                                switch (Activity_Now)
                                 {
-                                    ClearAll2();
-                                    MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_DISABLED, true);
-                                    label28.Visible = false;
-                                    label30.Visible = false;
-                                    PL_01_Splash.Visible = false;
-                                    PL_02_Splash.Visible = false;
-                                    PL_03_Splash.Visible = false;
-                                    PL_04_Splash.Visible = false;
-                                    PL_Error.Visible = false;
-                                    PL_Show_Info.Visible = false;
-                                    PL_Succ.Visible = false;
-                                    PL_Submit.Visible = false;
-                                    PL_DVLA.Visible = false;
-                                    PL_DVLA_WT.Visible = false;
-                                    PL_DVLA_OK.Visible = false;
-                                    PL_02_Splash.Enabled = true;
-                                    PL_02_Splash.Visible = true;
-                                    Application.DoEvents();
-                                    AddLog("- Scan Log : " + "Wait For Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                    Wait(1000);
-                                    Activity_Now = 5;
-                                    MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_ENABLED, true);
-                                    break;
-                                }
-                            //-------------------------------------------------------------------------------------------------------
-                            case 2:
-                                {
-                                    if (DeviceID == 1)
-                                    {
-                                        label28.Visible = false;
-                                        label30.Visible = false;
-                                        PL_01_Splash.Visible = false;
-                                        PL_02_Splash.Visible = false;
-                                        PL_03_Splash.Visible = false;
-                                        PL_04_Splash.Visible = false;
-                                        PL_Error.Visible = false;
-                                        PL_Show_Info.Visible = false;
-                                        PL_Succ.Visible = false;
-                                        PL_Submit.Visible = false;
-                                        PL_DVLA.Visible = false;
-                                        PL_DVLA_WT.Visible = false;
-                                        PL_DVLA_OK.Visible = false;
-                                        PL_03_Splash.Enabled = true;
-                                        PL_03_Splash.Visible = true;
-                                    }
-                                    else
-                                    {
-                                        Finish_Confirm = false;
-                                        PageProcc_Show = true;
-                                        TXT_Email.Text = "";
-                                        TXT_Phone.Text = "";
-                                        Btn_Finished.Enabled = true;
-                                        label28.Visible = false;
-                                        label30.Visible = false;
-                                        PL_01_Splash.Visible = false;
-                                        PL_02_Splash.Visible = false;
-                                        PL_03_Splash.Visible = false;
-                                        PL_04_Splash.Visible = false;
-                                        PL_Error.Visible = false;
-                                        PL_Show_Info.Visible = false;
-                                        PL_Succ.Visible = false;
-                                        PL_Submit.Visible = false;
-                                        PL_DVLA.Visible = false;
-                                        PL_DVLA_WT.Visible = false;
-                                        PL_DVLA_OK.Visible = false;
-                                        PL_Submit.Enabled = true;
-                                        label37.ForeColor = Color.Black;
-                                        label38.ForeColor = Color.Black;
-                                        PL_Submit.Visible = true;
-                                    }
-                                    AddLog("- Scan Log : " + "Proccess Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                    Activity_Now = 5;
-                                    break;
-                                }
-                            //-------------------------------------------------------------------------------------------------------
-                            case 3:
-                                {
-                                    int StatusCode = 0;
-                                    AddLog("- Scan Log : " + "Proccess End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                    if (DeviceID == 1)
-                                    {
-                                        pictureBox3.Image = null;
-                                        LBLD_1.Text = "";
-                                        LBLD_2.Text = "";
-                                        LBLD_3.Text = "";
-                                        LBLD_4.Text = "";
-                                        LBLD_5.Text = "";
-                                        T_OK.Visible = false;
-                                        T_Error.Visible = false;
-                                        try
-                                        { if (rfImage.Image != null) { pictureBox3.Image = rfImage.Image; } else { if (photoImage.Image != null) { pictureBox3.Image = photoImage.Image; } } }
-                                        catch (Exception) { }
-                                        try
+                                    case 1:
                                         {
-                                            if ((lblRFForenames.Text != null) && (lblRFForenames.Text != "")) { LBLD_1.Text = lblRFForenames.Text.Trim().ToUpper(); }
-                                            if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = lblForenames.Text.Trim().ToUpper(); }
+                                            ClearAll2();
+                                            DontShowKeyboard = false;
+                                            UserCancel = false;
+                                            MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_DISABLED, true);
+                                            label28.Visible = false;
+                                            label30.Visible = false;
+                                            PL_01_Splash.Visible = false;
+                                            PL_02_Splash.Visible = false;
+                                            PL_03_Splash.Visible = false;
+                                            PL_04_Splash.Visible = false;
+                                            PL_Error.Visible = false;
+                                            PL_Show_Info.Visible = false;
+                                            PL_Succ.Visible = false;
+                                            PL_Submit.Visible = false;
+                                            PL_DVLA.Visible = false;
+                                            PL_DVLA_WT.Visible = false;
+                                            PL_DVLA_OK.Visible = false;
+                                            PL_02_Splash.Enabled = true;
+                                            PL_02_Splash.Visible = true;
+                                            Application.DoEvents();
+                                            AddLog("- Scan Log : " + "Wait For Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            Wait(1000);
+                                            Activity_Now = 5;
+                                            MMM.Readers.FullPage.Reader.SetState(MMM.Readers.FullPage.ReaderState.READER_ENABLED, true);
+                                            break;
                                         }
-                                        catch (Exception) { }
-                                        try
+                                    //-------------------------------------------------------------------------------------------------------
+                                    case 2:
                                         {
-                                            if ((lblRFSurname.Text != null) && (lblRFSurname.Text != "")) { LBLD_2.Text = lblRFSurname.Text.Trim().ToUpper(); }
-                                            if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = lblSurname.Text.Trim().ToUpper(); }
-                                        }
-                                        catch (Exception) { }
-                                        try
-                                        {
-                                            if ((lblRFNationality.Text != null) && (lblRFNationality.Text != "")) { LBLD_3.Text = lblRFNationality.Text.Trim().ToUpper(); }
-                                            if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = lblNationality.Text.Trim().ToUpper(); }
-                                        }
-                                        catch (Exception) { }
-                                        try
-                                        {
-                                            if ((lblRFSex.Text != null) && (lblRFSex.Text != "")) { LBLD_4.Text = lblRFSex.Text.Trim().ToUpper(); }
-                                            if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = lblSex.Text.Trim().ToUpper(); }
-                                        }
-                                        catch (Exception) { }
-                                        try
-                                        {
-                                            if ((lblRFDocNumber.Text != null) && (lblRFDocNumber.Text != "")) { LBLD_5.Text = lblRFDocNumber.Text.Trim().ToUpper(); }
-                                            if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = lblDocumentNumber.Text.Trim().ToUpper(); }
-                                        }
-                                        catch (Exception) { }
-                                        int WIDEROK = 0;
-                                        try
-                                        {
-                                            if (lblRFSurname.Text.Trim().ToUpper() != lblSurname.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                            if (lblRFForenames.Text.Trim().ToUpper() != lblForenames.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                            if (lblRFNationality.Text.Trim().ToUpper() != lblNationality.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                            if (lblRFSex.Text.Trim().ToUpper() != lblSex.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                            if (lblRFDateOfBirth.Text.Trim().ToUpper() != lblDateOfBirth.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                            if (lblRFDocNumber.Text.Trim().ToUpper() != lblDocumentNumber.Text.Trim().ToUpper()) { WIDEROK = 1; }
-                                            if (lblBACStatus.Text.Trim().ToUpper() != "TS_SUCCESS") { WIDEROK = 1; }
-                                        }
-                                        catch (Exception)
-                                        {
-                                            WIDEROK = 1;
-                                        }
-                                        if (WIDEROK == 1) { T_Error.Visible = true; StatusCode = 2; } else { T_OK.Visible = true; StatusCode = 1; }
-                                        try
-                                        {
-                                            if (WIDEROK == 1)
+                                            if (DeviceID == 1)
                                             {
-                                                if ((lblRFSurname.Text.Trim() == "") && (lblSurname.Text.Trim() != "")) { StatusCode = 3; }
-                                                if ((lblRFForenames.Text.Trim() == "") && (lblForenames.Text.Trim() != "")) { StatusCode = 3; }
-                                                if ((lblRFNationality.Text.Trim() == "") && (lblNationality.Text.Trim() != "")) { StatusCode = 3; }
-                                                if ((lblRFSex.Text.Trim() == "") && (lblSex.Text.Trim() != "")) { StatusCode = 3; }
-                                                if ((lblRFDateOfBirth.Text.Trim() == "") && (lblDateOfBirth.Text.Trim() != "")) { StatusCode = 3; }
-                                                if ((lblRFDocNumber.Text.Trim() == "") && (lblDocumentNumber.Text.Trim() != "")) { StatusCode = 3; }
-                                            }
-                                        }
-                                        catch (Exception) { }
-                                        string EXODATE = "";
-                                        try
-                                        {
-                                            if (lblRF_ExpireDate.Text.Trim() != "") { EXODATE = lblRF_ExpireDate.Text.Trim(); }
-                                            if (EXODATE == "")
-                                            {
-                                                if (lblMRZ_ExpireDate.Text.Trim() != "") { EXODATE = lblMRZ_ExpireDate.Text.Trim(); }
-                                            }
-                                        }
-                                        catch (Exception) { EXODATE = ""; }
-                                        if (StatusCode == 1)
-                                        {
-                                            if (EXODATE.Trim() != "")
-                                            {
-                                                // Hamid Said When Expires SHoulbe be in Refered .
-                                                if (ExpiredDateCheck(EXODATE, Get_Date()) == false) { StatusCode = 3; WIDEROK = 1; }
+                                                label28.Visible = false;
+                                                label30.Visible = false;
+                                                PL_01_Splash.Visible = false;
+                                                PL_02_Splash.Visible = false;
+                                                PL_03_Splash.Visible = false;
+                                                PL_04_Splash.Visible = false;
+                                                PL_Error.Visible = false;
+                                                PL_Show_Info.Visible = false;
+                                                PL_Succ.Visible = false;
+                                                PL_Submit.Visible = false;
+                                                PL_DVLA.Visible = false;
+                                                PL_DVLA_WT.Visible = false;
+                                                PL_DVLA_OK.Visible = false;
+                                                PL_03_Splash.Enabled = true;
+                                                PL_03_Splash.Visible = true;
                                             }
                                             else
                                             {
-                                                StatusCode = 3; // No Expire Date => Reffered
-                                                WIDEROK = 1;
+                                                Finish_Confirm = false;
+                                                PageProcc_Show = true;
+                                                TXT_Email.Text = "";
+                                                TXT_Phone.Text = "";
+                                                Btn_Finished.Enabled = true;
+                                                label28.Visible = false;
+                                                label30.Visible = false;
+                                                PL_01_Splash.Visible = false;
+                                                PL_02_Splash.Visible = false;
+                                                PL_03_Splash.Visible = false;
+                                                PL_04_Splash.Visible = false;
+                                                PL_Error.Visible = false;
+                                                PL_Show_Info.Visible = false;
+                                                PL_Succ.Visible = false;
+                                                PL_Submit.Visible = false;
+                                                PL_DVLA.Visible = false;
+                                                PL_DVLA_WT.Visible = false;
+                                                PL_DVLA_OK.Visible = false;
+                                                PL_Submit.Enabled = true;
+                                                label37.ForeColor = Color.Black;
+                                                label38.ForeColor = Color.Black;
+                                                PL_Submit.Visible = true;
                                             }
+                                            AddLog("- Scan Log : " + "Proccess Document" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            Activity_Now = 5;
+                                            break;
                                         }
-                                        if (WIDEROK == 1) { T_Error.Visible = true; } else { T_OK.Visible = true; }
-                                        if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = "NA"; }
-                                        if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = "NA"; }
-                                        if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = "NA"; }
-                                        if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = "NA"; }
-                                        if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = "NA"; }
-                                        if (lblDocumentType.Text.Trim().ToLower() == "unknown document") { lblDocumentType.Text = "Passport"; }
-                                        SendToServer(StatusCode);
-                                        PL_01_Splash.Visible = false;
-                                        PL_02_Splash.Visible = false;
-                                        PL_03_Splash.Visible = false;
-                                        PL_04_Splash.Visible = true;
-                                        Activity_Now = 5;
-                                    }
-                                    else
-                                    {
-                                        Application.DoEvents();
-                                        SystemPause = true;
-                                        AddLog("- Scan Log : " + "Proccess End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                        // Create Application :
-                                        AddLog("- Scan Log : " + "Create New Application" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                        string APPID = "";
-                                        APPID = Scanner_HttpPost("DL_01_CreateApplication", "CID=" + CompanyID + "&DID=" + DealerID + "&UID=" + UserID + "&IP=" + IPAddress + "&UNM=" + Auth_Username + "&PAS=" + Auth_Password);
-                                        Application.DoEvents();
-                                        APPID = APPID.Replace("\"", "").Trim();
-                                        if (APPID.IndexOf("RR_") < 0)
+                                    //-------------------------------------------------------------------------------------------------------
+                                    case 3:
                                         {
-                                            AddLog("- Scan Log : " + "Application Created - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                            // Send Image To Server :
-                                            for (int i = 1; i <= 7; i++)
+                                            int StatusCode = 0;
+                                            AddLog("- Scan Log : " + "Proccess End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            if (DeviceID == 1)
                                             {
-                                                Application.DoEvents();
-                                                string ImageNameLog = "";
-                                                PictureBox PBL = new PictureBox();
-                                                switch (i)
-                                                {
-                                                    case 1: { PBL = photoImage; ImageNameLog = "FacePhoto"; break; }
-                                                    case 2: { PBL = visibleImage; ImageNameLog = "IR Front"; break; }
-                                                    case 3: { PBL = visibleImageRear; ImageNameLog = "IR Back"; break; }
-                                                    case 4: { PBL = irImage; ImageNameLog = "Normal Front"; break; }
-                                                    case 5: { PBL = irImageRear; ImageNameLog = "Normal Back"; break; }
-                                                    case 6: { PBL = uvImage; ImageNameLog = "UV Front"; break; }
-                                                    case 7: { PBL = uvImageRear; ImageNameLog = "UV Back"; break; }
-                                                }
-                                                if (PBL.Image != null)
-                                                {
-                                                    try
-                                                    {
-                                                        AddLog("- Scan Log : Starting Upload " + " - " + ImageNameLog + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                        Application.DoEvents();
-                                                        if (Directory.Exists(Application.StartupPath + @"\Photos") == false) { Directory.CreateDirectory(Application.StartupPath + @"\Photos"); }
-                                                        PBL.Image.Save(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                                                        var client = new RestClient(ServerAddress + "/api/DL_02_UploadImage?AppID=" + APPID + "&ImageCode=" + i.ToString());
-                                                        client.Timeout = -1;
-                                                        var request = new RestRequest(Method.POST);
-                                                        request.AddHeader("Content-Type", "multipart/form-data");
-                                                        request.AddFile("files[testfile1.pot]", Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg");
-                                                        IRestResponse IRRES = client.Execute(request);
-                                                        if (File.Exists(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg") == true) { File.Delete(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg"); }
-                                                        Application.DoEvents();
-                                                        if (IRRES.ToString().Replace("\"", "").Trim().ToUpper() == "OK")
-                                                        {
-                                                            AddLog("- Scan Log : Image [ " + ImageNameLog + " ] Uploaded Successful" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                        }
-                                                        else
-                                                        {
-                                                            AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : " + IRRES.ToString().Replace("\"", "").Trim() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                        }
-                                                    }
-                                                    catch (Exception e)
-                                                    {
-                                                        AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : " + e.Message.Trim() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : Not Founded" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                }
-                                                Application.DoEvents();
-                                            }
-                                            Application.DoEvents();
-                                            // Clear Image Temp :
-                                            if (Directory.Exists(Application.StartupPath + @"\Photos") == true)
-                                            {
+                                                pictureBox3.Image = null;
+                                                LBLD_1.Text = "";
+                                                LBLD_2.Text = "";
+                                                LBLD_3.Text = "";
+                                                LBLD_4.Text = "";
+                                                LBLD_5.Text = "";
+                                                T_OK.Visible = false;
+                                                T_Error.Visible = false;
+                                                try
+                                                { if (rfImage.Image != null) { pictureBox3.Image = rfImage.Image; } else { if (photoImage.Image != null) { pictureBox3.Image = photoImage.Image; } } }
+                                                catch (Exception) { }
                                                 try
                                                 {
-                                                    Directory.Delete(Application.StartupPath + @"\Photos", true);
-                                                    AddLog("- Scan Log : Local Image Temp Folder Removed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    if ((lblRFForenames.Text != null) && (lblRFForenames.Text != "")) { LBLD_1.Text = lblRFForenames.Text.Trim().ToUpper(); }
+                                                    if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = lblForenames.Text.Trim().ToUpper(); }
+                                                }
+                                                catch (Exception) { }
+                                                try
+                                                {
+                                                    if ((lblRFSurname.Text != null) && (lblRFSurname.Text != "")) { LBLD_2.Text = lblRFSurname.Text.Trim().ToUpper(); }
+                                                    if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = lblSurname.Text.Trim().ToUpper(); }
+                                                }
+                                                catch (Exception) { }
+                                                try
+                                                {
+                                                    if ((lblRFNationality.Text != null) && (lblRFNationality.Text != "")) { LBLD_3.Text = lblRFNationality.Text.Trim().ToUpper(); }
+                                                    if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = lblNationality.Text.Trim().ToUpper(); }
+                                                }
+                                                catch (Exception) { }
+                                                try
+                                                {
+                                                    if ((lblRFSex.Text != null) && (lblRFSex.Text != "")) { LBLD_4.Text = lblRFSex.Text.Trim().ToUpper(); }
+                                                    if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = lblSex.Text.Trim().ToUpper(); }
+                                                }
+                                                catch (Exception) { }
+                                                try
+                                                {
+                                                    if ((lblRFDocNumber.Text != null) && (lblRFDocNumber.Text != "")) { LBLD_5.Text = lblRFDocNumber.Text.Trim().ToUpper(); }
+                                                    if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = lblDocumentNumber.Text.Trim().ToUpper(); }
+                                                }
+                                                catch (Exception) { }
+                                                int WIDEROK = 0;
+                                                try
+                                                {
+                                                    if (lblRFSurname.Text.Trim().ToUpper() != lblSurname.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                                    if (lblRFForenames.Text.Trim().ToUpper() != lblForenames.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                                    if (lblRFNationality.Text.Trim().ToUpper() != lblNationality.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                                    if (lblRFSex.Text.Trim().ToUpper() != lblSex.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                                    if (lblRFDateOfBirth.Text.Trim().ToUpper() != lblDateOfBirth.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                                    if (lblRFDocNumber.Text.Trim().ToUpper() != lblDocumentNumber.Text.Trim().ToUpper()) { WIDEROK = 1; }
+                                                    if (lblBACStatus.Text.Trim().ToUpper() != "TS_SUCCESS") { WIDEROK = 1; }
                                                 }
                                                 catch (Exception)
                                                 {
-                                                    AddLog("- Scan Log : Local Image Temp Folder Removing Error" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    WIDEROK = 1;
                                                 }
-                                            }
-                                            Application.DoEvents();
-                                            // Publish Application :
-                                            AddLog("- Scan Log : " + "Publish Application - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                            Application.DoEvents();
-                                            string ResPublish = "";
-                                            ResPublish = Scanner_HttpPost("DL_03_Publish", "CID=" + CompanyID + "&DID=" + DealerID + "&UID=" + UserID + "&APPID=" + APPID + "&UNM=" + Auth_Username + "&PAS=" + Auth_Password);
-                                            Application.DoEvents();
-                                            ResPublish = ResPublish.Replace("\"", "").Trim();
-                                            if (ResPublish.IndexOf("RR_") < 0)
-                                            {
-                                                AddLog("- Scan Log : " + "Get Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                Application.DoEvents();
-                                                // Wait for Response :
-                                                bool ErroPageShow = false;
-                                                bool EditPageShow = false;
-                                                bool WaitForRes = true;
-                                                int WaitMin = 0;
-                                                string AppStatusCode = "0";
-                                                while (WaitForRes == true)
+                                                if (WIDEROK == 1) { T_Error.Visible = true; StatusCode = 2; } else { T_OK.Visible = true; StatusCode = 1; }
+                                                try
                                                 {
-                                                    Wait(5000);
-                                                    AppStatusCode = Scanner_HttpPost("DL_04_ApplicationStatus", "APPID=" + APPID);
-                                                    AppStatusCode = AppStatusCode.Replace("\"", "").Trim().ToString();
-                                                    if ((AppStatusCode != "") && (AppStatusCode != "0") && (AppStatusCode != "1") && (AppStatusCode != "2"))
+                                                    if (WIDEROK == 1)
                                                     {
-                                                        WaitForRes = false;
-                                                        ErroPageShow = false;
-                                                        //if (AppStatusCode == "8") { EditPageShow = true; }
-                                                        EditPageShow = true;
+                                                        if ((lblRFSurname.Text.Trim() == "") && (lblSurname.Text.Trim() != "")) { StatusCode = 3; }
+                                                        if ((lblRFForenames.Text.Trim() == "") && (lblForenames.Text.Trim() != "")) { StatusCode = 3; }
+                                                        if ((lblRFNationality.Text.Trim() == "") && (lblNationality.Text.Trim() != "")) { StatusCode = 3; }
+                                                        if ((lblRFSex.Text.Trim() == "") && (lblSex.Text.Trim() != "")) { StatusCode = 3; }
+                                                        if ((lblRFDateOfBirth.Text.Trim() == "") && (lblDateOfBirth.Text.Trim() != "")) { StatusCode = 3; }
+                                                        if ((lblRFDocNumber.Text.Trim() == "") && (lblDocumentNumber.Text.Trim() != "")) { StatusCode = 3; }
+                                                    }
+                                                }
+                                                catch (Exception) { }
+                                                string EXODATE = "";
+                                                try
+                                                {
+                                                    if (lblRF_ExpireDate.Text.Trim() != "") { EXODATE = lblRF_ExpireDate.Text.Trim(); }
+                                                    if (EXODATE == "")
+                                                    {
+                                                        if (lblMRZ_ExpireDate.Text.Trim() != "") { EXODATE = lblMRZ_ExpireDate.Text.Trim(); }
+                                                    }
+                                                }
+                                                catch (Exception) { EXODATE = ""; }
+                                                if (StatusCode == 1)
+                                                {
+                                                    if (EXODATE.Trim() != "")
+                                                    {
+                                                        // Hamid Said When Expires SHoulbe be in Refered .
+                                                        if (ExpiredDateCheck(EXODATE, Get_Date()) == false) { StatusCode = 3; WIDEROK = 1; }
                                                     }
                                                     else
                                                     {
-                                                        WaitMin++;
-                                                        if (WaitMin >= 20) { WaitForRes = false; ErroPageShow = true; EditPageShow = false; }
+                                                        StatusCode = 3; // No Expire Date => Reffered
+                                                        WIDEROK = 1;
                                                     }
                                                 }
-                                                AddLog("- Scan Log : " + "Application Last Status : " + AppStatusCode + " - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                if (WIDEROK == 1) { T_Error.Visible = true; } else { T_OK.Visible = true; }
+                                                if (LBLD_1.Text.Trim() == "") { LBLD_1.Text = "NA"; }
+                                                if (LBLD_2.Text.Trim() == "") { LBLD_2.Text = "NA"; }
+                                                if (LBLD_3.Text.Trim() == "") { LBLD_3.Text = "NA"; }
+                                                if (LBLD_4.Text.Trim() == "") { LBLD_4.Text = "NA"; }
+                                                if (LBLD_5.Text.Trim() == "") { LBLD_5.Text = "NA"; }
+                                                if (lblDocumentType.Text.Trim().ToLower() == "unknown document") { lblDocumentType.Text = "Passport"; }
+                                                SendToServer(StatusCode);
+                                                PL_01_Splash.Visible = false;
+                                                PL_02_Splash.Visible = false;
+                                                PL_03_Splash.Visible = false;
+                                                PL_04_Splash.Visible = true;
+                                                Activity_Now = 5;
+                                            }
+                                            else
+                                            {
                                                 Application.DoEvents();
-                                                if (ErroPageShow == false)
+                                                SystemPause = true;
+                                                AddLog("- Scan Log : " + "Proccess End" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                // Create Application :
+                                                AddLog("- Scan Log : " + "Create New Application" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                string APPID = "";
+                                                APPID = Scanner_HttpPost("DL_01_CreateApplication", "CID=" + CompanyID + "&DID=" + DealerID + "&UID=" + UserID + "&IP=" + IPAddress + "&UNM=" + Auth_Username + "&PAS=" + Auth_Password);
+                                                Application.DoEvents();
+                                                APPID = APPID.Replace("\"", "").Trim();
+                                                if (APPID.IndexOf("RR_") < 0)
                                                 {
-                                                    if (EditPageShow == true)
+                                                    AddLog("- Scan Log : " + "Application Created - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    // Send Image To Server :
+                                                    for (int i = 1; i <= 7; i++)
                                                     {
-                                                        // Get Response :
-                                                        AddLog("- Scan Log : " + "Get Application Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
-                                                        string FieldResult = "";
-                                                        List<ResultItems> ResITM = new List<ResultItems>();
-                                                        try
+                                                        if (UserCancel == true) { break; }
+                                                        string ImageNameLog = "";
+                                                        PictureBox PBL = new PictureBox();
+                                                        switch (i)
                                                         {
-                                                            FieldResult = Scanner_HttpPost("DL_05_Result", "APPID=" + APPID);
-                                                            FieldResult = FieldResult.Trim();
-                                                            if (FieldResult.Substring(0, 1) == "\"") { FieldResult = FieldResult.Substring(1, FieldResult.Length - 1); }
-                                                            FieldResult = FieldResult.Trim();
-                                                            if (FieldResult.Substring(FieldResult.Length - 1, 1) == "\"") { FieldResult = FieldResult.Substring(0, FieldResult.Length - 1); }
-                                                            FieldResult = FieldResult.Replace("\\", "");
-                                                            FieldResult = FieldResult.Trim();
-                                                            ResITM = JsonConvert.DeserializeObject<List<ResultItems>>(FieldResult);
+                                                            case 1: { PBL = photoImage; ImageNameLog = "FacePhoto"; break; }
+                                                            case 2: { PBL = visibleImage; ImageNameLog = "IR Front"; break; }
+                                                            case 3: { PBL = visibleImageRear; ImageNameLog = "IR Back"; break; }
+                                                            case 4: { PBL = irImage; ImageNameLog = "Normal Front"; break; }
+                                                            case 5: { PBL = irImageRear; ImageNameLog = "Normal Back"; break; }
+                                                            case 6: { PBL = uvImage; ImageNameLog = "UV Front"; break; }
+                                                            case 7: { PBL = uvImageRear; ImageNameLog = "UV Back"; break; }
                                                         }
-                                                        catch (Exception) { }
-                                                        AddLog("- Scan Log : " + "Create Dynamic Object For Edit - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                        Application.DoEvents();
-                                                        LBL_1.Text = ""; LBL_1.Visible = false;
-                                                        LBL_2.Text = ""; LBL_2.Visible = false;
-                                                        LBL_3.Text = ""; LBL_3.Visible = false;
-                                                        LBL_4.Text = ""; LBL_4.Visible = false;
-                                                        LBL_5.Text = ""; LBL_5.Visible = false;
-                                                        LBL_6.Text = ""; LBL_6.Visible = false;
-                                                        LBL_7.Text = ""; LBL_7.Visible = false;
-                                                        LBL_8.Text = ""; LBL_8.Visible = false;
-                                                        LBL_9.Text = ""; LBL_9.Visible = false;
-                                                        LBL_10.Text = ""; LBL_10.Visible = false;
-                                                        LBL_11.Text = ""; LBL_11.Visible = false;
-                                                        LBL_12.Text = ""; LBL_12.Visible = false;
-                                                        LBL_13.Text = ""; LBL_13.Visible = false;
-                                                        LBL_14.Text = ""; LBL_14.Visible = false;
-                                                        LBL_15.Text = ""; LBL_15.Visible = false;
-                                                        LBL_16.Text = ""; LBL_16.Visible = false;
-                                                        LBL_17.Text = ""; LBL_17.Visible = false;
-                                                        LBL_18.Text = ""; LBL_18.Visible = false;
-                                                        TXT_1.Text = ""; TXT_1.Visible = false;
-                                                        TXT_2.Text = ""; TXT_2.Visible = false;
-                                                        TXT_3.Text = ""; TXT_3.Visible = false;
-                                                        TXT_4.Text = ""; TXT_4.Visible = false;
-                                                        TXT_5.Text = ""; TXT_5.Visible = false;
-                                                        TXT_6.Text = ""; TXT_6.Visible = false;
-                                                        TXT_7.Text = ""; TXT_7.Visible = false;
-                                                        TXT_8.Text = ""; TXT_8.Visible = false;
-                                                        TXT_9.Text = ""; TXT_9.Visible = false;
-                                                        TXT_10.Text = ""; TXT_10.Visible = false;
-                                                        TXT_11.Text = ""; TXT_11.Visible = false;
-                                                        TXT_12.Text = ""; TXT_12.Visible = false;
-                                                        TXT_13.Text = ""; TXT_13.Visible = false;
-                                                        TXT_14.Text = ""; TXT_14.Visible = false;
-                                                        TXT_15.Text = ""; TXT_15.Visible = false;
-                                                        TXT_16.Text = ""; TXT_16.Visible = false;
-                                                        TXT_17.Text = ""; TXT_17.Visible = false;
-                                                        TXT_18.Text = ""; TXT_18.Visible = false;
-                                                        int DTIT = 0;
-                                                        foreach (ResultItems RW in ResITM)
+                                                        if (PBL.Image != null)
                                                         {
-                                                            switch (RW.ID.ToString().Trim())
+                                                            try
                                                             {
-                                                                case "1": { LBL_1.Text = RW.Key.Trim() + " :"; LBL_1.Visible = true; TXT_1.Text = RW.Value.Trim(); TXT_1.Visible = true; DTIT = 1; break; }
-                                                                case "2": { LBL_2.Text = RW.Key.Trim() + " :"; LBL_2.Visible = true; TXT_2.Text = RW.Value.Trim(); TXT_2.Visible = true; DTIT = 1; break; }
-                                                                case "3": { LBL_3.Text = RW.Key.Trim() + " :"; LBL_3.Visible = true; TXT_3.Text = RW.Value.Trim(); TXT_3.Visible = true; DTIT = 1; break; }
-                                                                case "4": { LBL_4.Text = RW.Key.Trim() + " :"; LBL_4.Visible = true; TXT_4.Text = RW.Value.Trim(); TXT_4.Visible = true; DTIT = 1; break; }
-                                                                case "5": { LBL_5.Text = RW.Key.Trim() + " :"; LBL_5.Visible = true; TXT_5.Text = RW.Value.Trim(); TXT_5.Visible = true; DTIT = 1; break; }
-                                                                case "6": { LBL_6.Text = RW.Key.Trim() + " :"; LBL_6.Visible = true; TXT_6.Text = RW.Value.Trim(); TXT_6.Visible = true; DTIT = 1; break; }
-                                                                case "7": { LBL_7.Text = RW.Key.Trim() + " :"; LBL_7.Visible = true; TXT_7.Text = RW.Value.Trim(); TXT_7.Visible = true; DTIT = 1; break; }
-                                                                case "8": { LBL_8.Text = RW.Key.Trim() + " :"; LBL_8.Visible = true; TXT_8.Text = RW.Value.Trim(); TXT_8.Visible = true; DTIT = 1; break; }
-                                                                case "9": { LBL_9.Text = RW.Key.Trim() + " :"; LBL_9.Visible = true; TXT_9.Text = RW.Value.Trim(); TXT_9.Visible = true; DTIT = 1; break; }
-                                                                case "10": { LBL_10.Text = RW.Key.Trim() + " :"; LBL_10.Visible = true; TXT_10.Text = RW.Value.Trim(); TXT_10.Visible = true; DTIT = 1; break; }
-                                                                case "11": { LBL_11.Text = RW.Key.Trim() + " :"; LBL_11.Visible = true; TXT_11.Text = RW.Value.Trim(); TXT_11.Visible = true; DTIT = 1; break; }
-                                                                case "12": { LBL_12.Text = RW.Key.Trim() + " :"; LBL_12.Visible = true; TXT_12.Text = RW.Value.Trim(); TXT_12.Visible = true; DTIT = 1; break; }
-                                                                case "13": { LBL_13.Text = RW.Key.Trim() + " :"; LBL_13.Visible = true; TXT_13.Text = RW.Value.Trim(); TXT_13.Visible = true; DTIT = 1; break; }
-                                                                case "14": { LBL_14.Text = RW.Key.Trim() + " :"; LBL_14.Visible = true; TXT_14.Text = RW.Value.Trim(); TXT_14.Visible = true; DTIT = 1; break; }
-                                                                case "15": { LBL_15.Text = RW.Key.Trim() + " :"; LBL_15.Visible = true; TXT_15.Text = RW.Value.Trim(); TXT_15.Visible = true; DTIT = 1; break; }
-                                                                case "16": { LBL_16.Text = RW.Key.Trim() + " :"; LBL_16.Visible = true; TXT_16.Text = RW.Value.Trim(); TXT_16.Visible = true; DTIT = 1; break; }
-                                                                case "17": { LBL_17.Text = RW.Key.Trim() + " :"; LBL_17.Visible = true; TXT_17.Text = RW.Value.Trim(); TXT_17.Visible = true; DTIT = 1; break; }
-                                                                case "18": { LBL_18.Text = RW.Key.Trim() + " :"; LBL_18.Visible = true; TXT_18.Text = RW.Value.Trim(); TXT_18.Visible = true; DTIT = 1; break; }
+                                                                AddLog("- Scan Log : Starting Upload " + " - " + ImageNameLog + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                if (Directory.Exists(Application.StartupPath + @"\Photos") == false) { Directory.CreateDirectory(Application.StartupPath + @"\Photos"); }
+                                                                PBL.Image.Save(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                                                                var client = new RestClient(ServerAddress + "/api/DL_02_UploadImage?AppID=" + APPID + "&ImageCode=" + i.ToString());
+                                                                client.Timeout = -1;
+                                                                var request = new RestRequest(Method.POST);
+                                                                request.AddHeader("Content-Type", "multipart/form-data");
+                                                                request.AddFile("files[testfile1.pot]", Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg");
+                                                                IRestResponse IRRES = client.Execute(request);
+                                                                if (File.Exists(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg") == true) { File.Delete(Application.StartupPath + @"\Photos\" + i.ToString() + ".jpg"); }
+                                                                Application.DoEvents();
+                                                                if (IRRES.ToString().Replace("\"", "").Trim().ToUpper() == "OK")
+                                                                {
+                                                                    AddLog("- Scan Log : Image [ " + ImageNameLog + " ] Uploaded Successful" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                }
+                                                                else
+                                                                {
+                                                                    AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : " + IRRES.ToString().Replace("\"", "").Trim() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                }
+                                                            }
+                                                            catch (Exception e)
+                                                            {
+                                                                AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : " + e.Message.Trim() + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                             }
                                                         }
-                                                        if (DTIT == 0)
+                                                        else
                                                         {
-                                                            LBL_1.Text = "Firstname" + " :"; LBL_1.Visible = true; TXT_1.Text = ""; TXT_1.Visible = true; DTIT = 1;
-                                                            LBL_2.Text = "Surname" + " :"; LBL_2.Visible = true; TXT_2.Text = ""; TXT_2.Visible = true; DTIT = 1;
-                                                            LBL_3.Text = "Date of Birth" + " :"; LBL_3.Visible = true; TXT_3.Text = ""; TXT_3.Visible = true; DTIT = 1;
-                                                            LBL_4.Text = "Licence Number" + " :"; LBL_4.Visible = true; TXT_4.Text = ""; TXT_4.Visible = true; DTIT = 1;
-                                                            LBL_5.Text = "Licence Expiry" + " :"; LBL_5.Visible = true; TXT_5.Text = ""; TXT_5.Visible = true; DTIT = 1;
-                                                            LBL_6.Text = "Address" + " :"; LBL_6.Visible = true; TXT_6.Text = ""; TXT_6.Visible = true; DTIT = 1;
+                                                            AddLog("- Scan Log : Image Upload Failed" + " - " + ImageNameLog + " : Not Founded" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         }
-                                                        // Show Result Page :
-                                                        AddLog("- Scan Log : " + "Show Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
-                                                        PageProcc_Show = false;
-                                                        while (Finish_Confirm == false) { Application.DoEvents(); }
-                                                        button7.Enabled = true;
-                                                        label28.Visible = false;
-                                                        label30.Visible = false;
-                                                        PL_01_Splash.Visible = false;
-                                                        PL_02_Splash.Visible = false;
-                                                        PL_03_Splash.Visible = false;
-                                                        PL_04_Splash.Visible = false;
-                                                        PL_Error.Visible = false;
-                                                        PL_Show_Info.Visible = false;
-                                                        PL_DVLA.Visible = false;
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = false;
-                                                        PL_Succ.Visible = false;
-                                                        PL_Submit.Visible = false;
-                                                        PL_Show_Info.Enabled = true;
-                                                        PL_Show_Info.Visible = true;
-                                                        // Wait For Accept Response :
-                                                        Info_Confirm = false;
-                                                        while (Info_Confirm == false) { Application.DoEvents(); }
-                                                        button7.Enabled = false;
-                                                        PL_Show_Info.Enabled = false;
-                                                        AddLog("- Scan Log : " + "Accept Application Result By User - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    }
+                                                    Application.DoEvents();
+                                                    // Clear Image Temp :
+                                                    if (Directory.Exists(Application.StartupPath + @"\Photos") == true)
+                                                    {
+                                                        try
+                                                        {
+                                                            Directory.Delete(Application.StartupPath + @"\Photos", true);
+                                                            AddLog("- Scan Log : Local Image Temp Folder Removed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            AddLog("- Scan Log : Local Image Temp Folder Removing Error" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        }
+                                                    }
+                                                    Application.DoEvents();
+                                                    if (UserCancel == true) { break; }
+                                                    // Publish Application :
+                                                    AddLog("- Scan Log : " + "Publish Application - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    Application.DoEvents();
+                                                    string ResPublish = "";
+                                                    ResPublish = Scanner_HttpPost("DL_03_Publish", "CID=" + CompanyID + "&DID=" + DealerID + "&UID=" + UserID + "&APPID=" + APPID + "&UNM=" + Auth_Username + "&PAS=" + Auth_Password);
+                                                    Application.DoEvents();
+                                                    ResPublish = ResPublish.Replace("\"", "").Trim();
+                                                    if (ResPublish.IndexOf("RR_") < 0)
+                                                    {
+                                                        if (UserCancel == true) { break; }
+                                                        AddLog("- Scan Log : " + "Get Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
-                                                        // Send Last Changes :
-                                                        AddLog("- Scan Log : " + "Save Application Last Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        // Wait for Response :
+                                                        bool ErroPageShow = false;
+                                                        bool EditPageShow = false;
+                                                        bool WaitForRes = true;
+                                                        int WaitMin = 0;
+                                                        string AppStatusCode = "0";
+                                                        while (WaitForRes == true)
+                                                        {
+                                                            if (UserCancel == true) { break; }
+                                                            Wait(1000);
+                                                            if (UserCancel == true) { break; }
+                                                            Wait(1000);
+                                                            if (UserCancel == true) { break; }
+                                                            Wait(1000);
+                                                            if (UserCancel == true) { break; }
+                                                            Wait(1000);
+                                                            if (UserCancel == true) { break; }
+                                                            Wait(1000);
+                                                            if (UserCancel == true) { break; }
+                                                            AppStatusCode = Scanner_HttpPost("DL_04_ApplicationStatus", "APPID=" + APPID);
+                                                            AppStatusCode = AppStatusCode.Replace("\"", "").Trim().ToString();
+                                                            if ((AppStatusCode != "") && (AppStatusCode != "0") && (AppStatusCode != "1") && (AppStatusCode != "2"))
+                                                            {
+                                                                WaitForRes = false;
+                                                                ErroPageShow = false;
+                                                                //if (AppStatusCode == "8") { EditPageShow = true; }
+                                                                EditPageShow = true;
+                                                            }
+                                                            else
+                                                            {
+                                                                WaitMin++;
+                                                                if (WaitMin >= 20) { WaitForRes = false; ErroPageShow = true; EditPageShow = false; }
+                                                            }
+                                                        }
+                                                        AddLog("- Scan Log : " + "Application Last Status : " + AppStatusCode + " - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                         Application.DoEvents();
-                                                        if (TXT_1.Visible == true) { var T1 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=1&Key=" + LBL_1.Text.Replace(":", "").Trim() + "&Value=" + TXT_1.Text.Trim()); }
-                                                        if (TXT_2.Visible == true) { var T2 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=2&Key=" + LBL_2.Text.Replace(":", "").Trim() + "&Value=" + TXT_2.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_3.Visible == true) { var T3 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=3&Key=" + LBL_3.Text.Replace(":", "").Trim() + "&Value=" + TXT_3.Text.Trim()); }
-                                                        if (TXT_4.Visible == true) { var T4 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=4&Key=" + LBL_4.Text.Replace(":", "").Trim() + "&Value=" + TXT_4.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_5.Visible == true) { var T5 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=5&Key=" + LBL_5.Text.Replace(":", "").Trim() + "&Value=" + TXT_5.Text.Trim()); }
-                                                        if (TXT_6.Visible == true) { var T6 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=6&Key=" + LBL_6.Text.Replace(":", "").Trim() + "&Value=" + TXT_6.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_7.Visible == true) { var T7 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=7&Key=" + LBL_7.Text.Replace(":", "").Trim() + "&Value=" + TXT_7.Text.Trim()); }
-                                                        if (TXT_8.Visible == true) { var T8 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=8&Key=" + LBL_8.Text.Replace(":", "").Trim() + "&Value=" + TXT_8.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_9.Visible == true) { var T9 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=9&Key=" + LBL_9.Text.Replace(":", "").Trim() + "&Value=" + TXT_9.Text.Trim()); }
-                                                        if (TXT_10.Visible == true) { var T10 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=10&Key=" + LBL_10.Text.Replace(":", "").Trim() + "&Value=" + TXT_10.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_11.Visible == true) { var T11 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=11&Key=" + LBL_11.Text.Replace(":", "").Trim() + "&Value=" + TXT_11.Text.Trim()); }
-                                                        if (TXT_12.Visible == true) { var T12 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=12&Key=" + LBL_12.Text.Replace(":", "").Trim() + "&Value=" + TXT_12.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_13.Visible == true) { var T13 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=13&Key=" + LBL_13.Text.Replace(":", "").Trim() + "&Value=" + TXT_13.Text.Trim()); }
-                                                        if (TXT_14.Visible == true) { var T14 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=14&Key=" + LBL_14.Text.Replace(":", "").Trim() + "&Value=" + TXT_14.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_15.Visible == true) { var T15 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=15&Key=" + LBL_15.Text.Replace(":", "").Trim() + "&Value=" + TXT_15.Text.Trim()); }
-                                                        if (TXT_16.Visible == true) { var T16 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=16&Key=" + LBL_16.Text.Replace(":", "").Trim() + "&Value=" + TXT_16.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        if (TXT_17.Visible == true) { var T17 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=17&Key=" + LBL_17.Text.Replace(":", "").Trim() + "&Value=" + TXT_17.Text.Trim()); }
-                                                        if (TXT_18.Visible == true) { var T18 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=18&Key=" + LBL_18.Text.Replace(":", "").Trim() + "&Value=" + TXT_18.Text.Trim()); }
-                                                        Application.DoEvents();
-                                                        // Show Phone And Email Page :
-                                                        //TXT_Email.Text = "";
-                                                        //TXT_Phone.Text = "";
-                                                        //Btn_Finished.Enabled = true;
-                                                        //label28.Visible = false;
-                                                        //label30.Visible = false;
-                                                        //PL_01_Splash.Visible = false;
-                                                        //PL_02_Splash.Visible = false;
-                                                        //PL_03_Splash.Visible = false;
-                                                        //PL_04_Splash.Visible = false;
-                                                        //PL_Error.Visible = false;
-                                                        //PL_Show_Info.Visible = false;
-                                                        //PL_Succ.Visible = false;
-                                                        //PL_Submit.Visible = false;
-                                                        //PL_Submit.Enabled = true;
-                                                        //PL_Submit.Visible = true;
-                                                        //Finish_Confirm = false;
-                                                        //while (Finish_Confirm == false) { Application.DoEvents(); }
-                                                        //Btn_Finished.Enabled = false;
-                                                        //PL_Submit.Enabled = false;
-                                                        // Send Email And Phone To Server :
-                                                        var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
-                                                        // Send Call Back URl :
-                                                        CallBackURL_Post(APPID);
-                                                        Application.DoEvents();
-                                                        // DVLA Form :
-                                                        label28.Visible = false;
-                                                        label30.Visible = false;
-                                                        PL_01_Splash.Visible = false;
-                                                        PL_02_Splash.Visible = false;
-                                                        PL_03_Splash.Visible = false;
-                                                        PL_04_Splash.Visible = false;
-                                                        PL_Error.Visible = false;
-                                                        PL_Show_Info.Visible = false;
-                                                        PL_Submit.Visible = false;
-                                                        textBox6.Text = "";
-                                                        textBox7.Text = "";
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = false;
-                                                        PageDVLAWait = true;
-                                                        label39.Enabled = true;
-                                                        label40.Enabled = true;
-                                                        label41.Enabled = true;
-                                                        label42.Enabled = true;
-                                                        label43.Enabled = true;
-                                                        textBox6.Enabled = true;
-                                                        textBox7.Enabled = true;
-                                                        button8.Enabled = true;
-                                                        PL_DVLA.Visible = true;
-                                                        PL_DVLA.Enabled = true;
-                                                        Application.DoEvents();
-                                                        while (PageDVLAWait == true) { Application.DoEvents(); }
-                                                        label39.Enabled = false;
-                                                        label40.Enabled = false;
-                                                        label41.Enabled = false;
-                                                        label42.Enabled = false;
-                                                        label43.Enabled = false;
-                                                        textBox6.Enabled = false;
-                                                        textBox7.Enabled = false;
-                                                        button8.Enabled = false;
-                                                        PL_DVLA_WT.Visible = true;
-                                                        PL_DVLA_WT.Enabled = true;
-                                                        WGPLWT.Visible = true;
-                                                        WGPLWT.Enabled = true;
-                                                        Application.DoEvents();
-                                                        Wait(3000);
-                                                        PL_DVLA.Visible = false;
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = true;
-                                                        PL_DVLA_OK.Enabled = true;
-                                                        PageDVLAWait = true;
-                                                        Application.DoEvents();
-                                                        while (PageDVLAWait == true) { Application.DoEvents(); }
-                                                        // Show Thanks Page :
-                                                        AddLog("- Scan Log : " + "End Application With Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                        Application.DoEvents();
-                                                        label28.Visible = false;
-                                                        label30.Visible = false;
-                                                        PL_01_Splash.Visible = false;
-                                                        PL_02_Splash.Visible = false;
-                                                        PL_03_Splash.Visible = false;
-                                                        PL_04_Splash.Visible = false;
-                                                        PL_Error.Visible = false;
-                                                        PL_Show_Info.Visible = false;
-                                                        PL_Submit.Visible = false;
-                                                        PL_DVLA.Visible = false;
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = false;
-                                                        PL_Succ.Enabled = true;
-                                                        PL_Succ.Visible = true;
+                                                        if (UserCancel == true) { break; }
+                                                        if (ErroPageShow == false)
+                                                        {
+                                                            if (EditPageShow == true)
+                                                            {
+                                                                // Get Response :
+                                                                AddLog("- Scan Log : " + "Get Application Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                string FieldResult = "";
+                                                                List<ResultItems> ResITM = new List<ResultItems>();
+                                                                if (UserCancel == true) { break; }
+                                                                try
+                                                                {
+                                                                    FieldResult = Scanner_HttpPost("DL_05_Result", "APPID=" + APPID);
+                                                                    FieldResult = FieldResult.Trim();
+                                                                    if (FieldResult.Substring(0, 1) == "\"") { FieldResult = FieldResult.Substring(1, FieldResult.Length - 1); }
+                                                                    FieldResult = FieldResult.Trim();
+                                                                    if (FieldResult.Substring(FieldResult.Length - 1, 1) == "\"") { FieldResult = FieldResult.Substring(0, FieldResult.Length - 1); }
+                                                                    FieldResult = FieldResult.Replace("\\", "");
+                                                                    FieldResult = FieldResult.Trim();
+                                                                    ResITM = JsonConvert.DeserializeObject<List<ResultItems>>(FieldResult);
+                                                                }
+                                                                catch (Exception) { }
+                                                                if (UserCancel == true) { break; }
+                                                                AddLog("- Scan Log : " + "Create Dynamic Object For Edit - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                LBL_1.Text = "Firstname :"; LBL_1.Visible = true;
+                                                                LBL_2.Text = "Surname :"; LBL_2.Visible = true;
+                                                                LBL_3.Text = "Date of Birth :"; LBL_3.Visible = true;
+                                                                LBL_4.Text = "Licence Number :"; LBL_4.Visible = true;
+                                                                LBL_5.Text = "Licence Expiry :"; LBL_5.Visible = true;
+                                                                LBL_6.Text = "Address :"; LBL_6.Visible = true;
+                                                                LBL_1.ForeColor = Color.Black;
+                                                                LBL_2.ForeColor = Color.Black;
+                                                                LBL_3.ForeColor = Color.Black;
+                                                                LBL_4.ForeColor = Color.Black;
+                                                                LBL_5.ForeColor = Color.Black;
+                                                                LBL_6.ForeColor = Color.Black;
+                                                                label47.Visible = false;
+                                                                TXT_1.Text = ""; TXT_1.Visible = true;
+                                                                TXT_2.Text = ""; TXT_2.Visible = true;
+                                                                TXT_3.Text = ""; TXT_3.Visible = true;
+                                                                TXT_4.Text = ""; TXT_4.Visible = true;
+                                                                TXT_5.Text = ""; TXT_5.Visible = true;
+                                                                TXT_6.Text = ""; TXT_6.Visible = true;
+                                                                int DTIT = 0;
+                                                                foreach (ResultItems RW in ResITM)
+                                                                {
+                                                                    if (UserCancel == true) { break; }
+                                                                    switch (RW.ID.ToString().Trim())
+                                                                    {
+                                                                        case "1": { TXT_1.Text = RW.Value.Trim(); DTIT = 1; break; }
+                                                                        case "2": { TXT_2.Text = RW.Value.Trim(); DTIT = 1; break; }
+                                                                        case "3": { TXT_3.Text = RW.Value.Trim(); DTIT = 1; break; }
+                                                                        case "4": { TXT_4.Text = RW.Value.Trim(); DTIT = 1; break; }
+                                                                        case "5": { TXT_5.Text = RW.Value.Trim(); DTIT = 1; break; }
+                                                                        case "6": { TXT_6.Text = RW.Value.Trim(); DTIT = 1; break; }
+                                                                    }
+                                                                }
+                                                                if (DTIT == 0)
+                                                                {
+                                                                    TXT_1.Text = "";
+                                                                    TXT_2.Text = "";
+                                                                    TXT_3.Text = "";
+                                                                    TXT_4.Text = "";
+                                                                    TXT_5.Text = "";
+                                                                    TXT_6.Text = "";
+                                                                    DTIT = 1;
+                                                                }
+                                                                //----------------------------------------------------------------------------------------------------
+                                                                // Accuant Date / Time remove :
+                                                                try
+                                                                {
+                                                                    if (UserCancel == true) { break; }
+                                                                    if (LBL_1.Text.ToLower().Trim() == ("Date of Birth :").ToLower().Trim()) { TXT_1.Text = TXT_1.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_2.Text.ToLower().Trim() == ("Date of Birth :").ToLower().Trim()) { TXT_2.Text = TXT_2.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_3.Text.ToLower().Trim() == ("Date of Birth :").ToLower().Trim()) { TXT_3.Text = TXT_3.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_4.Text.ToLower().Trim() == ("Date of Birth :").ToLower().Trim()) { TXT_4.Text = TXT_4.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_5.Text.ToLower().Trim() == ("Date of Birth :").ToLower().Trim()) { TXT_5.Text = TXT_5.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_6.Text.ToLower().Trim() == ("Date of Birth :").ToLower().Trim()) { TXT_6.Text = TXT_6.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_1.Text.ToLower().Trim() == ("Licence Expiry :").ToLower().Trim()) { TXT_1.Text = TXT_1.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_2.Text.ToLower().Trim() == ("Licence Expiry :").ToLower().Trim()) { TXT_2.Text = TXT_2.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_3.Text.ToLower().Trim() == ("Licence Expiry :").ToLower().Trim()) { TXT_3.Text = TXT_3.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_4.Text.ToLower().Trim() == ("Licence Expiry :").ToLower().Trim()) { TXT_4.Text = TXT_4.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_5.Text.ToLower().Trim() == ("Licence Expiry :").ToLower().Trim()) { TXT_5.Text = TXT_5.Text.Split(' ')[0].ToString().Trim(); }
+                                                                    if (LBL_6.Text.ToLower().Trim() == ("Licence Expiry :").ToLower().Trim()) { TXT_6.Text = TXT_6.Text.Split(' ')[0].ToString().Trim(); }
+                                                                }
+                                                                catch (Exception)
+                                                                { }
+                                                                //----------------------------------------------------------------------------------------------------
+                                                                // Show Result Page :
+                                                                if (UserCancel == true) { break; }
+                                                                AddLog("- Scan Log : " + "Show Application Status - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                PageProcc_Show = false;
+                                                                if (UserCancel == true) { break; }
+                                                                while (Finish_Confirm == false) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                if (UserCancel == true) { break; }
+                                                                button7.Enabled = true;
+                                                                label28.Visible = false;
+                                                                label30.Visible = false;
+                                                                PL_01_Splash.Visible = false;
+                                                                PL_02_Splash.Visible = false;
+                                                                PL_03_Splash.Visible = false;
+                                                                PL_04_Splash.Visible = false;
+                                                                PL_Error.Visible = false;
+                                                                PL_Show_Info.Visible = false;
+                                                                PL_DVLA.Visible = false;
+                                                                PL_DVLA_WT.Visible = false;
+                                                                PL_DVLA_OK.Visible = false;
+                                                                PL_Succ.Visible = false;
+                                                                PL_Submit.Visible = false;
+
+
+
+
+                                                                PL_Show_Info.Enabled = true;
+                                                                PL_Show_Info.Visible = true;
+                                                                if (UserCancel == true) { break; }
+                                                                // Wait For Accept Response :
+                                                                KeyboardActived = false;
+                                                                Info_Confirm = false;
+                                                                if (UserCancel == true) { break; }
+                                                                while (Info_Confirm == false) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                if (UserCancel == true) { break; }
+                                                                KeyboardActived = true;
+                                                                button7.Enabled = false;
+                                                                PL_Show_Info.Enabled = false;
+                                                                AddLog("- Scan Log : " + "Accept Application Result By User - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                // Send Last Changes :
+                                                                AddLog("- Scan Log : " + "Save Application Last Result - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                if (TXT_1.Visible == true) { var T1 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=1&Key=" + (LBL_1.Text.Replace(":", "").Replace("*", "").Trim()).Trim() + "&Value=" + TXT_1.Text.Trim()); }
+                                                                if (TXT_2.Visible == true) { var T2 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=2&Key=" + (LBL_2.Text.Replace(":", "").Replace("*", "").Trim()).Trim() + "&Value=" + TXT_2.Text.Trim()); }
+                                                                Application.DoEvents();
+                                                                if (TXT_3.Visible == true) { var T3 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=3&Key=" + (LBL_3.Text.Replace(":", "").Replace("*", "").Trim()).Trim() + "&Value=" + TXT_3.Text.Trim()); }
+                                                                if (TXT_4.Visible == true) { var T4 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=4&Key=" + (LBL_4.Text.Replace(":", "").Replace("*", "").Trim()).Trim() + "&Value=" + TXT_4.Text.Trim()); }
+                                                                Application.DoEvents();
+                                                                if (TXT_5.Visible == true) { var T5 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=5&Key=" + (LBL_5.Text.Replace(":", "").Replace("*", "").Trim()).Trim() + "&Value=" + TXT_5.Text.Trim()); }
+                                                                if (TXT_6.Visible == true) { var T6 = Scanner_HttpPost("DL_06_SaveResult", "APPID=" + APPID + "&DocID=6&Key=" + (LBL_6.Text.Replace(":", "").Replace("*", "").Trim()).Trim() + "&Value=" + TXT_6.Text.Trim()); }
+                                                                Application.DoEvents();
+                                                                // Show Phone And Email Page :
+                                                                //TXT_Email.Text = "";
+                                                                //TXT_Phone.Text = "";
+                                                                //Btn_Finished.Enabled = true;
+                                                                //label28.Visible = false;
+                                                                //label30.Visible = false;
+                                                                //PL_01_Splash.Visible = false;
+                                                                //PL_02_Splash.Visible = false;
+                                                                //PL_03_Splash.Visible = false;
+                                                                //PL_04_Splash.Visible = false;
+                                                                //PL_Error.Visible = false;
+                                                                //PL_Show_Info.Visible = false;
+                                                                //PL_Succ.Visible = false;
+                                                                //PL_Submit.Visible = false;
+                                                                //PL_Submit.Enabled = true;
+                                                                //PL_Submit.Visible = true;
+                                                                //Finish_Confirm = false;
+                                                                //while (Finish_Confirm == false) { Application.DoEvents(); }
+                                                                //Btn_Finished.Enabled = false;
+                                                                //PL_Submit.Enabled = false;
+                                                                // Send Email And Phone To Server :
+                                                                if (UserCancel == true) { break; }
+                                                                var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
+                                                                // Send Call Back URl :
+                                                                if (UserCancel == true) { break; }
+                                                                CallBackURL_Post(APPID);
+                                                                Application.DoEvents();
+                                                                if (DVLA_En == 1)
+                                                                {
+                                                                    // DVLA Form :
+                                                                    label28.Visible = false;
+                                                                    label30.Visible = false;
+                                                                    PL_01_Splash.Visible = false;
+                                                                    PL_02_Splash.Visible = false;
+                                                                    PL_03_Splash.Visible = false;
+                                                                    PL_04_Splash.Visible = false;
+                                                                    PL_Error.Visible = false;
+                                                                    PL_Show_Info.Visible = false;
+                                                                    PL_Submit.Visible = false;
+                                                                    textBox6.Text = "";
+                                                                    textBox7.Text = "";
+                                                                    PL_DVLA_WT.Visible = false;
+                                                                    PL_DVLA_OK.Visible = false;
+                                                                    PageDVLAWait = true;
+                                                                    label39.Enabled = true;
+                                                                    label40.Enabled = true;
+                                                                    label41.Enabled = true;
+                                                                    label42.Enabled = true;
+                                                                    label43.Enabled = true;
+                                                                    textBox6.Enabled = true;
+                                                                    textBox7.Enabled = true;
+                                                                    button8.Enabled = true;
+                                                                    PL_DVLA.Visible = true;
+                                                                    PL_DVLA.Enabled = true;
+                                                                    Application.DoEvents();
+                                                                    while (PageDVLAWait == true) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                    if (UserCancel == true) { break; }
+                                                                    label39.Enabled = false;
+                                                                    label40.Enabled = false;
+                                                                    label41.Enabled = false;
+                                                                    label42.Enabled = false;
+                                                                    label43.Enabled = false;
+                                                                    textBox6.Enabled = false;
+                                                                    textBox7.Enabled = false;
+                                                                    button8.Enabled = false;
+                                                                    PL_DVLA_WT.Visible = true;
+                                                                    PL_DVLA_WT.Enabled = true;
+                                                                    WGPLWT.Visible = true;
+                                                                    WGPLWT.Enabled = true;
+                                                                    Application.DoEvents();
+                                                                    Wait(3000);
+                                                                    PL_DVLA.Visible = false;
+                                                                    PL_DVLA_WT.Visible = false;
+                                                                    PL_DVLA_OK.Visible = true;
+                                                                    PL_DVLA_OK.Enabled = true;
+                                                                    PageDVLAWait = true;
+                                                                    Application.DoEvents();
+                                                                    while (PageDVLAWait == true) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                    if (UserCancel == true) { break; }
+                                                                }
+                                                                // Show Thanks Page :
+                                                                AddLog("- Scan Log : " + "End Application With Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                label28.Visible = false;
+                                                                label30.Visible = false;
+                                                                PL_01_Splash.Visible = false;
+                                                                PL_02_Splash.Visible = false;
+                                                                PL_03_Splash.Visible = false;
+                                                                PL_04_Splash.Visible = false;
+                                                                PL_Error.Visible = false;
+                                                                PL_Show_Info.Visible = false;
+                                                                PL_Submit.Visible = false;
+                                                                PL_DVLA.Visible = false;
+                                                                PL_DVLA_WT.Visible = false;
+                                                                PL_DVLA_OK.Visible = false;
+                                                                PL_Succ.Enabled = true;
+                                                                PL_Succ.Visible = true;
+                                                            }
+                                                            else
+                                                            {
+                                                                // Show Phone And Email Page :
+                                                                //TXT_Email.Text = "";
+                                                                //TXT_Phone.Text = "";
+                                                                //Btn_Finished.Enabled = true;
+                                                                //label28.Visible = false;
+                                                                //label30.Visible = false;
+                                                                //PL_01_Splash.Visible = false;
+                                                                //PL_02_Splash.Visible = false;
+                                                                //PL_03_Splash.Visible = false;
+                                                                //PL_04_Splash.Visible = false;
+                                                                //PL_Error.Visible = false;
+                                                                //PL_Show_Info.Visible = false;
+                                                                //PL_Succ.Visible = false;
+                                                                //PL_Submit.Visible = false;
+                                                                //PL_Submit.Enabled = true;
+                                                                //PL_Submit.Visible = true;
+                                                                //Finish_Confirm = false;
+                                                                if (UserCancel == true) { break; }
+                                                                while (Finish_Confirm == false) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                if (UserCancel == true) { break; }
+                                                                //Btn_Finished.Enabled = false;
+                                                                // Send Email And Phone To Server :
+                                                                var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
+                                                                // Send Call Back URl :
+                                                                if (UserCancel == true) { break; }
+                                                                CallBackURL_Post(APPID);
+                                                                KeyboardActived = false;
+                                                                Application.DoEvents();
+                                                                if (DVLA_En == 1)
+                                                                {
+                                                                    // DVLA Form :
+                                                                    label28.Visible = false;
+                                                                    label30.Visible = false;
+                                                                    PL_01_Splash.Visible = false;
+                                                                    PL_02_Splash.Visible = false;
+                                                                    PL_03_Splash.Visible = false;
+                                                                    PL_04_Splash.Visible = false;
+                                                                    PL_Error.Visible = false;
+                                                                    PL_Show_Info.Visible = false;
+                                                                    PL_Submit.Visible = false;
+                                                                    textBox6.Text = "";
+                                                                    textBox7.Text = "";
+                                                                    PL_DVLA_WT.Visible = false;
+                                                                    PL_DVLA_OK.Visible = false;
+                                                                    PageDVLAWait = true;
+                                                                    label39.Enabled = true;
+                                                                    label40.Enabled = true;
+                                                                    label41.Enabled = true;
+                                                                    label42.Enabled = true;
+                                                                    label43.Enabled = true;
+                                                                    textBox6.Enabled = true;
+                                                                    textBox7.Enabled = true;
+                                                                    button8.Enabled = true;
+                                                                    PL_DVLA.Visible = true;
+                                                                    PL_DVLA.Enabled = true;
+                                                                    Application.DoEvents();
+                                                                    while (PageDVLAWait == true) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                    if (UserCancel == true) { break; }
+                                                                    label39.Enabled = false;
+                                                                    label40.Enabled = false;
+                                                                    label41.Enabled = false;
+                                                                    label42.Enabled = false;
+                                                                    label43.Enabled = false;
+                                                                    textBox6.Enabled = false;
+                                                                    textBox7.Enabled = false;
+                                                                    button8.Enabled = false;
+                                                                    PL_DVLA_WT.Visible = true;
+                                                                    PL_DVLA_WT.Enabled = true;
+                                                                    WGPLWT.Visible = true;
+                                                                    WGPLWT.Enabled = true;
+                                                                    Application.DoEvents();
+                                                                    Wait(3000);
+                                                                    PL_DVLA.Visible = false;
+                                                                    PL_DVLA_WT.Visible = false;
+                                                                    PL_DVLA_OK.Visible = true;
+                                                                    PL_DVLA_OK.Enabled = true;
+                                                                    PageDVLAWait = true;
+                                                                    Application.DoEvents();
+                                                                    while (PageDVLAWait == true) { if (UserCancel == true) { break; } Application.DoEvents(); }
+                                                                    if (UserCancel == true) { break; }
+                                                                }
+                                                                // Show Thanks Page :
+                                                                if (UserCancel == true) { break; }
+                                                                AddLog("- Scan Log : " + "End Application Without Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                                Application.DoEvents();
+                                                                label28.Visible = false;
+                                                                label30.Visible = false;
+                                                                PL_01_Splash.Visible = false;
+                                                                PL_02_Splash.Visible = false;
+                                                                PL_03_Splash.Visible = false;
+                                                                PL_04_Splash.Visible = false;
+                                                                PL_Error.Visible = false;
+                                                                PL_Show_Info.Visible = false;
+                                                                PL_Submit.Visible = false;
+                                                                PL_DVLA.Visible = false;
+                                                                PL_DVLA_WT.Visible = false;
+                                                                PL_DVLA_OK.Visible = false;
+                                                                PL_Succ.Enabled = true;
+                                                                PL_Succ.Visible = true;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            AddLog("- Scan Log : " + "Application Validate Failed - ID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                            // Show Error Page :
+                                                            CallBackURL_Post(APPID);
+                                                            Application.DoEvents();
+                                                            label32.Text = "The server was not responsive, please try again";
+                                                            label28.Visible = false;
+                                                            label30.Visible = false;
+                                                            PL_01_Splash.Visible = false;
+                                                            PL_02_Splash.Visible = false;
+                                                            PL_03_Splash.Visible = false;
+                                                            PL_04_Splash.Visible = false;
+                                                            PL_Error.Visible = false;
+                                                            PL_Show_Info.Visible = false;
+                                                            PL_Succ.Visible = false;
+                                                            PL_Submit.Visible = false;
+                                                            PL_Error.Enabled = true;
+                                                            PL_Error.Visible = true;
+                                                        }
                                                     }
                                                     else
                                                     {
-                                                        // Show Phone And Email Page :
-                                                        //TXT_Email.Text = "";
-                                                        //TXT_Phone.Text = "";
-                                                        //Btn_Finished.Enabled = true;
-                                                        //label28.Visible = false;
-                                                        //label30.Visible = false;
-                                                        //PL_01_Splash.Visible = false;
-                                                        //PL_02_Splash.Visible = false;
-                                                        //PL_03_Splash.Visible = false;
-                                                        //PL_04_Splash.Visible = false;
-                                                        //PL_Error.Visible = false;
-                                                        //PL_Show_Info.Visible = false;
-                                                        //PL_Succ.Visible = false;
-                                                        //PL_Submit.Visible = false;
-                                                        //PL_Submit.Enabled = true;
-                                                        //PL_Submit.Visible = true;
-                                                        //Finish_Confirm = false;
-                                                        while (Finish_Confirm == false) { Application.DoEvents(); }
-                                                        //Btn_Finished.Enabled = false;
-                                                        // Send Email And Phone To Server :
-                                                        var TL = Scanner_HttpPost("DL_08_EMPH", "APPID=" + APPID + "&E=" + TXT_Email.Text.Trim() + "&P=" + TXT_Phone.Text.Trim());
-                                                        // Send Call Back URl :
+                                                        AddLog("- Scan Log : " + "Publish Application Failed - ID : " + APPID + " - Code : " + ResPublish + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                        // Show Error Page :
                                                         CallBackURL_Post(APPID);
                                                         Application.DoEvents();
-                                                        // DVLA Form :
+                                                        label32.Text = "Oops! Something went wrong ...";
                                                         label28.Visible = false;
                                                         label30.Visible = false;
                                                         PL_01_Splash.Visible = false;
@@ -1648,70 +1905,17 @@ namespace IDV_Reader
                                                         PL_04_Splash.Visible = false;
                                                         PL_Error.Visible = false;
                                                         PL_Show_Info.Visible = false;
+                                                        PL_Succ.Visible = false;
                                                         PL_Submit.Visible = false;
-                                                        textBox6.Text = "";
-                                                        textBox7.Text = "";
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = false;
-                                                        PageDVLAWait = true;
-                                                        label39.Enabled = true;
-                                                        label40.Enabled = true;
-                                                        label41.Enabled = true;
-                                                        label42.Enabled = true;
-                                                        label43.Enabled = true;
-                                                        textBox6.Enabled = true;
-                                                        textBox7.Enabled = true;
-                                                        button8.Enabled = true;
-                                                        PL_DVLA.Visible = true;
-                                                        PL_DVLA.Enabled = true;
-                                                        Application.DoEvents();
-                                                        while (PageDVLAWait == true) { Application.DoEvents(); }
-                                                        label39.Enabled = false;
-                                                        label40.Enabled = false;
-                                                        label41.Enabled = false;
-                                                        label42.Enabled = false;
-                                                        label43.Enabled = false;
-                                                        textBox6.Enabled = false;
-                                                        textBox7.Enabled = false;
-                                                        button8.Enabled = false;
-                                                        PL_DVLA_WT.Visible = true;
-                                                        PL_DVLA_WT.Enabled = true;
-                                                        WGPLWT.Visible = true;
-                                                        WGPLWT.Enabled = true;
-                                                        Application.DoEvents();
-                                                        Wait(3000);
-                                                        PL_DVLA.Visible = false;
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = true;
-                                                        PL_DVLA_OK.Enabled = true;
-                                                        Application.DoEvents();
-                                                        Wait(2000);
-                                                        // Show Thanks Page :
-                                                        AddLog("- Scan Log : " + "End Application Without Accept - AppID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                        Application.DoEvents();
-                                                        label28.Visible = false;
-                                                        label30.Visible = false;
-                                                        PL_01_Splash.Visible = false;
-                                                        PL_02_Splash.Visible = false;
-                                                        PL_03_Splash.Visible = false;
-                                                        PL_04_Splash.Visible = false;
-                                                        PL_Error.Visible = false;
-                                                        PL_Show_Info.Visible = false;
-                                                        PL_Submit.Visible = false;
-                                                        PL_DVLA.Visible = false;
-                                                        PL_DVLA_WT.Visible = false;
-                                                        PL_DVLA_OK.Visible = false;
-                                                        PL_Succ.Enabled = true;
-                                                        PL_Succ.Visible = true;
+                                                        PL_Error.Enabled = true;
+                                                        PL_Error.Visible = true;
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    AddLog("- Scan Log : " + "Application Validate Failed - ID : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                                    AddLog("- Scan Log : " + "Create New Application Failed - Code : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
                                                     // Show Error Page :
-                                                    CallBackURL_Post(APPID);
-                                                    Application.DoEvents();
-                                                    label32.Text = "The server was not responsive, please try again";
+                                                    label32.Text = "Oops! Something went wrong ...";
                                                     label28.Visible = false;
                                                     label30.Visible = false;
                                                     PL_01_Splash.Visible = false;
@@ -1725,73 +1929,37 @@ namespace IDV_Reader
                                                     PL_Error.Enabled = true;
                                                     PL_Error.Visible = true;
                                                 }
+                                                Activity_Now = 5;
+                                                if (Doc_In == true)
+                                                {
+                                                    label28.Visible = true;
+                                                    label30.Visible = true;
+                                                    Activity_Now = 5;
+                                                }
+                                                else
+                                                {
+                                                    label28.Visible = false;
+                                                    label30.Visible = false;
+                                                    Wait(3000);
+                                                    Activity_Now = 1;
+                                                    SBtnSelect = 0;
+                                                }
+                                                SystemPause = false;
                                             }
-                                            else
-                                            {
-                                                AddLog("- Scan Log : " + "Publish Application Failed - ID : " + APPID + " - Code : " + ResPublish + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                                // Show Error Page :
-                                                CallBackURL_Post(APPID);
-                                                Application.DoEvents();
-                                                label32.Text = "Oops! Something went wrong ...";
-                                                label28.Visible = false;
-                                                label30.Visible = false;
-                                                PL_01_Splash.Visible = false;
-                                                PL_02_Splash.Visible = false;
-                                                PL_03_Splash.Visible = false;
-                                                PL_04_Splash.Visible = false;
-                                                PL_Error.Visible = false;
-                                                PL_Show_Info.Visible = false;
-                                                PL_Succ.Visible = false;
-                                                PL_Submit.Visible = false;
-                                                PL_Error.Enabled = true;
-                                                PL_Error.Visible = true;
-                                            }
+                                            break;
                                         }
-                                        else
+                                    //-------------------------------------------------------------------------------------------------------
+                                    case 4:
                                         {
-                                            AddLog("- Scan Log : " + "Create New Application Failed - Code : " + APPID + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                            // Show Error Page :
-                                            label32.Text = "Oops! Something went wrong ...";
-                                            label28.Visible = false;
-                                            label30.Visible = false;
-                                            PL_01_Splash.Visible = false;
-                                            PL_02_Splash.Visible = false;
-                                            PL_03_Splash.Visible = false;
-                                            PL_04_Splash.Visible = false;
-                                            PL_Error.Visible = false;
-                                            PL_Show_Info.Visible = false;
-                                            PL_Succ.Visible = false;
-                                            PL_Submit.Visible = false;
-                                            PL_Error.Enabled = true;
-                                            PL_Error.Visible = true;
-                                        }
-                                        Activity_Now = 5;
-                                        if (Doc_In == true)
-                                        {
-                                            label28.Visible = true;
-                                            label30.Visible = true;
-                                            Activity_Now = 5;
-                                        }
-                                        else
-                                        {
-                                            label28.Visible = false;
-                                            label30.Visible = false;
-                                            Wait(3000);
+                                            Wait(1000);
                                             Activity_Now = 1;
+                                            SBtnSelect = 0;
+                                            AddLog("- Scan Log : " + "Doc Removed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
+                                            break;
                                         }
-                                        SystemPause = false;
-                                    }
-                                    break;
+                                        //-------------------------------------------------------------------------------------------------------
                                 }
-                            //-------------------------------------------------------------------------------------------------------
-                            case 4:
-                                {
-                                    Wait(1000);
-                                    Activity_Now = 1;
-                                    AddLog("- Scan Log : " + "Doc Removed" + " -> " + DateTime.Now.ToString("dd/MM/yyyy - HH:mm") + "\r\n");
-                                    break;
-                                }
-                                //-------------------------------------------------------------------------------------------------------
+                            }
                         }
                     }
                     Application.DoEvents();
@@ -1799,6 +1967,7 @@ namespace IDV_Reader
             }
             catch (Exception)
             {
+                Pnl_Btn.Visible = false;
                 label28.Visible = false;
                 label30.Visible = false;
                 PL_01_Splash.Visible = false;
@@ -2915,7 +3084,6 @@ namespace IDV_Reader
                 if ((ServerAddress != "") || (CompanyID != "") || (DealerID != "") || (UserID != "") || (DeviceID != 0))
                 {
                     textBox2.Text = "";
-                    textBox2.Focus();
                     PL_Password.Visible = true;
                     PL_Password.Enabled = true;
                 }
@@ -2941,7 +3109,6 @@ namespace IDV_Reader
                     radioButton1_CheckedChanged(null, null);
                     PL_Config.Visible = true;
                     PL_Config.Enabled = true;
-                    textBox5.Focus();
                 }
             }
             catch (Exception) { }
@@ -2997,7 +3164,6 @@ namespace IDV_Reader
                     radioButton2.Checked = false;
                     PL_Config.Visible = true;
                     PL_Config.Enabled = true;
-                    textBox5.Focus();
                 }
             }
             catch (Exception) { }
@@ -3199,24 +3365,20 @@ namespace IDV_Reader
                             radioButton1_CheckedChanged(null, null);
                             PL_Config.Visible = true;
                             PL_Config.Enabled = true;
-                            textBox5.Focus();
                         }
                         else
                         {
                             MessageBox.Show("Dear User ...\r\nYour request for admin panel access was denied by the administrator.Please contact yout administrator", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            textBox2.Focus();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Dear User ...\r\nYour request for admin panel access was denied by the administrator.Please contact yout administrator", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textBox2.Focus();
                     }
                 }
                 else
                 {
                     MessageBox.Show("Dear User ...\r\nPlease enter administrator login password", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox2.Focus();
                 }
             }
             catch (Exception)
@@ -3229,7 +3391,17 @@ namespace IDV_Reader
         {
             try
             {
-                Info_Confirm = true;
+                int OKC = 1;
+                if (ConfigurationSettings.AppSettings["PNL_Confirm_Force"].ToString().Trim() == "1")
+                {
+                    if (TXT_1.Text.Trim() == "") { if (LBL_1.Text.IndexOf("*") < 1) { LBL_1.Text = " * " + LBL_1.Text; } LBL_1.ForeColor = Color.Maroon; OKC = 0; }
+                    if (TXT_2.Text.Trim() == "") { if (LBL_2.Text.IndexOf("*") < 1) { LBL_2.Text = " * " + LBL_2.Text; } LBL_2.ForeColor = Color.Maroon; OKC = 0; }
+                    if (TXT_3.Text.Trim() == "") { if (LBL_3.Text.IndexOf("*") < 1) { LBL_3.Text = " * " + LBL_3.Text; } LBL_3.ForeColor = Color.Maroon; OKC = 0; }
+                    if (TXT_4.Text.Trim() == "") { if (LBL_4.Text.IndexOf("*") < 1) { LBL_4.Text = " * " + LBL_4.Text; } LBL_4.ForeColor = Color.Maroon; OKC = 0; }
+                    if (TXT_5.Text.Trim() == "") { if (LBL_5.Text.IndexOf("*") < 1) { LBL_5.Text = " * " + LBL_5.Text; } LBL_5.ForeColor = Color.Maroon; OKC = 0; }
+                    if (TXT_6.Text.Trim() == "") { if (LBL_6.Text.IndexOf("*") < 1) { LBL_6.Text = " * " + LBL_6.Text; } LBL_6.ForeColor = Color.Maroon; OKC = 0; }
+                }
+                if (OKC == 1) { Info_Confirm = true; } else { label47.Visible = true; }
             }
             catch (Exception) { }
         }
@@ -3245,6 +3417,7 @@ namespace IDV_Reader
                     button7.Enabled = false;
                     if (PageProcc_Show == true)
                     {
+                        KeyboardActived = true;
                         label28.Visible = false;
                         label30.Visible = false;
                         PL_01_Splash.Visible = false;
@@ -3259,6 +3432,7 @@ namespace IDV_Reader
                         PL_03_Splash.Visible = true;
                     }
                     Finish_Confirm = true;
+                    KeyboardActived = false;
                 }
                 else
                 {
@@ -3285,6 +3459,324 @@ namespace IDV_Reader
         private void button9_Click(object sender, EventArgs e)
         {
             PageDVLAWait = false;
+        }
+        //-------------------------------------------------------------------------------------\\
+        //-------------------------------------------------------------------------------------//
+        private void TextB_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Test Click");
+        }
+        private void TextB_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Test Enter");
+        }
+        private void ShowKeybord(TextBox TX, string Header)
+        {
+            if (VirtualKeyboad != 1) { return; }
+            if (KeyboardActived == true) { return; }
+            if (UserCancel == true) { return; }
+            if (DontShowKeyboard == true) { return; }
+            KeyboardActived = true;
+            KeyboardF Frm = new KeyboardF();
+            LastResKeyB = TX.Text;
+            Frm.MainText = TX.Text;
+            Frm.Header = Header;
+            Frm.MainFB = this;
+            WaitForKB = true;
+            Frm.Show();
+            Frm.ApplyData();
+            while (WaitForKB == true) { Application.DoEvents(); }
+            TX.Text = LastResKeyB.Trim();
+            KeyboardActived = false;
+            this.Focus();
+            PanB1.Focus();
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Administrator Password");
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Administrator Password");
+        }
+
+        private void textBox5_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Config File Address");
+        }
+
+        private void textBox5_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Config File Address");
+        }
+
+        private void textBox4_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Dealer ID");
+        }
+
+        private void textBox4_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Dealer ID");
+        }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "User ID");
+        }
+
+        private void textBox3_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "User ID");
+        }
+
+        private void textBox7_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "DVLA Code");
+        }
+
+        private void textBox7_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "DVLA Code");
+        }
+
+        private void textBox6_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "National Insurance");
+        }
+
+        private void textBox6_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "National Insurance");
+        }
+
+        private void TXT_Email_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Please Enter Your Email Address");
+        }
+
+        private void TXT_Email_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Please Enter Your Email Address");
+        }
+
+        private void TXT_Phone_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Please Enter Your Phone Number");
+        }
+
+        private void TXT_Phone_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, "Please Enter Your Phone Number");
+        }
+
+        private void TXT_1_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_1.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_1_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_1.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_2_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_2.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_2_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_2.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_3_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_3.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_3_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_3.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_4_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_4.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_4_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_4.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_5_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_5.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_5_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_5.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_6_Click(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_6.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+
+        private void TXT_6_Enter(object sender, EventArgs e)
+        {
+            ShowKeybord((TextBox)sender, LBL_6.Text.Replace(":", "").Replace("  ", "").Trim());
+        }
+        //-------------------------------------------------------------------------------------\\
+        //-------------------------------------------------------------------------------------//
+        private void Btn_BTD_Click(object sender, EventArgs e)
+        {
+            Pnl_Btn.Visible = false;
+            SBtnSelect = 2;
+            Application.DoEvents();
+        }
+
+        private void Btn_CC_Click(object sender, EventArgs e)
+        {
+            Pnl_Btn.Visible = false;
+            WBSiteAdd = 0;
+            SBtnSelect = 1;
+            Application.DoEvents();
+        }
+
+        private void LoadWebPage(int WIDSA)
+        {
+            WB.Top = 10;
+            WB.Left = 10;
+            WB.Width = 1838;
+            WB.Height = 852;
+            WBL.Top = (PnlWeb.Height / 2) - (WBL.Height / 2);
+            WBL.Left = (PnlWeb.Width / 2) - (WBL.Width / 2);
+            WB.Visible = false;
+            WBL.Visible = true;
+            Application.DoEvents();
+            if (WIDSA == 1)
+            {
+                string ADDCC = ConfigurationSettings.AppSettings["KIA_CFCal"].ToString().Trim();
+                WB.Navigate(ADDCC);
+            }
+            else
+            {
+                string ADDCC = ConfigurationSettings.AppSettings["KIA_CCustom"].ToString().Trim();
+                WB.Navigate(ADDCC);
+            }
+        }
+
+        private void WB_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            try
+            {
+                dynamic htmldoc = WB.Document.DomDocument as dynamic;
+                dynamic node = htmldoc.getElementById("header") as dynamic;
+                node.parentNode.removeChild(node);
+                dynamic node2 = htmldoc.getElementById("footer") as dynamic;
+                node2.parentNode.removeChild(node2);
+                foreach (HtmlElement el in WB.Document.GetElementById("content").GetElementsByTagName("div"))
+                {
+                    try
+                    {
+                        if (el.OuterHtml.ToLower().IndexOf("content_title") > 0)
+                        {
+                            el.OuterHtml = "";
+                            break;
+                        }
+                    }
+                    catch (Exception)
+                    { }
+                }
+                WB.Document.GetElementById("container").SetAttribute("id", "emas");
+                if (WBSiteAdd == 1)
+                {
+
+                }
+            }
+            catch (Exception)
+            { }
+            WB.Top = 10;
+            WB.Left = 10;
+            WB.Width = 1838;
+            WB.Height = 852;
+            WBL.Top = (PnlWeb.Height / 2) - (WBL.Height / 2);
+            WBL.Left = (PnlWeb.Width / 2) - (WBL.Width / 2);
+            WBL.Visible = false;
+            WB.Visible = true;
+        }
+
+        private void WB_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            WB.Top = 10;
+            WB.Left = 10;
+            WB.Width = 1838;
+            WB.Height = 852;
+            WBL.Top = (PnlWeb.Height / 2) - (WBL.Height / 2);
+            WBL.Left = (PnlWeb.Width / 2) - (WBL.Width / 2);
+            WB.Visible = false;
+            WBL.Visible = true;
+            Application.DoEvents();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            PnlWeb.Visible = false;
+            WBSiteAdd = 0;
+            SBtnSelect = 0;
+            Application.DoEvents();
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            Pnl_Btn.Visible = false;
+            WBSiteAdd = 1;
+            SBtnSelect = 1;
+            Application.DoEvents();
+        }
+        //-------------------------------------------------------------------------------------\\
+        //-------------------------------------------------------------------------------------//
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DontShowKeyboard = true;
+                SystemPause = true;
+                Activity_Now = 1;
+                SBtnSelect = 0;
+                UserCancel = true;
+                KeyboardActived = true;
+                Finish_Confirm = true;
+            }
+            catch (Exception)
+            { }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            DontShowKeyboard = true;
+            SystemPause = true;
+            Activity_Now = 1;
+            SBtnSelect = 0;
+            UserCancel = true;
+            KeyboardActived = true;
+            Finish_Confirm = true;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            DontShowKeyboard = true;
+            SystemPause = true;
+            Activity_Now = 1;
+            SBtnSelect = 0;
+            UserCancel = true;
+            KeyboardActived = true;
+            Finish_Confirm = true;
         }
         //-------------------------------------------------------------------------------------\\
         //-------------------------------------------------------------------------------------//

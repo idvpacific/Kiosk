@@ -58,6 +58,7 @@
             this.Proc_Text = new System.Windows.Forms.Label();
             this.Proc_Pic = new System.Windows.Forms.PictureBox();
             this.PL_02_Splash = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
             this.Ins_Text = new System.Windows.Forms.Label();
             this.Ins_Pic = new System.Windows.Forms.PictureBox();
             this.PL_01_Splash = new System.Windows.Forms.Panel();
@@ -150,8 +151,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.PL_NOIN = new System.Windows.Forms.Panel();
+            this.label46 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.PIC_LG = new System.Windows.Forms.PictureBox();
             this.PL_Succ = new System.Windows.Forms.Panel();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -161,32 +163,10 @@
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.PL_Show_Info = new System.Windows.Forms.Panel();
-            this.TXT_18 = new System.Windows.Forms.TextBox();
-            this.LBL_18 = new System.Windows.Forms.Label();
-            this.TXT_17 = new System.Windows.Forms.TextBox();
-            this.LBL_17 = new System.Windows.Forms.Label();
-            this.TXT_16 = new System.Windows.Forms.TextBox();
-            this.LBL_16 = new System.Windows.Forms.Label();
-            this.TXT_15 = new System.Windows.Forms.TextBox();
-            this.LBL_15 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.TXT_14 = new System.Windows.Forms.TextBox();
-            this.LBL_14 = new System.Windows.Forms.Label();
-            this.TXT_13 = new System.Windows.Forms.TextBox();
-            this.LBL_13 = new System.Windows.Forms.Label();
-            this.TXT_12 = new System.Windows.Forms.TextBox();
-            this.LBL_12 = new System.Windows.Forms.Label();
-            this.TXT_11 = new System.Windows.Forms.TextBox();
-            this.LBL_11 = new System.Windows.Forms.Label();
-            this.TXT_10 = new System.Windows.Forms.TextBox();
-            this.LBL_10 = new System.Windows.Forms.Label();
-            this.TXT_9 = new System.Windows.Forms.TextBox();
-            this.LBL_9 = new System.Windows.Forms.Label();
-            this.TXT_8 = new System.Windows.Forms.TextBox();
-            this.LBL_8 = new System.Windows.Forms.Label();
-            this.TXT_7 = new System.Windows.Forms.TextBox();
-            this.LBL_7 = new System.Windows.Forms.Label();
             this.TXT_6 = new System.Windows.Forms.TextBox();
             this.LBL_6 = new System.Windows.Forms.Label();
             this.TXT_5 = new System.Windows.Forms.TextBox();
@@ -201,6 +181,7 @@
             this.TXT_1 = new System.Windows.Forms.TextBox();
             this.LBL_1 = new System.Windows.Forms.Label();
             this.PL_Submit = new System.Windows.Forms.Panel();
+            this.button12 = new System.Windows.Forms.Button();
             this.Btn_Finished = new System.Windows.Forms.Button();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -223,11 +204,25 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.PL_DVLA_OK = new System.Windows.Forms.Panel();
-            this.label48 = new System.Windows.Forms.Label();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.button9 = new System.Windows.Forms.Button();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.LG_KIA = new System.Windows.Forms.PictureBox();
+            this.LG_TOYOTA = new System.Windows.Forms.PictureBox();
+            this.Pnl_Btn = new System.Windows.Forms.Panel();
+            this.Btn_CF = new System.Windows.Forms.Panel();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.Btn_BTD = new System.Windows.Forms.Panel();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.Btn_CC = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.PnlWeb = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
+            this.WBL = new System.Windows.Forms.PictureBox();
+            this.WB = new System.Windows.Forms.WebBrowser();
+            this.LG_BENZ = new System.Windows.Forms.PictureBox();
             this.PanB1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanBObj1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -262,8 +257,9 @@
             this.PL_Password.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PL_Config.SuspendLayout();
+            this.PL_NOIN.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PIC_LG)).BeginInit();
             this.PL_Succ.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.PL_Error.SuspendLayout();
@@ -275,9 +271,21 @@
             this.PL_DVLA_WT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WGPLWT)).BeginInit();
             this.PL_DVLA_OK.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LG_KIA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LG_TOYOTA)).BeginInit();
+            this.Pnl_Btn.SuspendLayout();
+            this.Btn_CF.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            this.Btn_BTD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            this.Btn_CC.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.PnlWeb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WBL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LG_BENZ)).BeginInit();
             this.SuspendLayout();
             // 
             // PanB1
@@ -286,18 +294,19 @@
             this.PanB1.Controls.Add(this.PanBObj1);
             this.PanB1.Location = new System.Drawing.Point(0, 0);
             this.PanB1.Name = "PanB1";
-            this.PanB1.Size = new System.Drawing.Size(212, 89);
+            this.PanB1.Size = new System.Drawing.Size(254, 108);
             this.PanB1.TabIndex = 1;
             // 
             // PanBObj1
             // 
             this.PanBObj1.Image = ((System.Drawing.Image)(resources.GetObject("PanBObj1.Image")));
-            this.PanBObj1.Location = new System.Drawing.Point(3, 11);
+            this.PanBObj1.Location = new System.Drawing.Point(8, 10);
             this.PanBObj1.Name = "PanBObj1";
-            this.PanBObj1.Size = new System.Drawing.Size(196, 69);
+            this.PanBObj1.Size = new System.Drawing.Size(236, 88);
             this.PanBObj1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PanBObj1.TabIndex = 0;
             this.PanBObj1.TabStop = false;
+            this.PanBObj1.Visible = false;
             this.PanBObj1.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // toolStripStatusLabel1
@@ -315,9 +324,9 @@
             this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 764);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 279);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1315, 35);
+            this.statusStrip1.Size = new System.Drawing.Size(948, 35);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
@@ -336,10 +345,10 @@
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(1079, 5);
+            this.pictureBox5.Location = new System.Drawing.Point(703, 55);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox5.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 15;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Visible = false;
@@ -351,10 +360,10 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(1117, 5);
+            this.pictureBox4.Location = new System.Drawing.Point(703, 7);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 14;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Visible = false;
@@ -364,11 +373,11 @@
             // 
             this.Lbl_ErrorPublic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_ErrorPublic.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.Lbl_ErrorPublic.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.Lbl_ErrorPublic.ForeColor = System.Drawing.Color.Maroon;
-            this.Lbl_ErrorPublic.Location = new System.Drawing.Point(218, 5);
+            this.Lbl_ErrorPublic.Location = new System.Drawing.Point(276, 5);
             this.Lbl_ErrorPublic.Name = "Lbl_ErrorPublic";
-            this.Lbl_ErrorPublic.Size = new System.Drawing.Size(876, 29);
+            this.Lbl_ErrorPublic.Size = new System.Drawing.Size(414, 50);
             this.Lbl_ErrorPublic.TabIndex = 13;
             this.Lbl_ErrorPublic.Text = "...";
             this.Lbl_ErrorPublic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -390,19 +399,19 @@
             this.PL_04_Splash.Controls.Add(this.label16);
             this.PL_04_Splash.Controls.Add(this.T_Error);
             this.PL_04_Splash.Controls.Add(this.T_OK);
-            this.PL_04_Splash.Location = new System.Drawing.Point(248, 148);
+            this.PL_04_Splash.Location = new System.Drawing.Point(1732, 172);
             this.PL_04_Splash.Name = "PL_04_Splash";
-            this.PL_04_Splash.Size = new System.Drawing.Size(495, 343);
+            this.PL_04_Splash.Size = new System.Drawing.Size(1280, 720);
             this.PL_04_Splash.TabIndex = 20;
             this.PL_04_Splash.Visible = false;
             // 
             // LBLD_5
             // 
             this.LBLD_5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(223)))), ((int)(((byte)(234)))));
-            this.LBLD_5.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.LBLD_5.Location = new System.Drawing.Point(243, 124);
+            this.LBLD_5.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.LBLD_5.Location = new System.Drawing.Point(517, 279);
             this.LBLD_5.Name = "LBLD_5";
-            this.LBLD_5.Size = new System.Drawing.Size(215, 29);
+            this.LBLD_5.Size = new System.Drawing.Size(747, 46);
             this.LBLD_5.TabIndex = 29;
             this.LBLD_5.Text = "...";
             this.LBLD_5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -410,9 +419,10 @@
             // label31
             // 
             this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(223)))), ((int)(((byte)(234)))));
-            this.label31.Location = new System.Drawing.Point(166, 124);
+            this.label31.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.label31.Location = new System.Drawing.Point(289, 279);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(77, 29);
+            this.label31.Size = new System.Drawing.Size(222, 46);
             this.label31.TabIndex = 28;
             this.label31.Text = "Doc Number :";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -420,10 +430,10 @@
             // LBLD_4
             // 
             this.LBLD_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(202)))), ((int)(((byte)(220)))));
-            this.LBLD_4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.LBLD_4.Location = new System.Drawing.Point(243, 95);
+            this.LBLD_4.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.LBLD_4.Location = new System.Drawing.Point(517, 222);
             this.LBLD_4.Name = "LBLD_4";
-            this.LBLD_4.Size = new System.Drawing.Size(215, 29);
+            this.LBLD_4.Size = new System.Drawing.Size(747, 46);
             this.LBLD_4.TabIndex = 27;
             this.LBLD_4.Text = "...";
             this.LBLD_4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -431,10 +441,10 @@
             // LBLD_3
             // 
             this.LBLD_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(223)))), ((int)(((byte)(234)))));
-            this.LBLD_3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.LBLD_3.Location = new System.Drawing.Point(243, 66);
+            this.LBLD_3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.LBLD_3.Location = new System.Drawing.Point(517, 165);
             this.LBLD_3.Name = "LBLD_3";
-            this.LBLD_3.Size = new System.Drawing.Size(215, 29);
+            this.LBLD_3.Size = new System.Drawing.Size(747, 46);
             this.LBLD_3.TabIndex = 26;
             this.LBLD_3.Text = "...";
             this.LBLD_3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -442,10 +452,10 @@
             // LBLD_2
             // 
             this.LBLD_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(202)))), ((int)(((byte)(220)))));
-            this.LBLD_2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.LBLD_2.Location = new System.Drawing.Point(243, 37);
+            this.LBLD_2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.LBLD_2.Location = new System.Drawing.Point(517, 108);
             this.LBLD_2.Name = "LBLD_2";
-            this.LBLD_2.Size = new System.Drawing.Size(215, 29);
+            this.LBLD_2.Size = new System.Drawing.Size(747, 46);
             this.LBLD_2.TabIndex = 25;
             this.LBLD_2.Text = "..";
             this.LBLD_2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -453,10 +463,10 @@
             // LBLD_1
             // 
             this.LBLD_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(223)))), ((int)(((byte)(234)))));
-            this.LBLD_1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBLD_1.Location = new System.Drawing.Point(243, 8);
+            this.LBLD_1.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.LBLD_1.Location = new System.Drawing.Point(517, 51);
             this.LBLD_1.Name = "LBLD_1";
-            this.LBLD_1.Size = new System.Drawing.Size(215, 29);
+            this.LBLD_1.Size = new System.Drawing.Size(747, 46);
             this.LBLD_1.TabIndex = 24;
             this.LBLD_1.Text = "...";
             this.LBLD_1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -464,9 +474,10 @@
             // label27
             // 
             this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(202)))), ((int)(((byte)(220)))));
-            this.label27.Location = new System.Drawing.Point(166, 95);
+            this.label27.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.label27.Location = new System.Drawing.Point(289, 222);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(77, 29);
+            this.label27.Size = new System.Drawing.Size(222, 46);
             this.label27.TabIndex = 23;
             this.label27.Text = "Sex :";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -474,9 +485,10 @@
             // label26
             // 
             this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(223)))), ((int)(((byte)(234)))));
-            this.label26.Location = new System.Drawing.Point(166, 66);
+            this.label26.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.label26.Location = new System.Drawing.Point(289, 165);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 29);
+            this.label26.Size = new System.Drawing.Size(222, 46);
             this.label26.TabIndex = 22;
             this.label26.Text = "Nationality :";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -484,9 +496,10 @@
             // label25
             // 
             this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(202)))), ((int)(((byte)(220)))));
-            this.label25.Location = new System.Drawing.Point(166, 37);
+            this.label25.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.label25.Location = new System.Drawing.Point(289, 108);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(77, 29);
+            this.label25.Size = new System.Drawing.Size(222, 46);
             this.label25.TabIndex = 21;
             this.label25.Text = "LastName :";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -494,18 +507,19 @@
             // label19
             // 
             this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(223)))), ((int)(((byte)(234)))));
-            this.label19.Location = new System.Drawing.Point(166, 8);
+            this.label19.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.label19.Location = new System.Drawing.Point(289, 51);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(77, 29);
+            this.label19.Size = new System.Drawing.Size(222, 46);
             this.label19.TabIndex = 20;
             this.label19.Text = "FirstName :";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(30, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(30, 34);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(132, 154);
+            this.pictureBox3.Size = new System.Drawing.Size(237, 299);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 10;
             this.pictureBox3.TabStop = false;
@@ -513,11 +527,11 @@
             // label16
             // 
             this.label16.BackColor = System.Drawing.Color.White;
-            this.label16.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label16.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.label16.Location = new System.Drawing.Point(3, 300);
+            this.label16.Location = new System.Drawing.Point(12, 651);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(483, 40);
+            this.label16.Size = new System.Drawing.Size(1252, 50);
             this.label16.TabIndex = 2;
             this.label16.Text = "Please take your document";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -525,9 +539,9 @@
             // T_Error
             // 
             this.T_Error.Image = ((System.Drawing.Image)(resources.GetObject("T_Error.Image")));
-            this.T_Error.Location = new System.Drawing.Point(4, 182);
+            this.T_Error.Location = new System.Drawing.Point(12, 372);
             this.T_Error.Name = "T_Error";
-            this.T_Error.Size = new System.Drawing.Size(484, 112);
+            this.T_Error.Size = new System.Drawing.Size(1252, 253);
             this.T_Error.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.T_Error.TabIndex = 30;
             this.T_Error.TabStop = false;
@@ -535,9 +549,9 @@
             // T_OK
             // 
             this.T_OK.Image = ((System.Drawing.Image)(resources.GetObject("T_OK.Image")));
-            this.T_OK.Location = new System.Drawing.Point(4, 182);
+            this.T_OK.Location = new System.Drawing.Point(12, 372);
             this.T_OK.Name = "T_OK";
-            this.T_OK.Size = new System.Drawing.Size(484, 112);
+            this.T_OK.Size = new System.Drawing.Size(1252, 253);
             this.T_OK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.T_OK.TabIndex = 31;
             this.T_OK.TabStop = false;
@@ -546,20 +560,20 @@
             // 
             this.PL_03_Splash.Controls.Add(this.Proc_Text);
             this.PL_03_Splash.Controls.Add(this.Proc_Pic);
-            this.PL_03_Splash.Location = new System.Drawing.Point(266, 129);
+            this.PL_03_Splash.Location = new System.Drawing.Point(1762, 153);
             this.PL_03_Splash.Name = "PL_03_Splash";
-            this.PL_03_Splash.Size = new System.Drawing.Size(495, 343);
+            this.PL_03_Splash.Size = new System.Drawing.Size(1280, 720);
             this.PL_03_Splash.TabIndex = 19;
             this.PL_03_Splash.Visible = false;
             // 
             // Proc_Text
             // 
             this.Proc_Text.BackColor = System.Drawing.Color.White;
-            this.Proc_Text.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.Proc_Text.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
             this.Proc_Text.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.Proc_Text.Location = new System.Drawing.Point(3, 300);
+            this.Proc_Text.Location = new System.Drawing.Point(12, 651);
             this.Proc_Text.Name = "Proc_Text";
-            this.Proc_Text.Size = new System.Drawing.Size(489, 40);
+            this.Proc_Text.Size = new System.Drawing.Size(1252, 50);
             this.Proc_Text.TabIndex = 2;
             this.Proc_Text.Text = "...";
             this.Proc_Text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -568,31 +582,49 @@
             // 
             this.Proc_Pic.BackColor = System.Drawing.Color.Transparent;
             this.Proc_Pic.InitialImage = null;
-            this.Proc_Pic.Location = new System.Drawing.Point(48, 12);
+            this.Proc_Pic.Location = new System.Drawing.Point(12, 15);
             this.Proc_Pic.Name = "Proc_Pic";
-            this.Proc_Pic.Size = new System.Drawing.Size(397, 278);
+            this.Proc_Pic.Size = new System.Drawing.Size(1252, 619);
             this.Proc_Pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Proc_Pic.TabIndex = 1;
             this.Proc_Pic.TabStop = false;
             // 
             // PL_02_Splash
             // 
+            this.PL_02_Splash.Controls.Add(this.button11);
             this.PL_02_Splash.Controls.Add(this.Ins_Text);
             this.PL_02_Splash.Controls.Add(this.Ins_Pic);
-            this.PL_02_Splash.Location = new System.Drawing.Point(280, 113);
+            this.PL_02_Splash.Location = new System.Drawing.Point(1268, 647);
             this.PL_02_Splash.Name = "PL_02_Splash";
-            this.PL_02_Splash.Size = new System.Drawing.Size(495, 343);
+            this.PL_02_Splash.Size = new System.Drawing.Size(1280, 775);
             this.PL_02_Splash.TabIndex = 18;
             this.PL_02_Splash.Visible = false;
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button11.ForeColor = System.Drawing.Color.Black;
+            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
+            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.Location = new System.Drawing.Point(12, 711);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(331, 58);
+            this.button11.TabIndex = 11;
+            this.button11.Text = "     Back to home page";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Visible = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // Ins_Text
             // 
             this.Ins_Text.BackColor = System.Drawing.Color.White;
-            this.Ins_Text.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.Ins_Text.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
             this.Ins_Text.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.Ins_Text.Location = new System.Drawing.Point(3, 300);
+            this.Ins_Text.Location = new System.Drawing.Point(12, 646);
             this.Ins_Text.Name = "Ins_Text";
-            this.Ins_Text.Size = new System.Drawing.Size(489, 40);
+            this.Ins_Text.Size = new System.Drawing.Size(1252, 50);
             this.Ins_Text.TabIndex = 2;
             this.Ins_Text.Text = "...";
             this.Ins_Text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -601,9 +633,9 @@
             // 
             this.Ins_Pic.BackColor = System.Drawing.Color.Transparent;
             this.Ins_Pic.InitialImage = null;
-            this.Ins_Pic.Location = new System.Drawing.Point(38, 16);
+            this.Ins_Pic.Location = new System.Drawing.Point(12, 15);
             this.Ins_Pic.Name = "Ins_Pic";
-            this.Ins_Pic.Size = new System.Drawing.Size(421, 277);
+            this.Ins_Pic.Size = new System.Drawing.Size(1252, 619);
             this.Ins_Pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Ins_Pic.TabIndex = 1;
             this.Ins_Pic.TabStop = false;
@@ -615,30 +647,40 @@
             this.PL_01_Splash.Controls.Add(this.Splash_Lbl_2);
             this.PL_01_Splash.Controls.Add(this.Splash_Lbl_1);
             this.PL_01_Splash.Controls.Add(this.Splash_PB_1);
-            this.PL_01_Splash.Location = new System.Drawing.Point(296, 104);
+            this.PL_01_Splash.Location = new System.Drawing.Point(1838, 127);
             this.PL_01_Splash.Name = "PL_01_Splash";
-            this.PL_01_Splash.Size = new System.Drawing.Size(495, 343);
+            this.PL_01_Splash.Size = new System.Drawing.Size(1280, 720);
             this.PL_01_Splash.TabIndex = 17;
             this.PL_01_Splash.Visible = false;
             // 
             // Splash_Btn_Retry
             // 
-            this.Splash_Btn_Retry.Location = new System.Drawing.Point(360, 8);
+            this.Splash_Btn_Retry.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Splash_Btn_Retry.BackgroundImage")));
+            this.Splash_Btn_Retry.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Splash_Btn_Retry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Splash_Btn_Retry.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Splash_Btn_Retry.ForeColor = System.Drawing.Color.White;
+            this.Splash_Btn_Retry.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.Splash_Btn_Retry.Location = new System.Drawing.Point(1067, 18);
             this.Splash_Btn_Retry.Name = "Splash_Btn_Retry";
-            this.Splash_Btn_Retry.Size = new System.Drawing.Size(87, 28);
+            this.Splash_Btn_Retry.Size = new System.Drawing.Size(200, 45);
             this.Splash_Btn_Retry.TabIndex = 4;
-            this.Splash_Btn_Retry.Text = "Retry";
             this.Splash_Btn_Retry.UseVisualStyleBackColor = true;
             this.Splash_Btn_Retry.Visible = false;
             this.Splash_Btn_Retry.Click += new System.EventHandler(this.Splash_Btn_Retry_Click);
             // 
             // Splash_Btn_Exit
             // 
-            this.Splash_Btn_Exit.Location = new System.Drawing.Point(47, 8);
+            this.Splash_Btn_Exit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Splash_Btn_Exit.BackgroundImage")));
+            this.Splash_Btn_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Splash_Btn_Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Splash_Btn_Exit.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Splash_Btn_Exit.ForeColor = System.Drawing.Color.White;
+            this.Splash_Btn_Exit.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.Splash_Btn_Exit.Location = new System.Drawing.Point(15, 18);
             this.Splash_Btn_Exit.Name = "Splash_Btn_Exit";
-            this.Splash_Btn_Exit.Size = new System.Drawing.Size(87, 28);
+            this.Splash_Btn_Exit.Size = new System.Drawing.Size(200, 45);
             this.Splash_Btn_Exit.TabIndex = 3;
-            this.Splash_Btn_Exit.Text = "Exit System";
             this.Splash_Btn_Exit.UseVisualStyleBackColor = true;
             this.Splash_Btn_Exit.Visible = false;
             this.Splash_Btn_Exit.Click += new System.EventHandler(this.Splash_Btn_Exit_Click);
@@ -646,10 +688,10 @@
             // Splash_Lbl_2
             // 
             this.Splash_Lbl_2.BackColor = System.Drawing.Color.White;
-            this.Splash_Lbl_2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.Splash_Lbl_2.Location = new System.Drawing.Point(47, 298);
+            this.Splash_Lbl_2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Splash_Lbl_2.Location = new System.Drawing.Point(15, 620);
             this.Splash_Lbl_2.Name = "Splash_Lbl_2";
-            this.Splash_Lbl_2.Size = new System.Drawing.Size(400, 40);
+            this.Splash_Lbl_2.Size = new System.Drawing.Size(1252, 50);
             this.Splash_Lbl_2.TabIndex = 2;
             this.Splash_Lbl_2.Text = "...";
             this.Splash_Lbl_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -657,30 +699,29 @@
             // Splash_Lbl_1
             // 
             this.Splash_Lbl_1.BackColor = System.Drawing.Color.White;
-            this.Splash_Lbl_1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.Splash_Lbl_1.Location = new System.Drawing.Point(47, 270);
+            this.Splash_Lbl_1.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Splash_Lbl_1.Location = new System.Drawing.Point(15, 547);
             this.Splash_Lbl_1.Name = "Splash_Lbl_1";
-            this.Splash_Lbl_1.Size = new System.Drawing.Size(400, 23);
+            this.Splash_Lbl_1.Size = new System.Drawing.Size(1252, 50);
             this.Splash_Lbl_1.TabIndex = 1;
             this.Splash_Lbl_1.Text = "...";
             this.Splash_Lbl_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Splash_PB_1
             // 
-            this.Splash_PB_1.BackColor = System.Drawing.Color.Transparent;
+            this.Splash_PB_1.BackColor = System.Drawing.Color.White;
             this.Splash_PB_1.Image = ((System.Drawing.Image)(resources.GetObject("Splash_PB_1.Image")));
             this.Splash_PB_1.InitialImage = null;
-            this.Splash_PB_1.Location = new System.Drawing.Point(47, 40);
+            this.Splash_PB_1.Location = new System.Drawing.Point(15, 82);
             this.Splash_PB_1.Name = "Splash_PB_1";
-            this.Splash_PB_1.Size = new System.Drawing.Size(400, 220);
-            this.Splash_PB_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Splash_PB_1.Size = new System.Drawing.Size(1252, 443);
+            this.Splash_PB_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Splash_PB_1.TabIndex = 0;
             this.Splash_PB_1.TabStop = false;
             this.Splash_PB_1.Click += new System.EventHandler(this.Splash_PB_1_Click);
             // 
             // PLD_Data
             // 
-            this.PLD_Data.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PLD_Data.AutoScroll = true;
             this.PLD_Data.Controls.Add(this.irImageRear);
             this.PLD_Data.Controls.Add(this.visibleImageRear);
@@ -696,7 +737,7 @@
             this.PLD_Data.Controls.Add(this.uvImage);
             this.PLD_Data.Controls.Add(this.label2);
             this.PLD_Data.Controls.Add(this.groupBox1);
-            this.PLD_Data.Location = new System.Drawing.Point(1039, 50);
+            this.PLD_Data.Location = new System.Drawing.Point(573, 69);
             this.PLD_Data.Name = "PLD_Data";
             this.PLD_Data.Size = new System.Drawing.Size(29, 20);
             this.PLD_Data.TabIndex = 21;
@@ -1244,7 +1285,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(490, 50);
+            this.textBox1.Location = new System.Drawing.Point(442, 67);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1257,9 +1298,9 @@
             this.C1_INS.BackColor = System.Drawing.Color.Transparent;
             this.C1_INS.Image = ((System.Drawing.Image)(resources.GetObject("C1_INS.Image")));
             this.C1_INS.InitialImage = null;
-            this.C1_INS.Location = new System.Drawing.Point(338, 50);
+            this.C1_INS.Location = new System.Drawing.Point(260, 69);
             this.C1_INS.Name = "C1_INS";
-            this.C1_INS.Size = new System.Drawing.Size(32, 24);
+            this.C1_INS.Size = new System.Drawing.Size(43, 32);
             this.C1_INS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.C1_INS.TabIndex = 23;
             this.C1_INS.TabStop = false;
@@ -1270,9 +1311,9 @@
             this.C1_PRO.BackColor = System.Drawing.Color.Transparent;
             this.C1_PRO.Image = ((System.Drawing.Image)(resources.GetObject("C1_PRO.Image")));
             this.C1_PRO.InitialImage = null;
-            this.C1_PRO.Location = new System.Drawing.Point(376, 50);
+            this.C1_PRO.Location = new System.Drawing.Point(309, 71);
             this.C1_PRO.Name = "C1_PRO";
-            this.C1_PRO.Size = new System.Drawing.Size(32, 24);
+            this.C1_PRO.Size = new System.Drawing.Size(32, 27);
             this.C1_PRO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.C1_PRO.TabIndex = 25;
             this.C1_PRO.TabStop = false;
@@ -1283,9 +1324,9 @@
             this.C2_PRO.BackColor = System.Drawing.Color.Transparent;
             this.C2_PRO.Image = ((System.Drawing.Image)(resources.GetObject("C2_PRO.Image")));
             this.C2_PRO.InitialImage = null;
-            this.C2_PRO.Location = new System.Drawing.Point(452, 50);
+            this.C2_PRO.Location = new System.Drawing.Point(392, 67);
             this.C2_PRO.Name = "C2_PRO";
-            this.C2_PRO.Size = new System.Drawing.Size(32, 24);
+            this.C2_PRO.Size = new System.Drawing.Size(42, 32);
             this.C2_PRO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.C2_PRO.TabIndex = 27;
             this.C2_PRO.TabStop = false;
@@ -1296,9 +1337,9 @@
             this.C2_INS.BackColor = System.Drawing.Color.Transparent;
             this.C2_INS.Image = ((System.Drawing.Image)(resources.GetObject("C2_INS.Image")));
             this.C2_INS.InitialImage = null;
-            this.C2_INS.Location = new System.Drawing.Point(414, 50);
+            this.C2_INS.Location = new System.Drawing.Point(347, 67);
             this.C2_INS.Name = "C2_INS";
-            this.C2_INS.Size = new System.Drawing.Size(32, 24);
+            this.C2_INS.Size = new System.Drawing.Size(39, 27);
             this.C2_INS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.C2_INS.TabIndex = 26;
             this.C2_INS.TabStop = false;
@@ -1312,60 +1353,74 @@
             this.PL_Password.Controls.Add(this.textBox2);
             this.PL_Password.Controls.Add(this.pictureBox1);
             this.PL_Password.Controls.Add(this.label15);
-            this.PL_Password.Location = new System.Drawing.Point(229, 164);
+            this.PL_Password.Location = new System.Drawing.Point(1707, 192);
             this.PL_Password.Name = "PL_Password";
-            this.PL_Password.Size = new System.Drawing.Size(495, 343);
+            this.PL_Password.Size = new System.Drawing.Size(1280, 720);
             this.PL_Password.TabIndex = 28;
             this.PL_Password.Visible = false;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(177, 276);
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(460, 594);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 27);
+            this.button3.Size = new System.Drawing.Size(369, 74);
             this.button3.TabIndex = 35;
-            this.button3.Text = "Clear Config";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(73, 276);
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button2.Location = new System.Drawing.Point(88, 594);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 27);
+            this.button2.Size = new System.Drawing.Size(369, 74);
             this.button2.TabIndex = 34;
-            this.button2.Text = "Exit Application";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(281, 276);
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.Location = new System.Drawing.Point(832, 594);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 27);
+            this.button1.Size = new System.Drawing.Size(369, 74);
             this.button1.TabIndex = 33;
-            this.button1.Text = "Login to Configuration";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.textBox2.Location = new System.Drawing.Point(73, 243);
+            this.textBox2.Location = new System.Drawing.Point(88, 478);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(336, 27);
+            this.textBox2.Size = new System.Drawing.Size(1113, 42);
             this.textBox2.TabIndex = 32;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox2.UseSystemPasswordChar = true;
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
+            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(138, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(88, 32);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(219, 174);
+            this.pictureBox1.Size = new System.Drawing.Size(1113, 332);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
@@ -1373,11 +1428,11 @@
             // label15
             // 
             this.label15.BackColor = System.Drawing.Color.White;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.label15.Location = new System.Drawing.Point(73, 217);
+            this.label15.Location = new System.Drawing.Point(88, 410);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(336, 23);
+            this.label15.Size = new System.Drawing.Size(1113, 50);
             this.label15.TabIndex = 1;
             this.label15.Text = "Please Enter Administrator Password";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1395,20 +1450,20 @@
             this.PL_Config.Controls.Add(this.button6);
             this.PL_Config.Controls.Add(this.textBox3);
             this.PL_Config.Controls.Add(this.label14);
-            this.PL_Config.Location = new System.Drawing.Point(216, 192);
+            this.PL_Config.Location = new System.Drawing.Point(1684, 216);
             this.PL_Config.Name = "PL_Config";
-            this.PL_Config.Size = new System.Drawing.Size(495, 343);
+            this.PL_Config.Size = new System.Drawing.Size(1280, 720);
             this.PL_Config.TabIndex = 29;
             this.PL_Config.Visible = false;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.radioButton2.Location = new System.Drawing.Point(73, 134);
+            this.radioButton2.Location = new System.Drawing.Point(331, 255);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(267, 17);
+            this.radioButton2.Size = new System.Drawing.Size(587, 38);
             this.radioButton2.TabIndex = 35;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = " Scanner Model : CR5400 [ Driving License ]";
@@ -1418,11 +1473,11 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.radioButton1.Location = new System.Drawing.Point(73, 101);
+            this.radioButton1.Location = new System.Drawing.Point(331, 194);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(288, 17);
+            this.radioButton1.Size = new System.Drawing.Size(631, 38);
             this.radioButton1.TabIndex = 34;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = " Scanner Model : AT9000 \\ AT10KI [ Passport ] ";
@@ -1431,9 +1486,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(379, 56);
+            this.button4.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(906, 118);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 27);
+            this.button4.Size = new System.Drawing.Size(51, 42);
             this.button4.TabIndex = 33;
             this.button4.Text = "...";
             this.button4.UseVisualStyleBackColor = true;
@@ -1442,20 +1498,22 @@
             // textBox5
             // 
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.textBox5.Location = new System.Drawing.Point(73, 56);
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.textBox5.Location = new System.Drawing.Point(325, 118);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(300, 27);
+            this.textBox5.Size = new System.Drawing.Size(575, 42);
             this.textBox5.TabIndex = 32;
+            this.textBox5.Click += new System.EventHandler(this.textBox5_Click);
+            this.textBox5.Enter += new System.EventHandler(this.textBox5_Enter);
             // 
             // label18
             // 
             this.label18.BackColor = System.Drawing.Color.White;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label18.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.label18.Location = new System.Drawing.Point(73, 30);
+            this.label18.Location = new System.Drawing.Point(325, 62);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(336, 23);
+            this.label18.Size = new System.Drawing.Size(632, 42);
             this.label18.TabIndex = 37;
             this.label18.Text = "- File Confige :";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1463,30 +1521,33 @@
             // textBox4
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.textBox4.Location = new System.Drawing.Point(73, 189);
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.textBox4.Location = new System.Drawing.Point(325, 394);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(336, 27);
+            this.textBox4.Size = new System.Drawing.Size(632, 42);
             this.textBox4.TabIndex = 36;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
+            this.textBox4.Enter += new System.EventHandler(this.textBox4_Enter);
             // 
             // label17
             // 
             this.label17.BackColor = System.Drawing.Color.White;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.label17.Location = new System.Drawing.Point(73, 163);
+            this.label17.Location = new System.Drawing.Point(325, 346);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(336, 23);
+            this.label17.Size = new System.Drawing.Size(632, 42);
             this.label17.TabIndex = 35;
             this.label17.Text = "- Dealer ID :";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(73, 283);
+            this.button5.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button5.Location = new System.Drawing.Point(325, 585);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(98, 27);
+            this.button5.Size = new System.Drawing.Size(289, 74);
             this.button5.TabIndex = 39;
             this.button5.Text = "Exit Application";
             this.button5.UseVisualStyleBackColor = true;
@@ -1494,9 +1555,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(281, 283);
+            this.button6.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button6.Location = new System.Drawing.Point(619, 585);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(128, 27);
+            this.button6.Size = new System.Drawing.Size(338, 74);
             this.button6.TabIndex = 38;
             this.button6.Text = "Save Configuration";
             this.button6.UseVisualStyleBackColor = true;
@@ -1505,21 +1567,23 @@
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.textBox3.Location = new System.Drawing.Point(73, 245);
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.textBox3.Location = new System.Drawing.Point(325, 517);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(336, 27);
+            this.textBox3.Size = new System.Drawing.Size(632, 42);
             this.textBox3.TabIndex = 37;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
+            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(92)))), ((int)(((byte)(166)))));
-            this.label14.Location = new System.Drawing.Point(73, 219);
+            this.label14.Location = new System.Drawing.Point(325, 472);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(336, 23);
+            this.label14.Size = new System.Drawing.Size(632, 42);
             this.label14.TabIndex = 1;
             this.label14.Text = "- User ID :";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1531,52 +1595,64 @@
             // PL_NOIN
             // 
             this.PL_NOIN.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PL_NOIN.BackgroundImage")));
-            this.PL_NOIN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.PL_NOIN.Location = new System.Drawing.Point(72, 703);
+            this.PL_NOIN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PL_NOIN.Controls.Add(this.label46);
+            this.PL_NOIN.Location = new System.Drawing.Point(1605, 279);
             this.PL_NOIN.Name = "PL_NOIN";
-            this.PL_NOIN.Size = new System.Drawing.Size(791, 445);
+            this.PL_NOIN.Size = new System.Drawing.Size(1280, 720);
             this.PL_NOIN.TabIndex = 30;
             this.PL_NOIN.Visible = false;
+            // 
+            // label46
+            // 
+            this.label46.BackColor = System.Drawing.Color.Transparent;
+            this.label46.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(163)))), ((int)(((byte)(40)))));
+            this.label46.Location = new System.Drawing.Point(384, 555);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(478, 53);
+            this.label46.TabIndex = 2;
+            this.label46.Text = "Server Connection Lost";
+            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Location = new System.Drawing.Point(1156, 0);
+            this.panel1.Controls.Add(this.PIC_LG);
+            this.panel1.Location = new System.Drawing.Point(752, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(156, 98);
+            this.panel1.Size = new System.Drawing.Size(191, 108);
             this.panel1.TabIndex = 31;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // pictureBox2
+            // PIC_LG
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(9, 7);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(138, 83);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.PIC_LG.Location = new System.Drawing.Point(9, 10);
+            this.PIC_LG.Name = "PIC_LG";
+            this.PIC_LG.Size = new System.Drawing.Size(173, 91);
+            this.PIC_LG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PIC_LG.TabIndex = 0;
+            this.PIC_LG.TabStop = false;
             // 
             // PL_Succ
             // 
             this.PL_Succ.Controls.Add(this.label28);
             this.PL_Succ.Controls.Add(this.label29);
             this.PL_Succ.Controls.Add(this.pictureBox6);
-            this.PL_Succ.Location = new System.Drawing.Point(175, 223);
+            this.PL_Succ.Location = new System.Drawing.Point(1632, 253);
             this.PL_Succ.Name = "PL_Succ";
-            this.PL_Succ.Size = new System.Drawing.Size(495, 343);
+            this.PL_Succ.Size = new System.Drawing.Size(1280, 720);
             this.PL_Succ.TabIndex = 32;
             this.PL_Succ.Visible = false;
             // 
             // label28
             // 
             this.label28.BackColor = System.Drawing.Color.White;
-            this.label28.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label28.Location = new System.Drawing.Point(47, 298);
+            this.label28.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label28.Location = new System.Drawing.Point(18, 599);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(400, 40);
+            this.label28.Size = new System.Drawing.Size(1246, 64);
             this.label28.TabIndex = 2;
             this.label28.Text = "You can take your Driving Licence now.";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1585,11 +1661,11 @@
             // label29
             // 
             this.label29.BackColor = System.Drawing.Color.White;
-            this.label29.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label29.ForeColor = System.Drawing.Color.Green;
-            this.label29.Location = new System.Drawing.Point(47, 270);
+            this.label29.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(186)))), ((int)(((byte)(145)))));
+            this.label29.Location = new System.Drawing.Point(18, 495);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(400, 23);
+            this.label29.Size = new System.Drawing.Size(1246, 64);
             this.label29.TabIndex = 1;
             this.label29.Text = "Thank You!";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1599,9 +1675,9 @@
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.InitialImage = null;
-            this.pictureBox6.Location = new System.Drawing.Point(47, 40);
+            this.pictureBox6.Location = new System.Drawing.Point(18, 40);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(400, 220);
+            this.pictureBox6.Size = new System.Drawing.Size(1246, 433);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
@@ -1611,20 +1687,20 @@
             this.PL_Error.Controls.Add(this.label30);
             this.PL_Error.Controls.Add(this.label32);
             this.PL_Error.Controls.Add(this.pictureBox7);
-            this.PL_Error.Location = new System.Drawing.Point(196, 210);
+            this.PL_Error.Location = new System.Drawing.Point(1660, 237);
             this.PL_Error.Name = "PL_Error";
-            this.PL_Error.Size = new System.Drawing.Size(495, 343);
+            this.PL_Error.Size = new System.Drawing.Size(1280, 720);
             this.PL_Error.TabIndex = 33;
             this.PL_Error.Visible = false;
             // 
             // label30
             // 
             this.label30.BackColor = System.Drawing.Color.White;
-            this.label30.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label30.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(47, 298);
+            this.label30.Location = new System.Drawing.Point(20, 613);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(400, 40);
+            this.label30.Size = new System.Drawing.Size(1242, 40);
             this.label30.TabIndex = 2;
             this.label30.Text = "You can take your Driving Licence now.";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1633,11 +1709,11 @@
             // label32
             // 
             this.label32.BackColor = System.Drawing.Color.White;
-            this.label32.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label32.ForeColor = System.Drawing.Color.Maroon;
-            this.label32.Location = new System.Drawing.Point(47, 270);
+            this.label32.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(74)))), ((int)(((byte)(37)))));
+            this.label32.Location = new System.Drawing.Point(20, 556);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(400, 23);
+            this.label32.Size = new System.Drawing.Size(1242, 40);
             this.label32.TabIndex = 1;
             this.label32.Text = "Oops! Something went wrong ...";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1647,41 +1723,19 @@
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.InitialImage = null;
-            this.pictureBox7.Location = new System.Drawing.Point(47, 40);
+            this.pictureBox7.Location = new System.Drawing.Point(20, 40);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(400, 220);
+            this.pictureBox7.Size = new System.Drawing.Size(1242, 469);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 0;
             this.pictureBox7.TabStop = false;
             // 
             // PL_Show_Info
             // 
-            this.PL_Show_Info.Controls.Add(this.TXT_18);
-            this.PL_Show_Info.Controls.Add(this.LBL_18);
-            this.PL_Show_Info.Controls.Add(this.TXT_17);
-            this.PL_Show_Info.Controls.Add(this.LBL_17);
-            this.PL_Show_Info.Controls.Add(this.TXT_16);
-            this.PL_Show_Info.Controls.Add(this.LBL_16);
-            this.PL_Show_Info.Controls.Add(this.TXT_15);
-            this.PL_Show_Info.Controls.Add(this.LBL_15);
+            this.PL_Show_Info.Controls.Add(this.label47);
+            this.PL_Show_Info.Controls.Add(this.button13);
             this.PL_Show_Info.Controls.Add(this.label34);
             this.PL_Show_Info.Controls.Add(this.label33);
-            this.PL_Show_Info.Controls.Add(this.TXT_14);
-            this.PL_Show_Info.Controls.Add(this.LBL_14);
-            this.PL_Show_Info.Controls.Add(this.TXT_13);
-            this.PL_Show_Info.Controls.Add(this.LBL_13);
-            this.PL_Show_Info.Controls.Add(this.TXT_12);
-            this.PL_Show_Info.Controls.Add(this.LBL_12);
-            this.PL_Show_Info.Controls.Add(this.TXT_11);
-            this.PL_Show_Info.Controls.Add(this.LBL_11);
-            this.PL_Show_Info.Controls.Add(this.TXT_10);
-            this.PL_Show_Info.Controls.Add(this.LBL_10);
-            this.PL_Show_Info.Controls.Add(this.TXT_9);
-            this.PL_Show_Info.Controls.Add(this.LBL_9);
-            this.PL_Show_Info.Controls.Add(this.TXT_8);
-            this.PL_Show_Info.Controls.Add(this.LBL_8);
-            this.PL_Show_Info.Controls.Add(this.TXT_7);
-            this.PL_Show_Info.Controls.Add(this.LBL_7);
             this.PL_Show_Info.Controls.Add(this.TXT_6);
             this.PL_Show_Info.Controls.Add(this.LBL_6);
             this.PL_Show_Info.Controls.Add(this.TXT_5);
@@ -1695,355 +1749,197 @@
             this.PL_Show_Info.Controls.Add(this.button7);
             this.PL_Show_Info.Controls.Add(this.TXT_1);
             this.PL_Show_Info.Controls.Add(this.LBL_1);
-            this.PL_Show_Info.Location = new System.Drawing.Point(154, 243);
+            this.PL_Show_Info.Location = new System.Drawing.Point(1152, 767);
             this.PL_Show_Info.Name = "PL_Show_Info";
-            this.PL_Show_Info.Size = new System.Drawing.Size(779, 482);
+            this.PL_Show_Info.Size = new System.Drawing.Size(1280, 720);
             this.PL_Show_Info.TabIndex = 34;
             this.PL_Show_Info.Visible = false;
             // 
-            // TXT_18
+            // label47
             // 
-            this.TXT_18.Location = new System.Drawing.Point(404, 400);
-            this.TXT_18.Name = "TXT_18";
-            this.TXT_18.Size = new System.Drawing.Size(360, 21);
-            this.TXT_18.TabIndex = 39;
+            this.label47.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label47.ForeColor = System.Drawing.Color.Maroon;
+            this.label47.Location = new System.Drawing.Point(22, 379);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(677, 44);
+            this.label47.TabIndex = 33;
+            this.label47.Text = "* Please fill all fields before confirm the accuracy ";
+            this.label47.Visible = false;
             // 
-            // LBL_18
+            // button13
             // 
-            this.LBL_18.AutoSize = true;
-            this.LBL_18.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_18.Location = new System.Drawing.Point(401, 382);
-            this.LBL_18.Name = "LBL_18";
-            this.LBL_18.Size = new System.Drawing.Size(10, 13);
-            this.LBL_18.TabIndex = 38;
-            this.LBL_18.Text = ".";
-            // 
-            // TXT_17
-            // 
-            this.TXT_17.Location = new System.Drawing.Point(17, 400);
-            this.TXT_17.Name = "TXT_17";
-            this.TXT_17.Size = new System.Drawing.Size(360, 21);
-            this.TXT_17.TabIndex = 37;
-            // 
-            // LBL_17
-            // 
-            this.LBL_17.AutoSize = true;
-            this.LBL_17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_17.Location = new System.Drawing.Point(14, 382);
-            this.LBL_17.Name = "LBL_17";
-            this.LBL_17.Size = new System.Drawing.Size(10, 13);
-            this.LBL_17.TabIndex = 36;
-            this.LBL_17.Text = ".";
-            // 
-            // TXT_16
-            // 
-            this.TXT_16.Location = new System.Drawing.Point(404, 354);
-            this.TXT_16.Name = "TXT_16";
-            this.TXT_16.Size = new System.Drawing.Size(360, 21);
-            this.TXT_16.TabIndex = 35;
-            // 
-            // LBL_16
-            // 
-            this.LBL_16.AutoSize = true;
-            this.LBL_16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_16.Location = new System.Drawing.Point(401, 336);
-            this.LBL_16.Name = "LBL_16";
-            this.LBL_16.Size = new System.Drawing.Size(10, 13);
-            this.LBL_16.TabIndex = 34;
-            this.LBL_16.Text = ".";
-            // 
-            // TXT_15
-            // 
-            this.TXT_15.Location = new System.Drawing.Point(17, 354);
-            this.TXT_15.Name = "TXT_15";
-            this.TXT_15.Size = new System.Drawing.Size(360, 21);
-            this.TXT_15.TabIndex = 33;
-            // 
-            // LBL_15
-            // 
-            this.LBL_15.AutoSize = true;
-            this.LBL_15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_15.Location = new System.Drawing.Point(14, 336);
-            this.LBL_15.Name = "LBL_15";
-            this.LBL_15.Size = new System.Drawing.Size(10, 13);
-            this.LBL_15.TabIndex = 32;
-            this.LBL_15.Text = ".";
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button13.ForeColor = System.Drawing.Color.Black;
+            this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
+            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button13.Location = new System.Drawing.Point(20, 583);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(610, 48);
+            this.button13.TabIndex = 32;
+            this.button13.Text = "     Cancel and back to home page";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Visible = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // label34
             // 
-            this.label34.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label34.Location = new System.Drawing.Point(19, 448);
+            this.label34.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.label34.Location = new System.Drawing.Point(20, 489);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(358, 27);
+            this.label34.Size = new System.Drawing.Size(1236, 50);
             this.label34.TabIndex = 31;
-            this.label34.Text = "Please check the above information and correct if necessary and click the confirm" +
-    " button.";
+            this.label34.Text = "Please check the above information, and correct if necessary then press the confi" +
+    "rm button.";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label33.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label33.ForeColor = System.Drawing.Color.Maroon;
-            this.label33.Location = new System.Drawing.Point(14, 432);
+            this.label33.Location = new System.Drawing.Point(14, 481);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(68, 13);
+            this.label33.Size = new System.Drawing.Size(0, 34);
             this.label33.TabIndex = 30;
-            this.label33.Text = "Dear user :";
-            // 
-            // TXT_14
-            // 
-            this.TXT_14.Location = new System.Drawing.Point(404, 307);
-            this.TXT_14.Name = "TXT_14";
-            this.TXT_14.Size = new System.Drawing.Size(360, 21);
-            this.TXT_14.TabIndex = 29;
-            // 
-            // LBL_14
-            // 
-            this.LBL_14.AutoSize = true;
-            this.LBL_14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_14.Location = new System.Drawing.Point(401, 289);
-            this.LBL_14.Name = "LBL_14";
-            this.LBL_14.Size = new System.Drawing.Size(10, 13);
-            this.LBL_14.TabIndex = 28;
-            this.LBL_14.Text = ".";
-            // 
-            // TXT_13
-            // 
-            this.TXT_13.Location = new System.Drawing.Point(17, 307);
-            this.TXT_13.Name = "TXT_13";
-            this.TXT_13.Size = new System.Drawing.Size(360, 21);
-            this.TXT_13.TabIndex = 27;
-            // 
-            // LBL_13
-            // 
-            this.LBL_13.AutoSize = true;
-            this.LBL_13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_13.Location = new System.Drawing.Point(14, 289);
-            this.LBL_13.Name = "LBL_13";
-            this.LBL_13.Size = new System.Drawing.Size(10, 13);
-            this.LBL_13.TabIndex = 26;
-            this.LBL_13.Text = ".";
-            // 
-            // TXT_12
-            // 
-            this.TXT_12.Location = new System.Drawing.Point(404, 261);
-            this.TXT_12.Name = "TXT_12";
-            this.TXT_12.Size = new System.Drawing.Size(360, 21);
-            this.TXT_12.TabIndex = 25;
-            // 
-            // LBL_12
-            // 
-            this.LBL_12.AutoSize = true;
-            this.LBL_12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_12.Location = new System.Drawing.Point(401, 243);
-            this.LBL_12.Name = "LBL_12";
-            this.LBL_12.Size = new System.Drawing.Size(10, 13);
-            this.LBL_12.TabIndex = 24;
-            this.LBL_12.Text = ".";
-            // 
-            // TXT_11
-            // 
-            this.TXT_11.Location = new System.Drawing.Point(17, 261);
-            this.TXT_11.Name = "TXT_11";
-            this.TXT_11.Size = new System.Drawing.Size(360, 21);
-            this.TXT_11.TabIndex = 23;
-            // 
-            // LBL_11
-            // 
-            this.LBL_11.AutoSize = true;
-            this.LBL_11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_11.Location = new System.Drawing.Point(14, 243);
-            this.LBL_11.Name = "LBL_11";
-            this.LBL_11.Size = new System.Drawing.Size(10, 13);
-            this.LBL_11.TabIndex = 22;
-            this.LBL_11.Text = ".";
-            // 
-            // TXT_10
-            // 
-            this.TXT_10.Location = new System.Drawing.Point(404, 214);
-            this.TXT_10.Name = "TXT_10";
-            this.TXT_10.Size = new System.Drawing.Size(360, 21);
-            this.TXT_10.TabIndex = 21;
-            // 
-            // LBL_10
-            // 
-            this.LBL_10.AutoSize = true;
-            this.LBL_10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_10.Location = new System.Drawing.Point(401, 196);
-            this.LBL_10.Name = "LBL_10";
-            this.LBL_10.Size = new System.Drawing.Size(10, 13);
-            this.LBL_10.TabIndex = 20;
-            this.LBL_10.Text = ".";
-            // 
-            // TXT_9
-            // 
-            this.TXT_9.Location = new System.Drawing.Point(17, 214);
-            this.TXT_9.Name = "TXT_9";
-            this.TXT_9.Size = new System.Drawing.Size(360, 21);
-            this.TXT_9.TabIndex = 19;
-            // 
-            // LBL_9
-            // 
-            this.LBL_9.AutoSize = true;
-            this.LBL_9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_9.Location = new System.Drawing.Point(14, 196);
-            this.LBL_9.Name = "LBL_9";
-            this.LBL_9.Size = new System.Drawing.Size(10, 13);
-            this.LBL_9.TabIndex = 18;
-            this.LBL_9.Text = ".";
-            // 
-            // TXT_8
-            // 
-            this.TXT_8.Location = new System.Drawing.Point(404, 167);
-            this.TXT_8.Name = "TXT_8";
-            this.TXT_8.Size = new System.Drawing.Size(360, 21);
-            this.TXT_8.TabIndex = 17;
-            // 
-            // LBL_8
-            // 
-            this.LBL_8.AutoSize = true;
-            this.LBL_8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_8.Location = new System.Drawing.Point(401, 149);
-            this.LBL_8.Name = "LBL_8";
-            this.LBL_8.Size = new System.Drawing.Size(10, 13);
-            this.LBL_8.TabIndex = 16;
-            this.LBL_8.Text = ".";
-            // 
-            // TXT_7
-            // 
-            this.TXT_7.Location = new System.Drawing.Point(17, 167);
-            this.TXT_7.Name = "TXT_7";
-            this.TXT_7.Size = new System.Drawing.Size(360, 21);
-            this.TXT_7.TabIndex = 15;
-            // 
-            // LBL_7
-            // 
-            this.LBL_7.AutoSize = true;
-            this.LBL_7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_7.Location = new System.Drawing.Point(14, 149);
-            this.LBL_7.Name = "LBL_7";
-            this.LBL_7.Size = new System.Drawing.Size(10, 13);
-            this.LBL_7.TabIndex = 14;
-            this.LBL_7.Text = ".";
             // 
             // TXT_6
             // 
-            this.TXT_6.Location = new System.Drawing.Point(404, 120);
+            this.TXT_6.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.TXT_6.Location = new System.Drawing.Point(646, 322);
             this.TXT_6.Name = "TXT_6";
-            this.TXT_6.Size = new System.Drawing.Size(360, 21);
+            this.TXT_6.Size = new System.Drawing.Size(610, 42);
             this.TXT_6.TabIndex = 13;
+            this.TXT_6.Click += new System.EventHandler(this.TXT_6_Click);
+            this.TXT_6.Enter += new System.EventHandler(this.TXT_6_Enter);
             // 
             // LBL_6
             // 
             this.LBL_6.AutoSize = true;
-            this.LBL_6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_6.Location = new System.Drawing.Point(401, 102);
+            this.LBL_6.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.LBL_6.Location = new System.Drawing.Point(650, 285);
             this.LBL_6.Name = "LBL_6";
-            this.LBL_6.Size = new System.Drawing.Size(10, 13);
+            this.LBL_6.Size = new System.Drawing.Size(22, 34);
             this.LBL_6.TabIndex = 12;
             this.LBL_6.Text = ".";
             // 
             // TXT_5
             // 
-            this.TXT_5.Location = new System.Drawing.Point(17, 120);
+            this.TXT_5.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.TXT_5.Location = new System.Drawing.Point(20, 322);
             this.TXT_5.Name = "TXT_5";
-            this.TXT_5.Size = new System.Drawing.Size(360, 21);
+            this.TXT_5.Size = new System.Drawing.Size(610, 42);
             this.TXT_5.TabIndex = 11;
+            this.TXT_5.Click += new System.EventHandler(this.TXT_5_Click);
+            this.TXT_5.Enter += new System.EventHandler(this.TXT_5_Enter);
             // 
             // LBL_5
             // 
             this.LBL_5.AutoSize = true;
-            this.LBL_5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_5.Location = new System.Drawing.Point(14, 102);
+            this.LBL_5.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.LBL_5.Location = new System.Drawing.Point(24, 285);
             this.LBL_5.Name = "LBL_5";
-            this.LBL_5.Size = new System.Drawing.Size(10, 13);
+            this.LBL_5.Size = new System.Drawing.Size(22, 34);
             this.LBL_5.TabIndex = 10;
             this.LBL_5.Text = ".";
             // 
             // TXT_4
             // 
-            this.TXT_4.Location = new System.Drawing.Point(404, 73);
+            this.TXT_4.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.TXT_4.Location = new System.Drawing.Point(646, 220);
             this.TXT_4.Name = "TXT_4";
-            this.TXT_4.Size = new System.Drawing.Size(360, 21);
+            this.TXT_4.Size = new System.Drawing.Size(610, 42);
             this.TXT_4.TabIndex = 9;
+            this.TXT_4.Click += new System.EventHandler(this.TXT_4_Click);
+            this.TXT_4.Enter += new System.EventHandler(this.TXT_4_Enter);
             // 
             // LBL_4
             // 
             this.LBL_4.AutoSize = true;
-            this.LBL_4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_4.Location = new System.Drawing.Point(401, 55);
+            this.LBL_4.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.LBL_4.Location = new System.Drawing.Point(650, 183);
             this.LBL_4.Name = "LBL_4";
-            this.LBL_4.Size = new System.Drawing.Size(10, 13);
+            this.LBL_4.Size = new System.Drawing.Size(22, 34);
             this.LBL_4.TabIndex = 8;
             this.LBL_4.Text = ".";
             // 
             // TXT_3
             // 
-            this.TXT_3.Location = new System.Drawing.Point(17, 73);
+            this.TXT_3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.TXT_3.Location = new System.Drawing.Point(20, 220);
             this.TXT_3.Name = "TXT_3";
-            this.TXT_3.Size = new System.Drawing.Size(360, 21);
+            this.TXT_3.Size = new System.Drawing.Size(610, 42);
             this.TXT_3.TabIndex = 7;
+            this.TXT_3.Click += new System.EventHandler(this.TXT_3_Click);
+            this.TXT_3.Enter += new System.EventHandler(this.TXT_3_Enter);
             // 
             // LBL_3
             // 
             this.LBL_3.AutoSize = true;
-            this.LBL_3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_3.Location = new System.Drawing.Point(14, 55);
+            this.LBL_3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.LBL_3.Location = new System.Drawing.Point(24, 183);
             this.LBL_3.Name = "LBL_3";
-            this.LBL_3.Size = new System.Drawing.Size(10, 13);
+            this.LBL_3.Size = new System.Drawing.Size(22, 34);
             this.LBL_3.TabIndex = 6;
             this.LBL_3.Text = ".";
             // 
             // TXT_2
             // 
-            this.TXT_2.Location = new System.Drawing.Point(404, 26);
+            this.TXT_2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.TXT_2.Location = new System.Drawing.Point(646, 118);
             this.TXT_2.Name = "TXT_2";
-            this.TXT_2.Size = new System.Drawing.Size(360, 21);
+            this.TXT_2.Size = new System.Drawing.Size(610, 42);
             this.TXT_2.TabIndex = 5;
+            this.TXT_2.Click += new System.EventHandler(this.TXT_2_Click);
+            this.TXT_2.Enter += new System.EventHandler(this.TXT_2_Enter);
             // 
             // LBL_2
             // 
             this.LBL_2.AutoSize = true;
-            this.LBL_2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_2.Location = new System.Drawing.Point(401, 8);
+            this.LBL_2.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.LBL_2.Location = new System.Drawing.Point(650, 81);
             this.LBL_2.Name = "LBL_2";
-            this.LBL_2.Size = new System.Drawing.Size(10, 13);
+            this.LBL_2.Size = new System.Drawing.Size(22, 34);
             this.LBL_2.TabIndex = 4;
             this.LBL_2.Text = ".";
             // 
             // button7
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.button7.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(405, 432);
+            this.button7.Location = new System.Drawing.Point(646, 583);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(359, 48);
+            this.button7.Size = new System.Drawing.Size(610, 48);
             this.button7.TabIndex = 3;
-            this.button7.Text = "            I confirm the accuracy of the above information";
+            this.button7.Text = "   I confirm the accuracy of the above information";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // TXT_1
             // 
-            this.TXT_1.Location = new System.Drawing.Point(17, 26);
+            this.TXT_1.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F);
+            this.TXT_1.Location = new System.Drawing.Point(20, 118);
             this.TXT_1.Name = "TXT_1";
-            this.TXT_1.Size = new System.Drawing.Size(360, 21);
+            this.TXT_1.Size = new System.Drawing.Size(610, 42);
             this.TXT_1.TabIndex = 1;
+            this.TXT_1.Click += new System.EventHandler(this.TXT_1_Click);
+            this.TXT_1.Enter += new System.EventHandler(this.TXT_1_Enter);
             // 
             // LBL_1
             // 
             this.LBL_1.AutoSize = true;
-            this.LBL_1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.LBL_1.Location = new System.Drawing.Point(14, 8);
+            this.LBL_1.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.LBL_1.Location = new System.Drawing.Point(24, 81);
             this.LBL_1.Name = "LBL_1";
-            this.LBL_1.Size = new System.Drawing.Size(10, 13);
+            this.LBL_1.Size = new System.Drawing.Size(22, 34);
             this.LBL_1.TabIndex = 0;
             this.LBL_1.Text = ".";
             // 
             // PL_Submit
             // 
+            this.PL_Submit.Controls.Add(this.button12);
             this.PL_Submit.Controls.Add(this.Btn_Finished);
             this.PL_Submit.Controls.Add(this.label38);
             this.PL_Submit.Controls.Add(this.label37);
@@ -2052,90 +1948,113 @@
             this.PL_Submit.Controls.Add(this.label36);
             this.PL_Submit.Controls.Add(this.label35);
             this.PL_Submit.Controls.Add(this.pictureBox9);
-            this.PL_Submit.Location = new System.Drawing.Point(124, 269);
+            this.PL_Submit.Location = new System.Drawing.Point(1204, 724);
             this.PL_Submit.Name = "PL_Submit";
-            this.PL_Submit.Size = new System.Drawing.Size(495, 375);
+            this.PL_Submit.Size = new System.Drawing.Size(1280, 720);
             this.PL_Submit.TabIndex = 35;
             this.PL_Submit.Visible = false;
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button12.ForeColor = System.Drawing.Color.Black;
+            this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
+            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button12.Location = new System.Drawing.Point(108, 599);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(501, 58);
+            this.button12.TabIndex = 12;
+            this.button12.Text = "     Cancel and back to home page";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Visible = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Btn_Finished
             // 
             this.Btn_Finished.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Finished.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.Btn_Finished.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.Btn_Finished.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Finished.Image")));
             this.Btn_Finished.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Finished.Location = new System.Drawing.Point(298, 308);
+            this.Btn_Finished.Location = new System.Drawing.Point(941, 599);
             this.Btn_Finished.Name = "Btn_Finished";
-            this.Btn_Finished.Size = new System.Drawing.Size(128, 48);
+            this.Btn_Finished.Size = new System.Drawing.Size(202, 58);
             this.Btn_Finished.TabIndex = 10;
-            this.Btn_Finished.Text = "            Continue";
+            this.Btn_Finished.Text = "    Continue";
             this.Btn_Finished.UseVisualStyleBackColor = true;
             this.Btn_Finished.Click += new System.EventHandler(this.Btn_Finished_Click);
             // 
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label38.Location = new System.Drawing.Point(28, 279);
+            this.label38.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label38.Location = new System.Drawing.Point(111, 524);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(105, 13);
+            this.label38.Size = new System.Drawing.Size(241, 34);
             this.label38.TabIndex = 9;
             this.label38.Text = "* Phone Number :";
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label37.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label37.ForeColor = System.Drawing.Color.Black;
-            this.label37.Location = new System.Drawing.Point(79, 248);
+            this.label37.Location = new System.Drawing.Point(111, 461);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(53, 13);
+            this.label37.Size = new System.Drawing.Size(118, 34);
             this.label37.TabIndex = 8;
             this.label37.Text = "* Email :";
             // 
             // TXT_Phone
             // 
-            this.TXT_Phone.Location = new System.Drawing.Point(139, 276);
+            this.TXT_Phone.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.TXT_Phone.Location = new System.Drawing.Point(358, 521);
             this.TXT_Phone.Name = "TXT_Phone";
-            this.TXT_Phone.Size = new System.Drawing.Size(287, 21);
+            this.TXT_Phone.Size = new System.Drawing.Size(785, 42);
             this.TXT_Phone.TabIndex = 7;
+            this.TXT_Phone.Click += new System.EventHandler(this.TXT_Phone_Click);
+            this.TXT_Phone.Enter += new System.EventHandler(this.TXT_Phone_Enter);
             // 
             // TXT_Email
             // 
-            this.TXT_Email.Location = new System.Drawing.Point(139, 245);
+            this.TXT_Email.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.TXT_Email.Location = new System.Drawing.Point(235, 458);
             this.TXT_Email.Name = "TXT_Email";
-            this.TXT_Email.Size = new System.Drawing.Size(287, 21);
+            this.TXT_Email.Size = new System.Drawing.Size(908, 42);
             this.TXT_Email.TabIndex = 6;
+            this.TXT_Email.Click += new System.EventHandler(this.TXT_Email_Click);
+            this.TXT_Email.Enter += new System.EventHandler(this.TXT_Email_Enter);
             // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label36.Location = new System.Drawing.Point(66, 223);
+            this.label36.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label36.Location = new System.Drawing.Point(111, 402);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(390, 13);
+            this.label36.Size = new System.Drawing.Size(1032, 34);
             this.label36.TabIndex = 2;
             this.label36.Text = "Please enter your email address and phone number, then press continue button";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label35.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label35.ForeColor = System.Drawing.Color.Green;
-            this.label35.Location = new System.Drawing.Point(64, 206);
+            this.label35.Location = new System.Drawing.Point(102, 349);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(69, 13);
+            this.label35.Size = new System.Drawing.Size(51, 34);
             this.label35.TabIndex = 1;
-            this.label35.Text = "Dear User :";
+            this.label35.Text = "Hi ";
             // 
             // pictureBox9
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.InitialImage = null;
-            this.pictureBox9.Location = new System.Drawing.Point(149, 5);
+            this.pictureBox9.Location = new System.Drawing.Point(343, 25);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(217, 216);
+            this.pictureBox9.Size = new System.Drawing.Size(597, 334);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 0;
             this.pictureBox9.TabStop = false;
@@ -2152,20 +2071,20 @@
             this.PL_DVLA.Controls.Add(this.textBox7);
             this.PL_DVLA.Controls.Add(this.label41);
             this.PL_DVLA.Controls.Add(this.label42);
-            this.PL_DVLA.Location = new System.Drawing.Point(70, 311);
+            this.PL_DVLA.Location = new System.Drawing.Point(1560, 328);
             this.PL_DVLA.Name = "PL_DVLA";
-            this.PL_DVLA.Size = new System.Drawing.Size(495, 375);
+            this.PL_DVLA.Size = new System.Drawing.Size(1280, 720);
             this.PL_DVLA.TabIndex = 36;
             this.PL_DVLA.Visible = false;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label45.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label45.Location = new System.Drawing.Point(215, 148);
+            this.label45.Location = new System.Drawing.Point(621, 242);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(33, 19);
+            this.label45.Size = new System.Drawing.Size(53, 34);
             this.label45.TabIndex = 15;
             this.label45.Text = "OR";
             // 
@@ -2173,30 +2092,30 @@
             // 
             this.PL_DVLA_WT.Controls.Add(this.label44);
             this.PL_DVLA_WT.Controls.Add(this.WGPLWT);
-            this.PL_DVLA_WT.Location = new System.Drawing.Point(19, 280);
+            this.PL_DVLA_WT.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.PL_DVLA_WT.Location = new System.Drawing.Point(56, 535);
             this.PL_DVLA_WT.Name = "PL_DVLA_WT";
-            this.PL_DVLA_WT.Size = new System.Drawing.Size(292, 77);
+            this.PL_DVLA_WT.Size = new System.Drawing.Size(487, 106);
             this.PL_DVLA_WT.TabIndex = 14;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label44.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(255)))));
-            this.label44.Location = new System.Drawing.Point(62, 20);
+            this.label44.Location = new System.Drawing.Point(139, 16);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(175, 34);
+            this.label44.Size = new System.Drawing.Size(323, 68);
             this.label44.TabIndex = 14;
             this.label44.Text = "Please Wait ...\r\nProcessing your request";
             // 
             // WGPLWT
             // 
-            this.WGPLWT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WGPLWT.BackColor = System.Drawing.Color.Transparent;
             this.WGPLWT.Image = ((System.Drawing.Image)(resources.GetObject("WGPLWT.Image")));
-            this.WGPLWT.Location = new System.Drawing.Point(14, 17);
+            this.WGPLWT.Location = new System.Drawing.Point(16, 16);
             this.WGPLWT.Name = "WGPLWT";
-            this.WGPLWT.Size = new System.Drawing.Size(40, 40);
+            this.WGPLWT.Size = new System.Drawing.Size(107, 68);
             this.WGPLWT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.WGPLWT.TabIndex = 6;
             this.WGPLWT.TabStop = false;
@@ -2204,87 +2123,90 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label39.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label39.ForeColor = System.Drawing.Color.Black;
-            this.label39.Location = new System.Drawing.Point(28, 231);
+            this.label39.Location = new System.Drawing.Point(50, 351);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(174, 19);
+            this.label39.Size = new System.Drawing.Size(270, 34);
             this.label39.TabIndex = 13;
             this.label39.Text = "National Insurance :";
             // 
             // textBox6
             // 
-            this.textBox6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.textBox6.Location = new System.Drawing.Point(208, 228);
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.textBox6.Location = new System.Drawing.Point(326, 348);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(251, 27);
+            this.textBox6.Size = new System.Drawing.Size(914, 42);
             this.textBox6.TabIndex = 12;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox6.Click += new System.EventHandler(this.textBox6_Click);
+            this.textBox6.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label43.Location = new System.Drawing.Point(27, 185);
+            this.label43.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label43.Location = new System.Drawing.Point(50, 299);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(401, 19);
+            this.label43.Size = new System.Drawing.Size(721, 34);
             this.label43.TabIndex = 11;
             this.label43.Text = "Otherwise please enter the national insurance number :";
             // 
             // button8
             // 
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.button8.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(331, 293);
+            this.button8.Location = new System.Drawing.Point(1035, 584);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(128, 48);
+            this.button8.Size = new System.Drawing.Size(205, 57);
             this.button8.TabIndex = 10;
-            this.button8.Text = "            Continue";
+            this.button8.Text = "    Continue";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label40.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(27, 104);
+            this.label40.Location = new System.Drawing.Point(50, 160);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(110, 19);
+            this.label40.Size = new System.Drawing.Size(173, 34);
             this.label40.TabIndex = 8;
             this.label40.Text = "DVLA Code :";
             // 
             // textBox7
             // 
-            this.textBox7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.textBox7.Location = new System.Drawing.Point(143, 101);
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.textBox7.Location = new System.Drawing.Point(229, 157);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(315, 27);
+            this.textBox7.Size = new System.Drawing.Size(1011, 42);
             this.textBox7.TabIndex = 6;
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox7.Click += new System.EventHandler(this.textBox7_Click);
+            this.textBox7.Enter += new System.EventHandler(this.textBox7_Enter);
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label41.Location = new System.Drawing.Point(27, 56);
+            this.label41.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label41.Location = new System.Drawing.Point(50, 103);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(432, 19);
+            this.label41.Size = new System.Drawing.Size(769, 34);
             this.label41.TabIndex = 2;
             this.label41.Text = "If you have a DVLA check code, please enter the following :";
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label42.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
             this.label42.ForeColor = System.Drawing.Color.Green;
-            this.label42.Location = new System.Drawing.Point(15, 26);
+            this.label42.Location = new System.Drawing.Point(22, 55);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(101, 19);
+            this.label42.Size = new System.Drawing.Size(0, 34);
             this.label42.TabIndex = 1;
-            this.label42.Text = "Dear User :";
             // 
             // PL_DVLA_OK
             // 
@@ -2293,82 +2215,245 @@
             this.PL_DVLA_OK.Controls.Add(this.pictureBox10);
             this.PL_DVLA_OK.Controls.Add(this.pictureBox8);
             this.PL_DVLA_OK.Controls.Add(this.label48);
-            this.PL_DVLA_OK.Location = new System.Drawing.Point(232, 13);
+            this.PL_DVLA_OK.Location = new System.Drawing.Point(1579, 304);
             this.PL_DVLA_OK.Name = "PL_DVLA_OK";
-            this.PL_DVLA_OK.Size = new System.Drawing.Size(847, 639);
+            this.PL_DVLA_OK.Size = new System.Drawing.Size(1280, 720);
             this.PL_DVLA_OK.TabIndex = 37;
             this.PL_DVLA_OK.Visible = false;
             // 
-            // label48
+            // button9
             // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label48.ForeColor = System.Drawing.Color.Green;
-            this.label48.Location = new System.Drawing.Point(8, 8);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(152, 19);
-            this.label48.TabIndex = 1;
-            this.label48.Text = "Dear Hamidreza :";
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.Location = new System.Drawing.Point(1023, 632);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(194, 75);
+            this.button9.TabIndex = 11;
+            this.button9.Text = "    Submit";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // pictureBox8
+            // pictureBox11
             // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(20, 36);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(810, 338);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox8.TabIndex = 2;
-            this.pictureBox8.TabStop = false;
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(469, 444);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(523, 263);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 4;
+            this.pictureBox11.TabStop = false;
             // 
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(25, 369);
+            this.pictureBox10.Location = new System.Drawing.Point(66, 444);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(397, 263);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox10.TabIndex = 3;
             this.pictureBox10.TabStop = false;
             // 
-            // pictureBox11
+            // pictureBox8
             // 
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(429, 366);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(398, 196);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox11.TabIndex = 4;
-            this.pictureBox11.TabStop = false;
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(66, 52);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(926, 388);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 2;
+            this.pictureBox8.TabStop = false;
             // 
-            // button9
+            // label48
             // 
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(698, 586);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(128, 48);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "            Submit";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label48.ForeColor = System.Drawing.Color.Green;
+            this.label48.Location = new System.Drawing.Point(60, 12);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(237, 34);
+            this.label48.TabIndex = 1;
+            this.label48.Text = "Dear Hamidreza :";
+            // 
+            // LG_KIA
+            // 
+            this.LG_KIA.Image = ((System.Drawing.Image)(resources.GetObject("LG_KIA.Image")));
+            this.LG_KIA.Location = new System.Drawing.Point(521, 68);
+            this.LG_KIA.Name = "LG_KIA";
+            this.LG_KIA.Size = new System.Drawing.Size(20, 19);
+            this.LG_KIA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LG_KIA.TabIndex = 38;
+            this.LG_KIA.TabStop = false;
+            this.LG_KIA.Visible = false;
+            // 
+            // LG_TOYOTA
+            // 
+            this.LG_TOYOTA.Image = ((System.Drawing.Image)(resources.GetObject("LG_TOYOTA.Image")));
+            this.LG_TOYOTA.Location = new System.Drawing.Point(547, 68);
+            this.LG_TOYOTA.Name = "LG_TOYOTA";
+            this.LG_TOYOTA.Size = new System.Drawing.Size(20, 19);
+            this.LG_TOYOTA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LG_TOYOTA.TabIndex = 39;
+            this.LG_TOYOTA.TabStop = false;
+            this.LG_TOYOTA.Visible = false;
+            // 
+            // Pnl_Btn
+            // 
+            this.Pnl_Btn.Controls.Add(this.Btn_CF);
+            this.Pnl_Btn.Controls.Add(this.Btn_BTD);
+            this.Pnl_Btn.Controls.Add(this.Btn_CC);
+            this.Pnl_Btn.Location = new System.Drawing.Point(1347, 515);
+            this.Pnl_Btn.Name = "Pnl_Btn";
+            this.Pnl_Btn.Size = new System.Drawing.Size(1858, 872);
+            this.Pnl_Btn.TabIndex = 40;
+            this.Pnl_Btn.Visible = false;
+            // 
+            // Btn_CF
+            // 
+            this.Btn_CF.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_CF.BackgroundImage")));
+            this.Btn_CF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Btn_CF.Controls.Add(this.pictureBox13);
+            this.Btn_CF.Location = new System.Drawing.Point(20, 13);
+            this.Btn_CF.Name = "Btn_CF";
+            this.Btn_CF.Size = new System.Drawing.Size(570, 772);
+            this.Btn_CF.TabIndex = 2;
+            this.Btn_CF.Visible = false;
+            this.Btn_CF.Click += new System.EventHandler(this.panel2_Click);
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.BackColor = System.Drawing.Color.White;
+            this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(51, 72);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(401, 383);
+            this.pictureBox13.TabIndex = 0;
+            this.pictureBox13.TabStop = false;
+            this.pictureBox13.Click += new System.EventHandler(this.panel2_Click);
+            // 
+            // Btn_BTD
+            // 
+            this.Btn_BTD.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_BTD.BackgroundImage")));
+            this.Btn_BTD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Btn_BTD.Controls.Add(this.pictureBox12);
+            this.Btn_BTD.Location = new System.Drawing.Point(1274, 13);
+            this.Btn_BTD.Name = "Btn_BTD";
+            this.Btn_BTD.Size = new System.Drawing.Size(570, 772);
+            this.Btn_BTD.TabIndex = 1;
+            this.Btn_BTD.Visible = false;
+            this.Btn_BTD.Click += new System.EventHandler(this.Btn_BTD_Click);
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(85, 153);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(402, 315);
+            this.pictureBox12.TabIndex = 1;
+            this.pictureBox12.TabStop = false;
+            this.pictureBox12.Click += new System.EventHandler(this.Btn_BTD_Click);
+            // 
+            // Btn_CC
+            // 
+            this.Btn_CC.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_CC.BackgroundImage")));
+            this.Btn_CC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Btn_CC.Controls.Add(this.pictureBox2);
+            this.Btn_CC.Location = new System.Drawing.Point(638, 13);
+            this.Btn_CC.Name = "Btn_CC";
+            this.Btn_CC.Size = new System.Drawing.Size(570, 772);
+            this.Btn_CC.TabIndex = 0;
+            this.Btn_CC.Visible = false;
+            this.Btn_CC.Click += new System.EventHandler(this.Btn_CC_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(180, 94);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(212, 435);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.Btn_CC_Click);
+            // 
+            // PnlWeb
+            // 
+            this.PnlWeb.BackColor = System.Drawing.Color.White;
+            this.PnlWeb.Controls.Add(this.button10);
+            this.PnlWeb.Controls.Add(this.WBL);
+            this.PnlWeb.Controls.Add(this.WB);
+            this.PnlWeb.Location = new System.Drawing.Point(1448, 410);
+            this.PnlWeb.Name = "PnlWeb";
+            this.PnlWeb.Size = new System.Drawing.Size(496, 273);
+            this.PnlWeb.TabIndex = 41;
+            this.PnlWeb.Visible = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button10.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, System.Drawing.FontStyle.Bold);
+            this.button10.Location = new System.Drawing.Point(10, 10);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(214, 44);
+            this.button10.TabIndex = 2;
+            this.button10.Text = "Back to Home";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // WBL
+            // 
+            this.WBL.BackColor = System.Drawing.Color.Transparent;
+            this.WBL.Image = ((System.Drawing.Image)(resources.GetObject("WBL.Image")));
+            this.WBL.Location = new System.Drawing.Point(243, 31);
+            this.WBL.Name = "WBL";
+            this.WBL.Size = new System.Drawing.Size(200, 200);
+            this.WBL.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.WBL.TabIndex = 1;
+            this.WBL.TabStop = false;
+            this.WBL.Visible = false;
+            // 
+            // WB
+            // 
+            this.WB.Location = new System.Drawing.Point(29, 41);
+            this.WB.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WB.Name = "WB";
+            this.WB.ScriptErrorsSuppressed = true;
+            this.WB.Size = new System.Drawing.Size(154, 112);
+            this.WB.TabIndex = 0;
+            this.WB.Visible = false;
+            this.WB.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WB_DocumentCompleted);
+            this.WB.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WB_Navigating);
+            // 
+            // LG_BENZ
+            // 
+            this.LG_BENZ.Image = ((System.Drawing.Image)(resources.GetObject("LG_BENZ.Image")));
+            this.LG_BENZ.Location = new System.Drawing.Point(495, 67);
+            this.LG_BENZ.Name = "LG_BENZ";
+            this.LG_BENZ.Size = new System.Drawing.Size(20, 19);
+            this.LG_BENZ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LG_BENZ.TabIndex = 42;
+            this.LG_BENZ.TabStop = false;
+            this.LG_BENZ.Visible = false;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1315, 799);
+            this.ClientSize = new System.Drawing.Size(948, 314);
             this.ControlBox = false;
-            this.Controls.Add(this.PL_DVLA_OK);
-            this.Controls.Add(this.PL_01_Splash);
+            this.Controls.Add(this.LG_BENZ);
+            this.Controls.Add(this.Pnl_Btn);
             this.Controls.Add(this.PL_02_Splash);
-            this.Controls.Add(this.PL_03_Splash);
-            this.Controls.Add(this.PL_04_Splash);
-            this.Controls.Add(this.PL_Password);
-            this.Controls.Add(this.PL_Config);
-            this.Controls.Add(this.PL_NOIN);
+            this.Controls.Add(this.PL_Submit);
+            this.Controls.Add(this.PL_Show_Info);
+            this.Controls.Add(this.LG_TOYOTA);
+            this.Controls.Add(this.LG_KIA);
             this.Controls.Add(this.PLD_Data);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PanB1);
@@ -2381,11 +2466,17 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.Lbl_ErrorPublic);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.PL_01_Splash);
+            this.Controls.Add(this.PL_03_Splash);
+            this.Controls.Add(this.PL_04_Splash);
+            this.Controls.Add(this.PL_Password);
+            this.Controls.Add(this.PL_Config);
             this.Controls.Add(this.PL_Error);
             this.Controls.Add(this.PL_Succ);
-            this.Controls.Add(this.PL_Show_Info);
-            this.Controls.Add(this.PL_Submit);
+            this.Controls.Add(this.PL_NOIN);
+            this.Controls.Add(this.PL_DVLA_OK);
             this.Controls.Add(this.PL_DVLA);
+            this.Controls.Add(this.PnlWeb);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -2433,8 +2524,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PL_Config.ResumeLayout(false);
             this.PL_Config.PerformLayout();
+            this.PL_NOIN.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PIC_LG)).EndInit();
             this.PL_Succ.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.PL_Error.ResumeLayout(false);
@@ -2451,9 +2543,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.WGPLWT)).EndInit();
             this.PL_DVLA_OK.ResumeLayout(false);
             this.PL_DVLA_OK.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LG_KIA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LG_TOYOTA)).EndInit();
+            this.Pnl_Btn.ResumeLayout(false);
+            this.Btn_CF.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            this.Btn_BTD.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            this.Btn_CC.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.PnlWeb.ResumeLayout(false);
+            this.PnlWeb.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WBL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LG_BENZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2582,7 +2687,7 @@
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Panel PL_NOIN;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox PIC_LG;
         private System.Windows.Forms.Panel PL_Succ;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
@@ -2595,18 +2700,6 @@
         private System.Windows.Forms.TextBox TXT_1;
         private System.Windows.Forms.Label LBL_1;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox TXT_12;
-        private System.Windows.Forms.Label LBL_12;
-        private System.Windows.Forms.TextBox TXT_11;
-        private System.Windows.Forms.Label LBL_11;
-        private System.Windows.Forms.TextBox TXT_10;
-        private System.Windows.Forms.Label LBL_10;
-        private System.Windows.Forms.TextBox TXT_9;
-        private System.Windows.Forms.Label LBL_9;
-        private System.Windows.Forms.TextBox TXT_8;
-        private System.Windows.Forms.Label LBL_8;
-        private System.Windows.Forms.TextBox TXT_7;
-        private System.Windows.Forms.Label LBL_7;
         private System.Windows.Forms.TextBox TXT_6;
         private System.Windows.Forms.Label LBL_6;
         private System.Windows.Forms.TextBox TXT_5;
@@ -2617,20 +2710,8 @@
         private System.Windows.Forms.Label LBL_3;
         private System.Windows.Forms.TextBox TXT_2;
         private System.Windows.Forms.Label LBL_2;
-        private System.Windows.Forms.TextBox TXT_14;
-        private System.Windows.Forms.Label LBL_14;
-        private System.Windows.Forms.TextBox TXT_13;
-        private System.Windows.Forms.Label LBL_13;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox TXT_18;
-        private System.Windows.Forms.Label LBL_18;
-        private System.Windows.Forms.TextBox TXT_17;
-        private System.Windows.Forms.Label LBL_17;
-        private System.Windows.Forms.TextBox TXT_16;
-        private System.Windows.Forms.Label LBL_16;
-        private System.Windows.Forms.TextBox TXT_15;
-        private System.Windows.Forms.Label LBL_15;
         private System.Windows.Forms.Panel PL_Submit;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label36;
@@ -2659,6 +2740,25 @@
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox LG_KIA;
+        private System.Windows.Forms.PictureBox LG_TOYOTA;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Panel Pnl_Btn;
+        private System.Windows.Forms.Panel Btn_BTD;
+        private System.Windows.Forms.Panel Btn_CC;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel PnlWeb;
+        private System.Windows.Forms.WebBrowser WB;
+        private System.Windows.Forms.PictureBox WBL;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Panel Btn_CF;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.PictureBox LG_BENZ;
     }
 }
 

@@ -28,3 +28,19 @@ E:\Project\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reade
 E:\Project\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.CopyComplete
 E:\Project\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.exe
 E:\Project\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.pdb
+E:\Project\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.KeyboardF.resources
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\IDV_Reader.exe.config
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\IDV_Reader.exe
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\IDV_Reader.pdb
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\Newtonsoft.Json.dll
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\RestSharp.dll
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\Newtonsoft.Json.xml
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\bin\x86\Debug\RestSharp.xml
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.KeyboardF.resources
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.Main.resources
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.Properties.Resources.resources
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.GenerateResource.cache
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.CoreCompileInputs.cache
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.csproj.CopyComplete
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.exe
+E:\02- Projects Done\05- IDV Kiosk V1\Source\IDV_Reader\IDV_Reader\obj\x86\Debug\IDV_Reader.pdb
